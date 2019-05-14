@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.dao.TouristDao">
+    <insert id="addTourist">
+        insert into T_TOURIST(T_ID,T_NAME,T_PASS) values (TOURIST_SEQ.nextval,#{t_name},#{t_pass})
+    </insert>
+
+    <select id="getTouristByNAMEAndPASS" resultType="com.iotek.model.Tourist">
+        select * from T_TOURIST where T_NAME=#{t_name} and T_PASS=#{t_pass}
+    </select>
+    <select id="getTouristByName" resultType="com.iotek.model.Tourist">
+        select * from T_TOURIST where T_NAME=#{t_name}
+    </select>
+</mapper>
