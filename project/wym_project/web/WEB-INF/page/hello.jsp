@@ -1,3 +1,4 @@
+<%@ page import="com.iotek.model.Tourist" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -16,8 +17,9 @@
     <base href="<%=basePath%>"/>
     <title>Title</title>
     <script src="js/jquery-3.1.0.js"></script>
+    <% Tourist tourist = (Tourist) session.getAttribute("tourist");%>
 </head>
-<body>
-
-</body>
+    <body>
+        <a href="myresume?tid=<%=tourist.getT_id()%>">我的简历</a>
+    </body>
 </html>

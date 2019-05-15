@@ -18,8 +18,6 @@
     <script>
         $(function () {
             $("#regi").click(function () {
-                $("#regi").attr('disabled', 'disabled');
-                $("#log").attr('disabled', 'disabled');
                 $("body").append("<div id='changeID'><h3>游客注册</h3>" +
                     "<form action='regiest' method='post'>" +
                     "用户名　:<input type=\"text\" name=\"name\" id=\"name1\" required>" +

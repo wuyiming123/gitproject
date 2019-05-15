@@ -7,17 +7,17 @@ public class Resume implements Serializable {
     private String r_name;
     private String r_sex;
     private String r_birthday;
-    private String r_nation;
-    private String r_nativeplace;
-    private String r_graduteschool;
-    private String r_politics;
-    private String r_major;
-    private String r_education;
-    private Integer r_zipcode;
+    private String r_nation;//Mingzu
+    private String r_nativeplace;//jiguan
+    private String r_graduteschool;//biyeyuanxiao
+    private String r_politics;///zhengzhimianmao
+    private String r_major;///zhuanye
+    private String r_education;///xueli
+    private Integer r_zipcode;////youzhengbianma
     private Integer r_phone;
     private String r_email;
     private String r_address;
-    private String r_evaluation;
+    private String r_evaluation;///ziwopinggu
     private Integer r_tid;
 
     public Resume() {
