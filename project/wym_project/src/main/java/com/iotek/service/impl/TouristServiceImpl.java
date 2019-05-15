@@ -21,14 +21,27 @@ public class TouristServiceImpl implements TouristService {
     }
 
     public Tourist getTouristByNAMEAndPASS(Tourist tourist) {
-        return touristDao.getTouristByNAMEAndPASS(tourist);
+        if(tourist==null){
+            return null;
+        }else {
+            return touristDao.getTouristByNAMEAndPASS(tourist);
+        }
     }
 
     public boolean addTourist(Tourist tourist) {
-        return touristDao.addTourist(tourist);
+        if(tourist==null){
+            return false;
+        }else {
+            return touristDao.addTourist(tourist);
+        }
+
     }
 
     public Tourist getTouristByName(String t_name) {
-        return touristDao.getTouristByName(t_name);
+        if(t_name==null){
+            return null;
+        }else {
+            return touristDao.getTouristByName(t_name);
+        }
     }
 }

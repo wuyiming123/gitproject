@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Maibenben
@@ -14,7 +15,7 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>Title</title>
-    <script src="???????????jquery-3.1.0.js"></script>
+    <script src="js/jquery-3.1.0.js"></script>
 </head>
 <body>
 
