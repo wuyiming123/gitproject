@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.dao.ResumDao">
+    <insert id="addResum">
+        insert into T_RESUME(R_ID, R_NAME, R_SEX, R_BIRTHDAY, R_NATION, R_NATIVEPLACE,
+        R_GRADUTESCHOOL, R_POLITICS, R_MAJOR, R_EDUCATION,
+        R_ZIPCODE, R_PHONE, R_EMAIL, R_ADDRESS, R_EVALUATION, R_TID)
+        values (RESUME_SEQ.nextval,#{r_name},#{r_sex},#{r_birthday},#{r_nation},#{r_nativeplace},
+        #{r_graduteschool},#{r_politics},#{r_major},#{r_education},
+        #{r_zipcode},#{r_phone},#{r_email},#{r_address},#{r_evaluation},#{r_tid})
+    </insert>
+    <update id="updateResume">
+        update T_RESUME set R_NAME=#{r_name},R_SEX=#{r_sex},R_BIRTHDAY=#{r_birthday},R_NATION=#{r_nation},R_NATIVEPLACE=#{r_nativeplace},
+        R_GRADUTESCHOOL=#{r_graduteschool},R_POLITICS=#{r_politics},R_MAJOR=#{r_major},R_EDUCATION=#{r_education},
+        R_ZIPCODE=#{r_zipcode},R_PHONE=#{r_phone},R_EMAIL=#{r_email},R_ADDRESS=#{r_address},R_EVALUATION=#{r_evaluation},R_TID=#{r_tid}
+        where r_id=#{r_id}
+    </update>
+    <delete id="delThisResume">
+        delete from T_RESUME where R_ID=#{r_id}
+    </delete>
     <select id="allResumByTid" resultType="com.iotek.model.Resume">
         select * from T_RESUME where R_TID=#{r_tid}
+    </select>
+    <select id="getResumByID" resultType="com.iotek.model.Resume">
+        select * from T_RESUME where R_ID=#{r_id}
+    </select>
+    <select id="queryAllResume" resultType="com.iotek.model.Resume">
+        select * from T_RESUME
     </select>
 </mapper>

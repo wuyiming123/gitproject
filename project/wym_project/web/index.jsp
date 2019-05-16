@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Maibenben
@@ -38,7 +39,7 @@
             })
 
             $("#log").click(function () {
-                $("body").append("<div id='Login'><h3>游客登录</h3>" +
+                $("body").append("<div id='Login'><h3>登录</h3>" +
                     "<form action='login' method='post'>" +
                     "用户名　:<input type=\"text\" name=\"name\" id=\"name1\" required>" +
                     "<span id=\"spanname\"></span><br/>" +
@@ -49,6 +50,12 @@
                     "</form></div>")
             })
 
+        })
+
+        $(function () {
+            $("#button").click(function () {
+                alert("亲,请先登录哦！")
+            })
         })
     </script>
     <style>
@@ -75,7 +82,46 @@
     </style>
 </head>
 <body>
-<a id="regi" href="#">注册</a>
-<a id="log" href="#">登录</a>
+<a id="regi" >注册 </a>
+<a id="log"> 登录 </a>
+<a href="admin"> 我是管理员</a>
+<table border="1px">
+    <tr>
+        <td width="90px">发布者</td>
+        <td width="90px">招聘职位</td>
+        <td width="90px"预估薪资</td>
+        <td width="130px">要求</td>
+        <td width="90px"></td>
+        <td width="90px"></td>
+    </tr>
+    <c:forEach items="${sessionScope.recruit}" var="recruit">
+        <tr>
+            <td width="90px">admin</td>
+            <td width="90px">
+                ${recruit.ri_position}
+            </td>
+            <td width="90px">
+                <c:if test="${recruit.ri_salary==null}">
+                    工资面议
+                </c:if>
+                <c:if test="${recruit.ri_salary!=null}">
+                    ${recruit.ri_salary}
+                </c:if>
+            </td>
+            <td width="130px">
+                ${recruit.ri_requirement}
+            </td>
+            <td width="90px">
+                <form action="lookRecruit" method="post">
+                    <input type="submit" value="查看该招聘信息详情">
+                    <input type="hidden" value="${recruit.ri_id}" name="ri_id">
+                </form>
+            </td>
+            <td  width="90px">
+                <input type="button" id="button" value="投递">
+            </td>
+        </tr>
+    </c:forEach>
+</table>
 </body>
 </html>

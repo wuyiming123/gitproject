@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.InterviewDao">
+    <insert id="addInterviewstate1">
+        insert into T_INTERVIEW(I_ID,I_DID,I_STATE) values (INTERVIEW_SEQ.nextval,#{i_did},#{i_state})
+    </insert>
+</mapper>

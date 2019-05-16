@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.DeliveryDao">
+    <insert id="addDelivery">
+        insert into T_DELIVERY(D_ID, D_TID, D_RIID, D_RID,D_STATE)
+        values (DELIVERY_SEQ.nextval,#{d_tid},#{d_riid},#{d_rid},#{d_state})
+    </insert>
+    <update id="updateDeli">
+        update T_DELIVERY set D_STATE=#{d_state}
+    </update>
+    <select id="queryAllDe" resultType="com.iotek.model.Delivery">
+        select * from T_DELIVERY
+    </select>
+    <select id="founddelivery" resultType="com.iotek.model.Delivery">
+        select * from T_DELIVERY where D_TID=#{d_tid} and D_RIID=#{d_riid}
+    </select>
+    <select id="fountDeliByridAndriid" resultType="com.iotek.model.Delivery">
+        select * from T_DELIVERY where D_RIID=#{d_riid} and D_RID=#{d_rid}
+    </select>
+    <select id="queryAllDeBystate2" resultType="com.iotek.model.Delivery">
+        select * from T_DELIVERY where D_STATE=#{d_state}
+    </select>
+</mapper>

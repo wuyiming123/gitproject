@@ -8,8 +8,9 @@ public class InterView implements Serializable {
     private Integer i_id;
     private Integer i_phone;
     private String i_address;
-    private Integer i_tid;
+    private Integer i_did;
     private String i_time;
+    private Integer i_state;
 
     public InterView() {
     }
@@ -38,12 +39,12 @@ public class InterView implements Serializable {
         this.i_address = i_address;
     }
 
-    public Integer getI_tid() {
-        return i_tid;
+    public Integer getI_did() {
+        return i_did;
     }
 
-    public void setI_tid(Integer i_tid) {
-        this.i_tid = i_tid;
+    public void setI_did(Integer i_did) {
+        this.i_did = i_did;
     }
 
     public String getI_time() {
@@ -54,14 +55,23 @@ public class InterView implements Serializable {
         this.i_time = i_time;
     }
 
+    public Integer getI_state() {
+        return i_state;
+    }
+
+    public void setI_state(Integer i_state) {
+        this.i_state = i_state;
+    }
+
     @Override
     public String toString() {
         return "InterView{" +
                 "i_id=" + i_id +
                 ", i_phone=" + i_phone +
                 ", i_address='" + i_address + '\'' +
-                ", i_tid=" + i_tid +
+                ", i_did=" + i_did +
                 ", i_time='" + i_time + '\'' +
+                ", i_state=" + i_state +
                 '}';
     }
 }

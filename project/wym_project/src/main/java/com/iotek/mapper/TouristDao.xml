@@ -13,4 +13,7 @@
     <select id="getTouristByName" resultType="com.iotek.model.Tourist">
         select * from T_TOURIST where T_NAME=#{t_name}
     </select>
+    <select id="queryAllT" resultType="com.iotek.model.Tourist">
+        select * from T_TOURIST
+    </select>
 </mapper>

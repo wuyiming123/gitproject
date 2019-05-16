@@ -6,6 +6,7 @@ import com.iotek.service.TouristService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class TouristServiceImpl implements TouristService {
@@ -43,5 +44,9 @@ public class TouristServiceImpl implements TouristService {
         }else {
             return touristDao.getTouristByName(t_name);
         }
+    }
+
+    public List<Tourist> queryAllT() {
+        return touristDao.queryAllT();
     }
 }

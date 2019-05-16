@@ -26,4 +26,40 @@ public class ResumServiceImpl implements ResumService {
         }
         return null;
     }
+
+    public boolean addResume(Resume resume) {
+        if(resume!=null){
+            return resumDao.addResum(resume);
+        }else {
+            return false;
+        }
+    }
+
+    public Resume getResumByID(Integer r_id) {
+        if(r_id!=null){
+            return resumDao.getResumByID(r_id);
+        }else {
+            return null;
+        }
+    }
+
+    public boolean updateResume(Resume resume) {
+        if(resume!=null){
+            return resumDao.updateResume(resume);
+        }else {
+            return false;
+        }
+    }
+
+    public boolean delThisResume(Integer r_id) {
+        if(r_id!=null){
+            return resumDao.delThisResume(r_id);
+        }else {
+            return false;
+        }
+    }
+
+    public List<Resume> queryAllResume() {
+        return resumDao.queryAllResume();
+    }
 }

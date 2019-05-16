@@ -21,5 +21,48 @@
 </head>
     <body>
         <a href="myresume?tid=<%=tourist.getT_id()%>">我的简历</a>
+        <table border="1px">
+            <tr>
+                <td width="90px">发布者</td>
+                <td width="90px">招聘职位</td>
+                <td width="90px">预估薪资</td>
+                <td width="130px">要求</td>
+                <td width="90px"></td>
+                <td width="90px"></td>
+            </tr>
+            <c:forEach items="${sessionScope.recruit}" var="recruit">
+                <tr>
+                    <td width="90px">admin</td>
+                    <td width="90px">
+                            ${recruit.ri_position}
+                    </td>
+                    <td width="90px">
+                        <c:if test="${recruit.ri_salary==null}">
+                            工资面议
+                        </c:if>
+                        <c:if test="${recruit.ri_salary!=null}">
+                            ${recruit.ri_salary}
+                        </c:if>
+                    </td>
+                    <td width="130px">
+                            ${recruit.ri_requirement}
+                    </td>
+                    <td width="90px">
+                        <form action="lookRecruit1" method="post">
+                            <input type="submit" value="查看该招聘信息详情">
+                            <input type="hidden" value="${recruit.ri_id}" name="ri_id">
+                            <input type="hidden" value="<%=tourist.getT_id()%>" name="t_id">
+                        </form>
+                    </td>
+                    <td  width="90px">
+                        <form action="delivery" method="post">
+                            <input type="submit" id="button" value="投递">
+                            <input type="hidden" value="${recruit.ri_id}" name="ri_id">
+                            <input type="hidden" value="<%=tourist.getT_id()%>" name="t_id">
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
     </body>
 </html>
