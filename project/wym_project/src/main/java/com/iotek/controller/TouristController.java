@@ -1,9 +1,6 @@
 package com.iotek.controller;
 
-import com.iotek.model.Admin;
-import com.iotek.model.Recruit;
-import com.iotek.model.Resume;
-import com.iotek.model.Tourist;
+import com.iotek.model.*;
 import com.iotek.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +25,8 @@ public class TouristController {
     private RecruitService recruitService;
     @Resource
     private DeliveryService deliveryService;
+    @Resource
+    private InterviewService interviewService;
 
     @RequestMapping("toindex")
     public String toindex(){
@@ -59,11 +58,17 @@ public class TouristController {
 //                return "../../index";
 //            }
 //        }else{
+
             Tourist tourist = new Tourist();
             tourist.setT_name(name);
             tourist.setT_pass(pass);
             Tourist T = touristService.getTouristByNAMEAndPASS(tourist);
             if(T!=null){
+                Integer t_id = T.getT_id();
+                List<Delivery> deliveries = deliveryService.queryDeBytid(t_id);
+                session.setAttribute("deliveries",deliveries);
+                List<Delivery> deliveries1 = deliveryService.queryDeBytid_state(t_id, 2);
+                session.setAttribute("deliveries1",deliveries1);
                 System.out.println(T);
                 session.setAttribute("tourist",T);
                 return "hello";
@@ -215,4 +220,75 @@ public class TouristController {
         session.setAttribute("thisrecruit",recruit);
         return "deliver";
     }
+
+    @RequestMapping("myinterview")
+    public String myinterview(HttpSession session)throws Exception{
+        List<Recruit> allRecruit = recruitService.getAllRecruit();
+        List<Resume> resumes = resumService.queryAllResume();
+        session.setAttribute("allrecruit",allRecruit);
+        session.setAttribute("resumes",resumes);
+        return "myinterview";
+    }
+
+    @RequestMapping("thisinterview")
+    public String thisinterview(Integer id,HttpSession session,HttpServletResponse response)throws Exception{
+        PrintWriter out = response.getWriter();
+        Delivery delivery = deliveryService.fountDeliByid(id);
+        session.setAttribute("thisdeli",delivery);
+        Integer d_rid = delivery.getD_rid();
+        Integer d_riid = delivery.getD_riid();
+        Integer d_id = delivery.getD_id();
+        InterView interView = interviewService.queryIntByid(d_id);
+        Recruit recruit = recruitService.getRecruit(d_riid);
+        Resume resumByID = resumService.getResumByID(d_rid);
+        session.setAttribute("thisrecruit",recruit);
+        session.setAttribute("thisresume",resumByID);
+        session.setAttribute("thisinterview",interView);
+        if(interView.getI_state()==1){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('对方还没回复您的简历呢，请再耐心等一等吧！');");
+            out.println("history.back();");
+            out.println("</script>");
+            return "myinterview";
+        }
+
+        return "thisinterview";
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

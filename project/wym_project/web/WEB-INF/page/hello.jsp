@@ -1,4 +1,6 @@
 <%@ page import="com.iotek.model.Tourist" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.iotek.model.Delivery" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -18,10 +20,23 @@
     <title>Title</title>
     <script src="js/jquery-3.1.0.js"></script>
     <% Tourist tourist = (Tourist) session.getAttribute("tourist");%>
+    <% List<Delivery> deliveries = (List<Delivery>) session.getAttribute("deliveries");%>
+    <% List<Delivery> deliveries1 = (List<Delivery>) session.getAttribute("deliveries1");%>
 </head>
     <body>
-        <a href="myresume?tid=<%=tourist.getT_id()%>">我的简历</a>
-        <table border="1px">
+        <a href="myresume?tid=<%=tourist.getT_id()%>">我的简历</a><br>
+        <%
+        if(deliveries!=null){
+        %>
+        <a href="myinterview">您有<%=deliveries.size()%>条面试信息，其中有<%=deliveries1.size()%>条面试邀请,赶紧点击查看吧！</a>
+        <%
+        }else if(deliveries==null){
+        %>
+        您还没有投递过简历哦，赶紧去看一看吧！
+        <%
+        }
+        %>
+        <table border="1px" id="smalltable">
             <tr>
                 <td width="90px">发布者</td>
                 <td width="90px">招聘职位</td>

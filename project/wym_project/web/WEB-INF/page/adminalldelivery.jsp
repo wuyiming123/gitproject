@@ -18,7 +18,7 @@
     <script src="js/jquery-3.1.0.js"></script>
 </head>
 <body>
-<c:forEach items="${sessionScope.alldeli}" var="deli">
+<c:forEach items="${sessionScope.state2deli}" var="deli">
 <table>
     <tr>
         <td>投递人：</td>

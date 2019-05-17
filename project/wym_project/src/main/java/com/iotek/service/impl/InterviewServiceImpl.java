@@ -19,4 +19,20 @@ public class InterviewServiceImpl implements InterviewService {
             return false;
         }
     }
+
+    public boolean addInterviewstate2(InterView interView) {
+        if(interView!=null){
+            return interviewDao.addInterviewstate2(interView);
+        }else{
+            return false;
+        }
+    }
+
+    public InterView queryIntByid(Integer i_did) {
+        if(i_did!=null){
+            return interviewDao.queryIntByid(i_did);
+        }else {
+            return null;
+        }
+    }
 }

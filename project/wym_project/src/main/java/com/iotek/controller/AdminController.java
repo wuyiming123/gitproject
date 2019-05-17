@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
@@ -24,13 +25,18 @@ public class AdminController {
     @Resource
     private InterviewService interviewService;
 
+
+    @RequestMapping("returnadmindeliverydetail")
+    public String admindeliverydetail()throws Exception{
+        return "admindeliverydetail";
+    }
+
     @RequestMapping("admin")
     public String admin(HttpSession session)throws Exception{
         List<Delivery> deliveries = deliveryService.queryAllDe();
         session.setAttribute("alldeli",deliveries);
         List<Delivery> deliveries1 = deliveryService.queryAllDeBystate2(1);
         session.setAttribute("state2deli",deliveries1);
-        System.err.println(deliveries);
         return "admin";
     }
     @RequestMapping("lookdeli")
@@ -61,9 +67,9 @@ public class AdminController {
         Integer d_id = delivery.getD_id();
         InterView interView = new InterView();
         interView.setI_did(d_id);
-        interView.setI_state(1);////1代表了拒绝
+        interView.setI_state(3);////3代表了拒绝
         if(interviewService.addInterviewstate1(interView)==true){
-            delivery.setD_state(2);///2代表着已经看过并且拒绝的请求
+            delivery.setD_state(3);///3代表拒绝，1是看过没回复，2是发送面试邀请
             deliveryService.updateDeli(delivery);
             List<Delivery> deliveries = deliveryService.queryAllDe();
             session.setAttribute("alldeli",deliveries);
@@ -72,11 +78,47 @@ public class AdminController {
             out.flush();
             out.println("<script>");
             out.println("alert('已经拒绝了这份简历,通知消息会发送到对方账号上');");
-            out.println("history.back();");
             out.println("</script>");
             return "admin";
         }else {
             return "admin";
         }
     }
+
+    @RequestMapping("invitation")
+    public String invitation(HttpServletRequest request,HttpServletResponse response,HttpSession session)throws Exception{
+        PrintWriter out = response.getWriter();
+        String r_id = request.getParameter("r_id");
+        Integer d_rid=Integer.parseInt(r_id);
+        String ri_id = request.getParameter("ri_id");
+        Integer d_riid = Integer.parseInt(ri_id);
+        String i_address = request.getParameter("i_address");
+        String i_phone = request.getParameter("i_phone");
+        String i_time = request.getParameter("i_time");
+
+        Delivery delivery = deliveryService.fountDeliByridAndriid(d_riid, d_rid);
+        Integer d_id = delivery.getD_id();
+
+        InterView interView = new InterView();
+        interView.setI_address(i_address);
+        interView.setI_phone(i_phone);
+        interView.setI_time(i_time);
+        interView.setI_state(2);//3代表拒绝，1是看过没回复，2是发送面试邀请
+        interView.setI_did(d_id);
+        boolean b = interviewService.addInterviewstate2(interView);
+        if(b!=false){
+            delivery.setD_state(2);///3代表拒绝，1是看过没回复，2是发送面试邀请
+            deliveryService.updateDeli(delivery);
+            List<Delivery> deliveries1 = deliveryService.queryAllDeBystate2(1);
+            session.setAttribute("state2deli",deliveries1);
+            out.flush();
+            out.println("<script>");
+            out.println("alert('成功发送面试邀请，对方将会受到一份面试邀请通知书');");
+            out.println("</script>");
+            return "admin";
+        }else {
+            return "admin";
+        }
+    }
+
 }

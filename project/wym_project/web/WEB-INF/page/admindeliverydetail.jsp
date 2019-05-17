@@ -19,6 +19,44 @@
     <script src="js/jquery-3.1.0.js"></script>
     <% Resume resume = (Resume) session.getAttribute("thisresume");%>
     <%Recruit thisrecruit = (Recruit) session.getAttribute("thisrecruit");%>
+
+    <script>
+        $(function () {
+            $("#invitation").click(function () {
+                var r_name = $(this).next().val();
+                var ri_position = $(this).next().next().val();
+                var r_id = $(this).next().next().next().val();
+                var ri_id = $(this).next().next().next().next().val();
+                $("body").append("<div id='smallbox'><form action='invitation' method='post'>" +
+                    "<table><tr><td>招聘对象：</td><td><input type='text' name='r_name' id='r_name' style='border: 0px'></td>" +
+                    "</tr><tr><td>面试岗位：</td><td><input type='text' name='ri_position' id='ri_position' style='border: 0px'></td></tr>" +
+                    "<tr><td>面试地点：</td><td><input  style='border: 0px' required type='text' maxlength='50' placeholder='最多输入50个字' name='i_address'></td></tr>" +
+                    "<tr><td>联系电话：</td><td><input type='number' name='i_phone' style='border: 0px' required maxlength='11' ></td></tr>" +
+                    "<tr><td>面试时间：</td><td><input type='date' name='i_time' id='i_time' style='border: 0px' required>" +
+                    "<input type='hidden' name='r_id' id='r_id'>" +
+                    "<input type='hidden' name='ri_id' id='ri_id'>" +
+                    "</td></tr><tr><td><input type='submit' value='确认'></td><td><a href='returnadmindeliverydetail'>取消</a></td></tr>" +
+                    "</table>" +
+                    "</form></div>")
+                $("#r_name").val(r_name);
+                $("#ri_position").val(ri_position);
+                $("#r_id").val(r_id);
+                $("#ri_id").val(ri_id);
+            })
+        })
+    </script>
+    <style>
+        #smallbox{
+            border: 1px solid red;
+            background-color: honeydew;
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            right: 350px;
+            top: 150px;
+            bottom: 200px;
+        }
+    </style>
 </head>
 <body>
 
@@ -58,10 +96,12 @@
     <input type="hidden" name="r_id" value="<%=resume.getR_id()%>">
     <input type="hidden" name="ri_id" value="<%=thisrecruit.getRi_id()%>">
 </form>
-<form>
-    <input type="submit" value="发送面试邀请">
-    <input type="hidden" name="r_id" value="<%=resume.getR_id()%>">
-    <input type="hidden" name="ri_id" value="<%=thisrecruit.getRi_id()%>">
-</form>
+
+<input type="button" value="发送面试邀请" id="invitation" name="invitation">
+<input type="hidden" name="r_name<%=resume.getR_name()%>" value="<%=resume.getR_name()%>">
+<input type="hidden" name="ri_position<%=thisrecruit.getRi_position()%>" value="<%=thisrecruit.getRi_position()%>">
+<input type="hidden" name="r_id<%=resume.getR_id()%>" value="<%=resume.getR_id()%>">
+<input type="hidden" name="ri_id<%=thisrecruit.getRi_id()%>" value="<%=thisrecruit.getRi_id()%>">
+
 </body>
 </html>

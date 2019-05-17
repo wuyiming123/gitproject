@@ -6,7 +6,7 @@ import java.io.Serializable;
  */
 public class InterView implements Serializable {
     private Integer i_id;
-    private Integer i_phone;
+    private String i_phone;
     private String i_address;
     private Integer i_did;
     private String i_time;
@@ -23,11 +23,11 @@ public class InterView implements Serializable {
         this.i_id = i_id;
     }
 
-    public Integer getI_phone() {
+    public String getI_phone() {
         return i_phone;
     }
 
-    public void setI_phone(Integer i_phone) {
+    public void setI_phone(String i_phone) {
         this.i_phone = i_phone;
     }
 

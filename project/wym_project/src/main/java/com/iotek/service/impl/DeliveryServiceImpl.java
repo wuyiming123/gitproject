@@ -44,6 +44,14 @@ public class DeliveryServiceImpl implements DeliveryService {
         }
     }
 
+    public Delivery fountDeliByid(Integer d_id) {
+        if(d_id==null){
+            return null;
+        }else {
+            return deliveryDao.fountDeliByid(d_id);
+        }
+    }
+
     public boolean updateDeli(Delivery delivery) {
        if(delivery!=null){
            deliveryDao.updateDeli(delivery);
@@ -51,5 +59,21 @@ public class DeliveryServiceImpl implements DeliveryService {
            return false;
        }
        return false;
+    }
+
+    public List<Delivery> queryDeBytid(Integer d_tid) {
+        if(d_tid!=null){
+            return deliveryDao.queryDeBytid(d_tid);
+        }else {
+            return null;
+        }
+    }
+
+    public List<Delivery> queryDeBytid_state(Integer d_tid, Integer d_state) {
+        if(d_tid!=null | d_state!=null){
+            return deliveryDao.queryDeBytid_state(d_tid,d_state);
+        }else {
+            return null;
+        }
     }
 }

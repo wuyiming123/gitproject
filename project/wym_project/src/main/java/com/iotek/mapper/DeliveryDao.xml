@@ -6,7 +6,7 @@
         values (DELIVERY_SEQ.nextval,#{d_tid},#{d_riid},#{d_rid},#{d_state})
     </insert>
     <update id="updateDeli">
-        update T_DELIVERY set D_STATE=#{d_state}
+        update T_DELIVERY set D_STATE=#{d_state} where D_ID=#{d_id}
     </update>
     <select id="queryAllDe" resultType="com.iotek.model.Delivery">
         select * from T_DELIVERY
@@ -19,5 +19,14 @@
     </select>
     <select id="queryAllDeBystate2" resultType="com.iotek.model.Delivery">
         select * from T_DELIVERY where D_STATE=#{d_state}
+    </select>
+    <select id="queryDeBytid" resultType="com.iotek.model.Delivery">
+        select * from T_DELIVERY where D_TID=#{d_tid}
+    </select>
+    <select id="queryDeBytid_state" resultType="com.iotek.model.Delivery">
+        select * from T_DELIVERY where D_TID=#{d_tid} and D_STATE=#{d_state}
+    </select>
+    <select id="fountDeliByid" resultType="com.iotek.model.Delivery">
+        select * from T_DELIVERY where D_ID=#{d_id}
     </select>
 </mapper>
