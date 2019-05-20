@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Maibenben
@@ -15,11 +16,55 @@
     <base href="<%=basePath%>"/>
     <title>Title</title>
     <script src="js/jquery-3.1.0.js"></script>
+    <%Integer time = (Integer) session.getAttribute("time");%>
+    <%Integer ready_to_work = (Integer) session.getAttribute("ready_to_work");%>
+    <%Integer ready_to_home = (Integer) session.getAttribute("ready_to_home");%>
+    <%Integer WTF = (Integer) session.getAttribute("WTF");%>
 </head>
 <body>
 <h3>${dename}部门的${poname},${staffDetail.sd_tname}同志,你好啊！</h3>
 <ul>
-    <li><a>考勤打卡</a></li>
+    <li>
+        <c:if test="${time==0}">
+            <%
+            if(ready_to_work==null){
+            %>
+            <a href="helloCheckWork?sdid=${staffDetail.sd_id}">上班打卡</a>
+            <%
+            }else {
+            %>
+            已打上班卡
+            <%
+            }
+            %>
+        </c:if>
+        <c:if test="${time==1}">
+            <%
+                if(ready_to_home==null){
+            %>
+            <a href="bybyCheckWork?sdid=${staffDetail.sd_id}">下班打卡</a>
+            <%
+            }else {
+            %>
+            已打下班卡
+            <%
+                }
+            %>
+        </c:if>
+        <c:if test="${time==666}">
+            <%
+                if(WTF==null){
+            %>
+            <a href="fuckCheckWork?sdid=${staffDetail.sd_id}">迟到打卡</a>
+            <%
+            }else {
+            %>
+            已打迟到卡
+            <%
+                }
+            %>
+        </c:if>
+    </li>
     <li><a>个人信息</a></li>
     <li><a href="staffdetail">通讯录</a></li>
 </ul>

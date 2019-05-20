@@ -36,16 +36,17 @@
 <%
     if(interViews==null){
 %>
-<a href="lookInter">还没有发起任何面试！</a>
+<a href="lookInter">还没有发起任何面试！</a></br>
 <%
     }else {
 %>
-<a href="lookInter">查看面试邀请</a>
+<a href="lookInter">查看面试邀请</a></br>
 <%
     }
 %>
 <a href="review">检阅部门</a></br>
 <a href="allrecruit">招聘信息</a></br>
+<a href="alltrain">员工培训</a>
 
 </body>
 </html>

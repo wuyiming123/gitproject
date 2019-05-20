@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class TouristController {
     private DepartmentService departmentService;
     @Resource
     private PositionService positionService;
+    @Resource
+    private CheckWorkService checkWorkService;
 
     @RequestMapping("toindex")
     public String toindex(){
@@ -82,8 +85,51 @@ public class TouristController {
             if(stafflogin!=null){
                 Date date = new Date();
                 SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+                Date date1 = formatter.parse("09:00:00");
+                Date date2 = formatter.parse("12:00:00");
 
+                Calendar cal = Calendar.getInstance();
+                int year=cal.get(Calendar.YEAR);//年
+                int month=cal.get(Calendar.MONTH)+1;//月
+                int day=cal.get(Calendar.DATE);//日
+                String y = String.valueOf(year);
+                String mon = String.valueOf(month);
+                String d = String.valueOf(day);
+                String ymd = y+"-"+mon+"-"+d;
+                Integer aaa = stafflogin.getS_sdid();
+                CheckWork checkWork = new CheckWork();
+                checkWork.setCw_date(ymd);
+                checkWork.setCw_sdid(aaa);
 
+                if((date.getTime()-date2.getTime())>0){
+                    checkWork.setCw_state(0);
+                    List<CheckWork> checkWork1 = checkWorkService.foundTodayCheckWork(checkWork);
+                    if(!checkWork1.isEmpty()){
+                        session.setAttribute("time",0);
+                        session.setAttribute("ready_to_work",0);
+                    }
+                    session.setAttribute("time",0);
+                }
+                if((date.getTime()-date1.getTime())>0){
+                    checkWork.setCw_state(666);
+                    List<CheckWork> checkWork1 = checkWorkService.foundTodayCheckWork(checkWork);
+                    if(!checkWork1.isEmpty()){
+                        session.setAttribute("time",666);
+                        session.setAttribute("WTF",666);
+                    }else {
+                        session.setAttribute("time",666);
+                    }
+                }
+                if((date.getTime()-date2.getTime())>0){
+                    checkWork.setCw_state(1);
+                    List<CheckWork> checkWork1 = checkWorkService.foundTodayCheckWork(checkWork);
+                    System.err.println("aaaa==="+checkWork1);
+                    if(!checkWork1.isEmpty()){
+                        session.setAttribute("time",1);
+                        session.setAttribute("ready_to_home",1);
+                    }
+                    session.setAttribute("time",1);
+                }
                 StaffDetail staffDetail = staffDetailService.foundDetailBySD_ID(s_sdid);
                 session.setAttribute("staff",stafflogin);
                 session.setAttribute("staffDetail",staffDetail);

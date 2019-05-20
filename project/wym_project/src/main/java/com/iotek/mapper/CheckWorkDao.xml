@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.dao.CheckWorkDao">
-    <insert id="checkwork">
-        insert into T_CHECKWORK (CW_ID, CW_SID, CW_TIME, CW_STATE)
-        values (CHECKWORK_SEQ.nextval,#{cw_sid},#{cw_time},#{cw_state})
+
+    <insert id="hellocheckwork">
+        insert into T_CHECKWORK (CW_ID, CW_SDID, CW_TIME, CW_STATE, CW_SMALLTIME,CW_DATE)
+        values (CHECKWORK_SEQ.nextval,#{cw_sdid},#{cw_time},#{cw_state},#{cw_smalltime},#{cw_date})
     </insert>
+    <select id="foundTodayCheckWork" resultType="com.iotek.model.CheckWork">
+        select * from T_CHECKWORK where CW_DATE=#{cw_date} and CW_SDID=#{cw_sdid} and CW_STATE=#{cw_state}
+    </select>
+
 </mapper>

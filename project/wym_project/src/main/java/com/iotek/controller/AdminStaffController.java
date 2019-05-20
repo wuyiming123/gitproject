@@ -33,6 +33,8 @@ public class AdminStaffController {
     private StaffDetailService staffDetailService;
     @Resource
     private StaffService staffService;
+    @Resource
+    private TrainService trainService;
 
 
     @RequestMapping("Employment")
@@ -144,5 +146,13 @@ public class AdminStaffController {
             out.println("</script>");
             return "allinterview";
         }
+    }
+
+    @RequestMapping("alltrain")
+    public String alltrain(HttpSession session)throws Exception{
+        List<Train> trains = trainService.queryAllTrain();
+        session.setAttribute("trains",trains);
+        System.err.println(trains);
+        return "adminalltrain";
     }
 }
