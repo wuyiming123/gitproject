@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.iotek.model.Recruit" %>
 <%@ page import="com.iotek.model.Resume" %>
-<%@ page import="com.iotek.model.InterView" %><%--
+<%@ page import="com.iotek.model.InterView" %>
+<%@ page import="com.iotek.model.Staff" %><%--
   Created by IntelliJ IDEA.
   User: Maibenben
   Date: 2019/5/16
@@ -21,6 +22,7 @@
     <% Resume resume = (Resume) session.getAttribute("thisresume");%>
     <%Recruit thisrecruit = (Recruit) session.getAttribute("thisrecruit");%>
     <%InterView interView = (InterView) session.getAttribute("thisinterview");%>
+    <%Staff staff = (Staff) session.getAttribute("staff");%>
 </head>
 <body>
 <table border="1">
@@ -67,13 +69,18 @@
     <tr>面试时间: <%=interView.getI_time()%></tr>
     <tr>面试状态: 对方通知您面试</tr>
     <tr>
-        <td><a>接受</a></td>
-        <td><a>拒绝</a></td>
+        <td><a href="ido?iid=<%=interView.getI_id()%>">接受</a></td>
+        <td><a href="donot?iid=<%=interView.getI_id()%>">拒绝</a></td>
     </tr>
     <%
     }else if(interView.getI_state()==3){
     %>
-    对方拒绝了您的面试请求！
+    对方拒绝了您！
+    <%
+    }else if(interView.getI_state()==111){
+    %>
+    <tr><td style="color: red;">员工账号：</td><td style="color: red;"><%=staff.getS_sid()%></td></tr>
+    <tr><td style="color: red;">员工密码：</td><td style="color: red;"><%=staff.getS_spass()%></td></tr>
     <%
     }
     %>

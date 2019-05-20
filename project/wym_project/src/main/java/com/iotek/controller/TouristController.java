@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -20,13 +22,19 @@ public class TouristController {
     @Resource
     private ResumService resumService;
     @Resource
-    private AdminService adminService;
+    private StaffDetailService staffDetailService;
+    @Resource
+    private StaffService staffService;
     @Resource
     private RecruitService recruitService;
     @Resource
     private DeliveryService deliveryService;
     @Resource
     private InterviewService interviewService;
+    @Resource
+    private DepartmentService departmentService;
+    @Resource
+    private PositionService positionService;
 
     @RequestMapping("toindex")
     public String toindex(){
@@ -39,26 +47,10 @@ public class TouristController {
     }
 
     @RequestMapping("login")
-    public String login(String name, String pass, HttpSession session, HttpServletResponse response, HttpServletRequest request)throws Exception{
+    public String login(String name, String pass, HttpSession session,String who,HttpServletResponse response, HttpServletRequest request)throws Exception{
 //        System.err.println("admin?:"+request.getParameter("admin"));
         PrintWriter out = response.getWriter();
-//        if(request.getParameter("admin").equals("on")){
-//            Admin admin = new Admin();
-//            admin.setA_name(name);
-//            admin.setA_pass(pass);
-//            Admin adminlog = adminService.adminlog(admin);
-//            if(adminlog!=null){
-//                return "admin";
-//            }else {
-//                out.flush();
-//                out.println("<script>");
-//                out.println("alert('管理员账号密码有误，请重新确认');");
-//                out.println("history.back();");
-//                out.println("</script>");
-//                return "../../index";
-//            }
-//        }else{
-
+        if(who.equals("游客")){
             Tourist tourist = new Tourist();
             tourist.setT_name(name);
             tourist.setT_pass(pass);
@@ -81,7 +73,38 @@ public class TouristController {
                 out.println("</script>");
                 return "../../index";
             }
+        }else if(who.equals("员工")){
+            Staff staff = new Staff();
+            staff.setS_sid(name);
+            staff.setS_spass(pass);
+            Staff stafflogin = staffService.Stafflogin(staff);
+            Integer s_sdid = stafflogin.getS_sdid();
+            if(stafflogin!=null){
+                Date date = new Date();
+                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 
+
+                StaffDetail staffDetail = staffDetailService.foundDetailBySD_ID(s_sdid);
+                session.setAttribute("staff",stafflogin);
+                session.setAttribute("staffDetail",staffDetail);
+                Integer sd_deid = staffDetail.getSd_deid();
+                Integer sd_poid = staffDetail.getSd_poid();
+                Departement departement = departmentService.queryThisDepart(sd_deid);
+                Position position = positionService.queryPositionBypoid(sd_poid);
+                position.getPo_name();
+                session.setAttribute("dename",departement.getDe_name());
+                session.setAttribute("poname",position.getPo_name());
+                return "staff";
+            }else {
+                out.flush();
+                out.println("<script>");
+                out.println("alert('账号或者密码错误');");
+                out.println("history.back();");
+                out.println("</script>");
+                return "../../index";
+            }
+        }
+        return "../../index";
     }
 
     @RequestMapping("regiest")
@@ -244,6 +267,11 @@ public class TouristController {
         session.setAttribute("thisrecruit",recruit);
         session.setAttribute("thisresume",resumByID);
         session.setAttribute("thisinterview",interView);
+        String r_name = resumByID.getR_name();
+        StaffDetail staffDetail = staffDetailService.fountDetailByT_NAME(r_name);
+        Integer sd_id = staffDetail.getSd_id();
+        Staff staff = staffService.foundStaffByS_SDID(sd_id);
+        session.setAttribute("staff",staff);
         if(interView.getI_state()==1){
             out.flush();
             out.println("<script>");
@@ -252,8 +280,49 @@ public class TouristController {
             out.println("</script>");
             return "myinterview";
         }
-
         return "thisinterview";
+    }
+
+    @RequestMapping("ido")
+    public String ido(Integer iid,HttpSession session)throws Exception{
+        InterView interView = interviewService.queryIntByi_id(iid);
+        interView.setI_state(666);///666代表游客接受面试邀请
+        interviewService.updateState_666(interView);
+        Integer i_did = interView.getI_did();
+        Delivery delivery = deliveryService.fountDeliByid(i_did);
+        delivery.setD_state(666);
+        deliveryService.updateDeli(delivery);
+        List<Recruit> allRecruit = recruitService.getAllRecruit();
+        List<Resume> resumes = resumService.queryAllResume();
+        session.setAttribute("allrecruit",allRecruit);
+        session.setAttribute("resumes",resumes);
+        Integer d_tid = delivery.getD_tid();
+        List<Delivery> deliveries = deliveryService.queryDeBytid(d_tid);
+        session.setAttribute("deliveries",deliveries);
+        List<Delivery> deliveries1 = deliveryService.queryDeBytid_state(d_tid, 2);
+        session.setAttribute("deliveries1",deliveries1);
+        return "myinterview";
+    }
+
+    @RequestMapping("donot")
+    public String donot(Integer iid,HttpSession session)throws Exception{
+        InterView interView = interviewService.queryIntByi_id(iid);
+        interView.setI_state(555);///666代表游客接受面试邀请
+        interviewService.updateState_666(interView);
+        Integer i_did = interView.getI_did();
+        Delivery delivery = deliveryService.fountDeliByid(i_did);
+        delivery.setD_state(555);
+        deliveryService.updateDeli(delivery);
+        List<Recruit> allRecruit = recruitService.getAllRecruit();
+        List<Resume> resumes = resumService.queryAllResume();
+        session.setAttribute("allrecruit",allRecruit);
+        session.setAttribute("resumes",resumes);
+        Integer d_tid = delivery.getD_tid();
+        List<Delivery> deliveries = deliveryService.queryDeBytid(d_tid);
+        session.setAttribute("deliveries",deliveries);
+        List<Delivery> deliveries1 = deliveryService.queryDeBytid_state(d_tid, 2);
+        session.setAttribute("deliveries1",deliveries1);
+        return "myinterview";
     }
 }
 

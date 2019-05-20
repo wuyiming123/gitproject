@@ -14,6 +14,7 @@ public class StaffDetail implements Serializable {
     private String sd_taddress;
     private String sd_tphone;
     private String sd_tsex;
+    private String sd_time;
 
     public StaffDetail() {
     }
@@ -82,6 +83,14 @@ public class StaffDetail implements Serializable {
         this.sd_tsex = sd_tsex;
     }
 
+    public String getSd_time() {
+        return sd_time;
+    }
+
+    public void setSd_time(String sd_time) {
+        this.sd_time = sd_time;
+    }
+
     @Override
     public String toString() {
         return "StaffDetail{" +
@@ -93,6 +102,7 @@ public class StaffDetail implements Serializable {
                 ", sd_taddress='" + sd_taddress + '\'' +
                 ", sd_tphone='" + sd_tphone + '\'' +
                 ", sd_tsex='" + sd_tsex + '\'' +
+                ", sd_time='" + sd_time + '\'' +
                 '}';
     }
 }

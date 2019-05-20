@@ -6,6 +6,7 @@ import com.iotek.service.InterviewService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class InterviewServiceImpl implements InterviewService {
@@ -34,5 +35,26 @@ public class InterviewServiceImpl implements InterviewService {
         }else {
             return null;
         }
+    }
+
+    public InterView queryIntByi_id(Integer i_id) {
+        if(i_id!=null){
+            return interviewDao.queryIntByi_id(i_id);
+        }return null;
+    }
+
+    public boolean updateState_666(InterView interView) {
+        if(interView!=null){
+            return interviewDao.updateState_666(interView);
+        }return false;
+    }
+
+    public List<InterView> queryAllInter() {
+        return interviewDao.queryAllInter();
+    }
+
+    public List<InterView> queryInter_state666() {
+        Integer i_state=666;
+        return interviewDao.queryInter_state666(i_state);
     }
 }

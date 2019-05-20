@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.DepartmentDao">
+    <insert id="addDepartment">
+        insert into T_DEPARTMENT (DE_ID, DE_TIME, DE_NAME, DE_STCOUNT)
+        values (DEPARTMENT_SEQ.nextval,#{de_time},#{de_name},#{de_stcount})
+    </insert>
+    <update id="updateDepartmentCOUNT">
+        update T_DEPARTMENT
+        set  DE_STCOUNT=#{de_stcount}
+        where DE_ID=#{de_id}
+    </update>
+    <delete id="delDepartmentBydeid">
+        delete from T_DEPARTMENT where DE_ID=#{de_id}
+    </delete>
+    <select id="queryAllDepartment" resultType="com.iotek.model.Departement">
+        select * from T_DEPARTMENT
+    </select>
+    <select id="queryThisDepart" resultType="com.iotek.model.Departement">
+        select * from T_DEPARTMENT where DE_ID=#{de_id}
+    </select>
+</mapper>

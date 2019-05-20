@@ -28,23 +28,15 @@
                     "<input type=\"submit\" value=\"注册\" id='button'>" +
                     "<a href=\"index.jsp\">关闭</a>" +
                     "</form></div>")
-                $("#name1").blur(function () {
-                    var name = $("#name1").val();
-                    if (!(/^[A-Za-z][A-Za-z0-9_]{4,10}$/.test(name))) {
-                        $("#spanname").html("<font color='red' face='仿宋'>用户名必须为英文加数字的组合</font>");
-                    } else {
-                        $("#spanname").html("");
-                    }
-                })
             })
 
             $("#log").click(function () {
                 $("body").append("<div id='Login'><h3>登录</h3>" +
                     "<form action='login' method='post'>" +
                     "用户名　:<input type=\"text\" name=\"name\" id=\"name1\" required>" +
-                    "<span id=\"spanname\"></span><br/>" +
                     "用户密码:<input type=\"password\" name=\"pass\" id=\"password1\" required>" +
-                    "<span id=\"spanpassword\"></span><br/>" +
+                    "<input type='radio' name='who' value='游客' required>游客" +
+                    "<input type='radio' name='who' value='员工' required>员工" +
                     "<input type=\"submit\" value=\"登录\" id='button'>" +
                     "<a href=\"index.jsp\">关闭</a>" +
                     "</form></div>")
@@ -89,7 +81,7 @@
     <tr>
         <td width="90px">发布者</td>
         <td width="90px">招聘职位</td>
-        <td width="90px"预估薪资</td>
+        <td width="90px">预估薪资</td>
         <td width="130px">要求</td>
         <td width="90px"></td>
         <td width="90px"></td>

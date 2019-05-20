@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.StaffDao">
+    <insert id="addStaff">
+        insert into T_STAFF (S_ID, S_SDID, S_SID, S_SPASS)
+        values (STAFF_SEQ.nextval,#{s_sdid},#{s_sid},#{s_spass})
+    </insert>
+    <select id="foundStaffByS_SDID" resultType="com.iotek.model.Staff">
+        select * from T_STAFF where S_SDID=#{s_sdid}
+    </select>
+    <select id="Stafflogin" resultType="com.iotek.model.Staff">
+        select * from T_STAFF where S_SID=#{s_sid} and S_SPASS=#{s_spass}
+    </select>
+</mapper>

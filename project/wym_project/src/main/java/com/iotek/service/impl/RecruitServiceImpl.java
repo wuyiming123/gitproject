@@ -34,5 +34,35 @@ public class RecruitServiceImpl implements RecruitService {
         }
     }
 
+    public boolean updateRecruiton(Integer ri_id) {
+        return recruitDao.updateRecruiton(ri_id,"on");
+    }
+
+    public boolean updateRecruitoff(Integer ri_id) {
+        return recruitDao.updateRecruitoff(ri_id,"off");
+    }
+
+    public boolean addRecruito(Recruit recruit) {
+        if(recruit!=null){
+            return recruitDao.addRecruito(recruit);
+        }
+        return false;
+    }
+
+    public boolean updateThisRecruit(Recruit recruit) {
+        if(recruit!=null){
+            return recruitDao.updateThisRecruit(recruit);
+        }
+        return false;
+    }
+
+    public boolean become_NoBodySee(Integer ri_id) {
+        String ri_ison="nobodysee";
+        if(ri_id!=null){
+            return recruitDao.become_NoBodySee(ri_id,ri_ison);
+        }
+        return false;
+    }
+
 
 }

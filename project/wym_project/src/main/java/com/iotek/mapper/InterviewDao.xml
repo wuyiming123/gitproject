@@ -8,7 +8,19 @@
         insert into T_INTERVIEW(I_ID, I_PHONE, I_ADDRESS, I_DID, I_TIME, I_STATE)
         values (INTERVIEW_SEQ.nextval,#{i_phone},#{i_address},#{i_did},#{i_time},#{i_state})
     </insert>
+    <update id="updateState_666">
+        update T_INTERVIEW set I_STATE=#{i_state} where i_id=#{i_id}
+    </update>
     <select id="queryIntByid" resultType="com.iotek.model.InterView">
         select * from T_INTERVIEW where I_DID=#{i_did}
+    </select>
+    <select id="queryIntByi_id" resultType="com.iotek.model.InterView">
+        select * from T_INTERVIEW where I_ID=#{i_id}
+    </select>
+    <select id="queryAllInter" resultType="com.iotek.model.InterView">
+        select * from T_INTERVIEW
+    </select>
+    <select id="queryInter_state666" resultType="com.iotek.model.InterView">
+        select * from T_INTERVIEW where I_STATE=#{i_state}
     </select>
 </mapper>

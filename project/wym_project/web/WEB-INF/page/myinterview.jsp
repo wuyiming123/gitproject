@@ -28,11 +28,20 @@
                 <td><a style="color: yellowgreen">对方暂未回复！</a></td>
             </c:if>
             <c:if test="${deliveries.d_state==3}">
-                <td><a style="color: black">对方拒绝了您的面试请求！</a></td>
+                <td><a style="color: black">对方拒绝了您！</a></td>
+            </c:if>
+            <c:if test="${deliveries.d_state==666}">
+                <td><a style="color: green">接受了面试，等待对方答复！</a></td>
+            </c:if>
+            <c:if test="${deliveries.d_state==555}">
+                <td><a style="color: red">您拒绝了这份面试！</a></td>
+            </c:if>
+            <c:if test="${deliveries.d_state==111}">
+                <td><a style="color: yellow">成为了员工！</a></td>
             </c:if>
         </tr>
         <tr>
-            <td>
+            <td>面试岗位：
                 <c:forEach items="${sessionScope.allrecruit}" var="recruit">
                     <c:if test="${recruit.ri_id==deliveries.d_riid}">
                      ${recruit.ri_position}

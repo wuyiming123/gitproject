@@ -4,8 +4,9 @@ import java.io.Serializable;
 
 public class Departement implements Serializable {
     private Integer de_id;
-    private Integer de_poid;
     private String de_time;
+    private String de_name;
+    private Integer de_stcount;
 
     public Departement() {
     }
@@ -18,12 +19,12 @@ public class Departement implements Serializable {
         this.de_id = de_id;
     }
 
-    public Integer getDe_poid() {
-        return de_poid;
+    public String getDe_name() {
+        return de_name;
     }
 
-    public void setDe_poid(Integer de_poid) {
-        this.de_poid = de_poid;
+    public void setDe_name(String de_name) {
+        this.de_name = de_name;
     }
 
     public String getDe_time() {
@@ -34,12 +35,20 @@ public class Departement implements Serializable {
         this.de_time = de_time;
     }
 
+    public Integer getDe_stcount() {
+        return de_stcount;
+    }
+
+    public void setDe_stcount(Integer de_stcount) {
+        this.de_stcount = de_stcount;
+    }
+
     @Override
     public String toString() {
         return "Departement{" +
                 "de_id=" + de_id +
-                ", de_poid=" + de_poid +
                 ", de_time='" + de_time + '\'' +
+                ", de_name='" + de_name + '\'' +
                 '}';
     }
 }
