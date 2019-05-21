@@ -16,10 +16,32 @@
     <base href="<%=basePath%>"/>
     <title>Title</title>
     <script src="js/jquery-3.1.0.js"></script>
+    <script>
+        $(function () {
+            $("#no").click(function () {
+                alert("请在未发布的时候修改")
+            })
+            $("#yes").click(function () {
+                $("#smallSmallBox").remove();
+                var tr_title = $(this).next().val();
+                var tr_message = $(this).next().next().val();
+                var tr_id = $(this).next().next().next().val();
+                $("#smallBox").append("<form action='updatetrain' method='post'><div id='smallSmallBox'><table>" +
+                    "<tr><td>培训标题：</td><td><input required type='text' name='title' id='title'></td><tr>" +
+                    "<tr><td>培训内容：</td><td><input required type='text' name='message' id='message'></td><tr>" +
+                    "<tr><td>培训时间：</td><td><input required type='datetime-local' name='datetime' id='datetime'></td><tr>" +
+                    "<tr><td><input type='submit' value='提交'><input type='hidden' name='sid' id='sid'></td><td></td><tr>" +
+                    "</table></div></form>")
+                $("#title").val(tr_title);
+                $("#message").val(tr_message);
+                $("#sid").val(tr_id);
+            })
+        })
+    </script>
 </head>
 <body>
 <c:if test="${trains==null}">
-    <a href="newtrain">发起一场新的培训</a>
+    <a href="newtrain">发起新的培训</a>
 </c:if>
 <c:if test="${trains!=null}">
     <table>
@@ -28,26 +50,41 @@
             <td>标题</td>
             <td>内容</td>
             <td>培训时间</td>
-            <td></td>
+            <td>培训人员</td>
         </tr>
-    <c:forEach items="${sessionScope.tarins}" var="trains">
+    <c:forEach items="${sessionScope.trains}" var="trains">
         <tr>
             <td>
                 <c:if test="${trains.tr_state==0}">
-                    <a style="color:red;">待发布</a>
+                    <a style="color:red;" href="changeState?tr_state=1&tr_id=${trains.tr_id}">待发布</a>
                 </c:if>
                 <c:if test="${trains.tr_state==1}">
-                    <a style="color:red;">已发布</a>
+                    <a style="color:green;" href="changeState?tr_state=0&tr_id=${trains.tr_id}">已发布</a>
                 </c:if>
             </td>
-            <td><a>${trains.tr_title}</a></td>
-            <td><a>${trains.tr_message}</a></td>
-            <td><a>${trains.tr_time}</a></td>
-            <td><a>${trains.tr_sid}</a></td>
+            <td>${trains.tr_title}</td>
+            <td>${trains.tr_message}</td>
+            <td>${trains.tr_time}</td>
+            <td>${trains.tr_sid}</td>
+            <td>
+                <a href="addtrainstaff?tr_id=${trains.tr_id}">增删人员</a>
+                <c:if test="${trains.tr_state==1}">
+                    <a id="no">修改详情</a>
+                </c:if>
+                <c:if test="${trains.tr_state==0}">
+                    <a id="yes">修改详情</a>
+                    <input type="hidden" value="${trains.tr_title}">
+                    <input type="hidden" value="${trains.tr_message}">
+                    <input type="hidden" value="${trains.tr_id}">
+                </c:if>
+            </td>
         </tr>
     </c:forEach>
     </table>
     <a href="newtrain">发起一场新的培训</a>
 </c:if>
+<div id="smallBox">
+    <div id="smallSmallBox"></div>
+</div>
 </body>
 </html>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
@@ -35,6 +36,8 @@ public class AdminStaffController {
     private StaffService staffService;
     @Resource
     private TrainService trainService;
+    @Resource
+    private StaffIdService staffIdService;
 
 
     @RequestMapping("Employment")
@@ -153,6 +156,90 @@ public class AdminStaffController {
         List<Train> trains = trainService.queryAllTrain();
         session.setAttribute("trains",trains);
         System.err.println(trains);
+        return "adminalltrain";
+    }
+
+    @RequestMapping("addtrainstaff")
+    public String addtrainstaff(HttpSession session,Integer tr_id)throws Exception{
+        List<Departement> departements = departmentService.queryAllDepartment();
+        List<Position> positions = positionService.queryAllPosi();
+        List<StaffDetail> staffDetails = staffDetailService.queryAllStaffDetail();
+        Train train = trainService.queryThisTrain(tr_id);
+        session.setAttribute("departments",departements);
+        session.setAttribute("positions",positions);
+        session.setAttribute("staffDetails",staffDetails);
+        session.setAttribute("train",train);
+        List<StaffId> staffIds = staffIdService.queryStaffIdBy_sid_taid(tr_id);
+        session.setAttribute("staffIds",staffIds);
+        return "admintrainstaff";
+    }
+
+    @RequestMapping("addStaffToTrain")
+    public String addStaffToTrain(Integer sd_id,Integer tr_id,HttpSession session,HttpServletResponse response)throws Exception{
+        StaffId staffId = new StaffId();
+        staffId.setSid_taid(tr_id);
+        staffId.setSid_sdid(sd_id);
+        StaffId staffId1 = staffIdService.queryStaffId(staffId);
+        if(staffId1==null){
+            boolean b = staffIdService.addStaffId(staffId);
+            if(b!=false){
+                List<StaffId> staffIds = staffIdService.queryStaffIdBy_sid_taid(tr_id);
+                session.setAttribute("staffIds",staffIds);
+                return "admintrainstaff";
+            }
+        }else {
+            PrintWriter out = response.getWriter();
+            out.flush();
+            out.println("<script>");
+            out.println("alert('成功发送面试邀请，对方将会受到一份面试邀请通知书');");
+            out.println("</script>");
+            return "admintrainstaff";
+        }
+        return "admintrainstaff";
+    }
+
+    @RequestMapping("delStaffToTrain")
+    public String delStaffToTrain(Integer sid_id,HttpSession session)throws Exception{
+        StaffId staffId = staffIdService.queryBy_sid_id(sid_id);
+        Integer sid_taid = staffId.getSid_taid();
+        if(staffIdService.delBy_sid_id(sid_id)){
+            List<StaffId> staffIds = staffIdService.queryStaffIdBy_sid_taid(sid_taid);
+            session.setAttribute("staffIds",staffIds);
+            return "admintrainstaff";
+        }
+        return "admintrainstaff";
+    }
+
+    @RequestMapping("changeState")
+    public String changeState(Integer tr_state,HttpSession session,Integer tr_id)throws Exception{
+        Train train = new Train();
+        train.setTr_state(tr_state);
+        train.setTr_id(tr_id);
+        boolean b = trainService.updateState(train);
+        if(b!=false){
+            List<Train> trains = trainService.queryAllTrain();
+            session.setAttribute("trains",trains);
+            return "adminalltrain";
+        }
+        return "adminalltrain";
+    }
+
+    @RequestMapping("updatetrain")
+    public String updatetrain(HttpServletRequest request,HttpServletResponse response,HttpSession session)throws Exception{
+        String id = request.getParameter("sid");
+        Integer tr_id = Integer.parseInt(id);
+        String tr_title = request.getParameter("title");
+        String tr_message = request.getParameter("message");
+        String tr_time = request.getParameter("datetime");
+        Train train = new Train();
+        train.setTr_id(tr_id);
+        train.setTr_time(tr_time);
+        train.setTr_message(tr_message);
+        train.setTr_title(tr_title);
+        System.err.println("asdasd"+train);
+        trainService.updateTrain(train);
+        List<Train> trains = trainService.queryAllTrain();
+        session.setAttribute("trains",trains);
         return "adminalltrain";
     }
 }

@@ -10,29 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca46ddc3-5087-4fe5-b3e7-d8810981c57c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/iotek/dao/TrainDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/iotek/mapper/TrainDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/iotek/model/StaffId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/iotek/model/Train.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/iotek/service/CheckWorkService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/iotek/service/TrainService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/iotek/service/impl/CheckWorkServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/iotek/service/impl/TrainServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/page/adminalltrain.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e54fb50c-01ec-4645-849e-39dd3e0b4917.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e54fb50c-01ec-4645-849e-39dd3e0b4917.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e54fb50c-01ec-4645-849e-39dd3e0b4917/storage_v2/_src_/schema/WUYIMING.wwsAeg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e54fb50c-01ec-4645-849e-39dd3e0b4917/storage_v2/_src_/schema/WUYIMING.wwsAeg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/WEB-INF/page/admintrainstaff.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/wym_project_war_exploded/WEB-INF/classes/com/iotek/model/CheckWork.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/wym_project_war_exploded/WEB-INF/classes/com/iotek/model/CheckWork.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/caogao/CaoGao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/caogao/CaoGao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/controller/AdminStaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/controller/AdminStaffController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/controller/StaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/controller/StaffController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/controller/TouristController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/controller/TouristController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/dao/CheckWorkDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/dao/CheckWorkDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/mapper/CheckWorkDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/mapper/CheckWorkDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/model/CheckWork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/model/CheckWork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iotek/model/CheckWork.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iotek/model/CheckWork.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/page/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/page/admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/page/staff.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/page/staff.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/dao/TrainDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/dao/TrainDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/mapper/TrainDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/mapper/TrainDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/service/TrainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/service/TrainService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/service/impl/TrainServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/service/impl/TrainServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/page/adminalltrain.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/page/adminalltrain.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -68,6 +53,27 @@
         <item name="@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="WUYIMING: schema" type="ac44c5e0:OracleImplModel$Schema" />
         <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="WUYIMING: schema" type="ac44c5e0:OracleImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="T_DEPARTMENT: table" type="be4db629:OracleImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="WUYIMING: schema" type="ac44c5e0:OracleImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="T_POSITION: table" type="be4db629:OracleImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="WUYIMING: schema" type="ac44c5e0:OracleImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="T_STAFFDETAIL: table" type="be4db629:OracleImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -110,22 +116,22 @@
         <counts>
           <entry key="dummy" value="8" />
           <entry key="html" value="125" />
-          <entry key="java" value="14814" />
-          <entry key="jsp" value="92265" />
+          <entry key="java" value="15063" />
+          <entry key="jsp" value="92956" />
           <entry key="properties" value="17" />
-          <entry key="txt" value="210" />
-          <entry key="xml" value="2038" />
+          <entry key="txt" value="249" />
+          <entry key="xml" value="2051" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="182" />
-          <entry key="JAVA" value="14814" />
-          <entry key="JSP" value="92208" />
-          <entry key="PLAIN_TEXT" value="218" />
+          <entry key="JAVA" value="15063" />
+          <entry key="JSP" value="92899" />
+          <entry key="PLAIN_TEXT" value="257" />
           <entry key="Properties" value="17" />
           <entry key="SQL" value="38" />
-          <entry key="XML" value="2000" />
+          <entry key="XML" value="2013" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -142,14 +148,14 @@
           <entry key="class" value="1" />
           <entry key="css" value="2" />
           <entry key="html" value="9" />
-          <entry key="java" value="435" />
+          <entry key="java" value="440" />
           <entry key="js" value="3" />
-          <entry key="jsp" value="159" />
+          <entry key="jsp" value="172" />
           <entry key="jspx" value="1" />
           <entry key="properties" value="7" />
           <entry key="rnc" value="1" />
           <entry key="sql" value="1" />
-          <entry key="xml" value="117" />
+          <entry key="xml" value="118" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -158,14 +164,14 @@
           <entry key="CSS" value="2" />
           <entry key="Database Element" value="15" />
           <entry key="HTML" value="9" />
-          <entry key="JAVA" value="435" />
-          <entry key="JSP" value="159" />
+          <entry key="JAVA" value="440" />
+          <entry key="JSP" value="172" />
           <entry key="JSPX" value="1" />
           <entry key="JavaScript" value="3" />
           <entry key="Properties" value="7" />
           <entry key="RNG Compact" value="1" />
           <entry key="Scratch" value="1" />
-          <entry key="XML" value="117" />
+          <entry key="XML" value="118" />
         </counts>
       </usages-collector>
     </session>
@@ -175,70 +181,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/controller/AdminStaffController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="153" selection-start-line="153" selection-end-line="154" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/mapper/TrainDao.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="29" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/adminalltrain.jsp">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/controller/TouristController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
-              <folding>
-                <element signature="n#style#0;n#a#0;n#td#0;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#1;n#td#0;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/model/Train.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-              <folding>
-                <element signature="e#366#367#0" expanded="true" />
-                <element signature="e#414#415#0" expanded="true" />
-                <element signature="e#454#455#0" expanded="true" />
-                <element signature="e#304#305#0" expanded="true" />
-                <element signature="e#332#333#0" expanded="true" />
-                <element signature="e#375#376#0" expanded="true" />
-                <element signature="e#409#410#0" expanded="true" />
-                <element signature="e#443#444#0" expanded="true" />
-                <element signature="e#472#473#0" expanded="true" />
-                <element signature="e#517#518#0" expanded="true" />
-                <element signature="e#553#554#0" expanded="true" />
-                <element signature="e#590#591#0" expanded="true" />
-                <element signature="e#623#624#0" expanded="true" />
-                <element signature="e#675#676#0" expanded="true" />
-                <element signature="e#719#720#0" expanded="true" />
-                <element signature="e#753#754#0" expanded="true" />
-                <element signature="e#783#784#0" expanded="true" />
-                <element signature="e#829#830#0" expanded="true" />
-                <element signature="e#867#868#0" expanded="true" />
-                <element signature="e#903#904#0" expanded="true" />
-                <element signature="e#934#935#0" expanded="true" />
-                <element signature="e#983#984#0" expanded="true" />
-                <element signature="e#1023#1024#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-209">
+              <caret line="92" column="51" selection-start-line="92" selection-start-column="51" selection-end-line="92" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -265,7 +212,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/iotek/mapper/RecruitDao.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/iotek/dao/RecruitDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/iotek/service/impl/RecruitServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/iotek/service/RecruitService.java" />
@@ -308,14 +254,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/iotek/controller/StaffController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/iotek/controller/TouristController.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/page/admin.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/iotek/model/StaffId.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/iotek/model/Train.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/iotek/dao/TrainDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/iotek/mapper/TrainDao.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/iotek/service/TrainService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/iotek/service/impl/TrainServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/iotek/model/StaffId.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/iotek/model/Train.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/page/adminalltrain.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/iotek/controller/AdminStaffController.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/page/adminalltrain.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/page/admintrainstaff.jsp" />
       </list>
     </option>
   </component>
@@ -333,9 +280,9 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="360" />
-    <option name="width" value="1415" />
-    <option name="height" value="880" />
+    <option name="x" value="-9" />
+    <option name="width" value="1935" />
+    <option name="height" value="1090" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -433,57 +380,6 @@
               <item name="wym_project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="iotek" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="wym_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wym_project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="iotek" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="wym_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wym_project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="iotek" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="wym_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wym_project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="iotek" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="wym_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wym_project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="iotek" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="wym_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wym_project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -517,9 +413,9 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558340566532" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558377917565" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="E:/FirstProject/mallproject.4.08" />
+    <property name="last_opened_file_path" value="E:/javaEE第二次质检/testsecond" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -545,7 +441,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CaoGao">
+  <component name="RunManager" selected="Tomcat Server.Tomcat">
     <configuration name="CaoGao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.iotek.caogao.CaoGao" />
       <module name="wym_project" />
@@ -655,7 +551,7 @@
       <workItem from="1557891357457" duration="75911000" />
       <workItem from="1558073642833" duration="2729000" />
       <workItem from="1558077044043" duration="50120000" />
-      <workItem from="1558313872777" duration="21572000" />
+      <workItem from="1558313872777" duration="30592000" />
     </task>
     <task id="LOCAL-00001" summary="DayFirst~wuyiming">
       <created>1557826692847</created>
@@ -699,18 +595,25 @@
       <option name="project" value="LOCAL" />
       <updated>1558314475766</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="2019-5-17&#10;今日已完成部分：&#10;员工打卡；&#10;培训一半写完了；&#10;准备完成部分:&#10;个人信息修改；&#10;培训全写完">
+      <created>1558340944449</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1558340944449</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176133000" />
+    <option name="totallyTimeSpent" value="185153000" />
   </component>
   <component name="TodoView" selected-index="1" />
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49685535" visible="true" weight="0.1689008" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49685535" visible="true" weight="0.1689008" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -720,7 +623,7 @@
       <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32885906" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.18431635" visible="true" weight="0.2751678" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.18431635" visible="true" weight="0.23624161" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -791,54 +694,14 @@
     <MESSAGE value="2019-5-16" />
     <MESSAGE value="2019-5-17&#10;已完成部分：&#10;游客简历增删改查;&#10;游客投递简历;&#10;接受和拒绝面试;&#10;管理员查看面试请求,并且发送或者拒绝面试。&#10;今日准备完成部分：&#10;部门和职位的创建;&#10;增加招聘信息;（职位，部门二级联动？）" />
     <MESSAGE value="2019-5-17&#10;已完成部分：&#10;部门和职位的创建;&#10;增加招聘信息;（职位，部门二级联动？）&#10;使游客成为员工;&#10;通讯录&#10;今日准备完成部分:&#10;打卡；&#10;个人信息修改；&#10;管理员薪资部分准备；" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019-5-17&#10;已完成部分：&#10;部门和职位的创建;&#10;增加招聘信息;（职位，部门二级联动？）&#10;使游客成为员工;&#10;通讯录&#10;今日准备完成部分:&#10;打卡；&#10;个人信息修改；&#10;管理员薪资部分准备；" />
+    <MESSAGE value="2019-5-17&#10;今日已完成部分：&#10;员工打卡；&#10;培训一半写完了；&#10;准备完成部分:&#10;个人信息修改；&#10;培训全写完" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019-5-17&#10;今日已完成部分：&#10;员工打卡；&#10;培训一半写完了；&#10;准备完成部分:&#10;个人信息修改；&#10;培训全写完" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/dao/DeliveryDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/service/DeliveryService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/service/impl/DeliveryServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="54" column="19" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/model/StaffDetail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="94" column="18" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
-          <folding>
-            <element signature="e#1703#1704#0" expanded="true" />
-            <element signature="e#1733#1734#0" expanded="true" />
-            <element signature="e#1779#1780#0" expanded="true" />
-            <element signature="e#1817#1818#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/mapper/AdminDao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="73" selection-start-line="4" selection-start-column="73" selection-end-line="4" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://e54fb50c-01ec-4645-849e-39dd3e0b4917/schema/WUYIMING/table/T_STAFFDETAIL">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1028,32 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/adminalldelivery.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-398" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/adminallrecruit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="790">
-          <caret line="105" column="13" selection-start-line="105" selection-start-column="13" selection-end-line="105" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/adminnewrecruit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/staffdetail.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/hello.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -1162,13 +999,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/controller/TouristController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-495">
-          <caret line="92" column="51" selection-start-line="92" selection-start-column="51" selection-end-line="92" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/admin.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -1221,10 +1051,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/mapper/TrainDao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/service/impl/TrainServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        <state relative-caret-position="380">
+          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#388#389#0" expanded="true" />
@@ -1235,8 +1072,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/service/TrainService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+        <state relative-caret-position="171">
+          <caret line="9" column="56" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1245,39 +1082,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/dao/TrainDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        <state relative-caret-position="171">
+          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/allinterview.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/adminalldelivery.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/adminallrecruit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="105" column="13" selection-start-line="105" selection-start-column="13" selection-end-line="105" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/admindeliverydetail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-399">
+          <folding>
+            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#1;n#tr#1;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#1;n#tr#2;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#1;n#tr#3;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#1;n#tr#4;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/adminnewrecruit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-246">
+          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/adminreview.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-251" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/thisdepartment.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-570" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/staffdetail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="67" column="12" lean-forward="true" selection-start-line="44" selection-end-line="67" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/adminalltrain.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="30" column="20" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/admintrainstaff.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="21" column="38" lean-forward="true" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/controller/AdminStaffController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="153" selection-start-line="153" selection-end-line="154" selection-end-column="33" />
+        <state relative-caret-position="448">
+          <caret line="158" column="25" lean-forward="true" selection-start-line="158" selection-start-column="25" selection-end-line="158" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/mapper/TrainDao.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/controller/TouristController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="29" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/adminalltrain.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#td#0;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#1;n#td#0;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="-209">
+          <caret line="92" column="51" selection-start-line="92" selection-start-column="51" selection-end-line="92" selection-end-column="51" />
         </state>
       </provider>
     </entry>

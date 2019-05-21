@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.dao.TrainDao">
+    <update id="updateState">
+        update T_TRAIN
+        set TR_STATE = #{tr_state}
+        where tr_id=#{tr_id}
+    </update>
+    <update id="updateTrain">
+        update T_TRAIN
+        set TR_TITLE=#{tr_title},TR_MESSAGE=#{tr_message},TR_TIME=#{tr_time}
+        where tr_id=#{tr_id}
+    </update>
     <select id="queryAllTrain" resultType="com.iotek.model.Train">
         select * from T_TRAIN
+    </select>
+    <select id="queryThisTrain" resultType="com.iotek.model.Train">
+        select * from T_TRAIN where TR_ID=#{tr_id}
     </select>
 </mapper>

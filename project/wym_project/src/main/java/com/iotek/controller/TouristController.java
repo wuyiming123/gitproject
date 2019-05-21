@@ -100,8 +100,11 @@ public class TouristController {
                 CheckWork checkWork = new CheckWork();
                 checkWork.setCw_date(ymd);
                 checkWork.setCw_sdid(aaa);
+                int newhour = cal.get(Calendar.HOUR_OF_DAY);
 
-                if((date.getTime()-date2.getTime())>0){
+                System.err.println(newhour-9);
+
+                if(newhour<9){
                     checkWork.setCw_state(0);
                     List<CheckWork> checkWork1 = checkWorkService.foundTodayCheckWork(checkWork);
                     if(!checkWork1.isEmpty()){
@@ -110,25 +113,42 @@ public class TouristController {
                     }
                     session.setAttribute("time",0);
                 }
-                if((date.getTime()-date1.getTime())>0){
+
+                if(newhour>=9){
                     checkWork.setCw_state(666);
                     List<CheckWork> checkWork1 = checkWorkService.foundTodayCheckWork(checkWork);
-                    if(!checkWork1.isEmpty()){
+                    checkWork.setCw_state(0);
+                    List<CheckWork> checkWork2 = checkWorkService.foundTodayCheckWork(checkWork);
+                    if(checkWork1.isEmpty() && checkWork2.isEmpty()){
+                        if((newhour-9)>=3){
+                            session.setAttribute("time",1);
+                            session.setAttribute("ready_to_home",999);
+                        }else if(3>=(newhour-9)){
+                            session.setAttribute("time",666);
+                        }
+                    }else if(!checkWork2.isEmpty()){
+                        session.setAttribute("time",0);
+                        session.setAttribute("ready_to_work",0);
+                    }else if(!checkWork1.isEmpty()){
                         session.setAttribute("time",666);
                         session.setAttribute("WTF",666);
-                    }else {
-                        session.setAttribute("time",666);
                     }
                 }
-                if((date.getTime()-date2.getTime())>0){
-                    checkWork.setCw_state(1);
+                if(newhour>18){
+                    checkWork.setCw_state(0);
                     List<CheckWork> checkWork1 = checkWorkService.foundTodayCheckWork(checkWork);
-                    System.err.println("aaaa==="+checkWork1);
-                    if(!checkWork1.isEmpty()){
+                    checkWork.setCw_state(1);
+                    List<CheckWork> checkWork2 = checkWorkService.foundTodayCheckWork(checkWork);
+                    checkWork.setCw_state(666);
+                    List<CheckWork> checkWork3 = checkWorkService.foundTodayCheckWork(checkWork);
+                     if(!checkWork1.isEmpty() && checkWork2.isEmpty()){
+                        session.setAttribute("time",1);
+                    }else if(!checkWork3.isEmpty() && checkWork2.isEmpty()){
+                        session.setAttribute("time",1);
+                    }else if(!checkWork3.isEmpty()){
                         session.setAttribute("time",1);
                         session.setAttribute("ready_to_home",1);
                     }
-                    session.setAttribute("time",1);
                 }
                 StaffDetail staffDetail = staffDetailService.foundDetailBySD_ID(s_sdid);
                 session.setAttribute("staff",stafflogin);

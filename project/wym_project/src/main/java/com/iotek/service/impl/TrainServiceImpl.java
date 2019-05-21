@@ -15,4 +15,23 @@ public class TrainServiceImpl implements TrainService {
     public List<Train> queryAllTrain() {
         return trainDao.queryAllTrain();
     }
+
+    public Train queryThisTrain(Integer tr_id) {
+        if(tr_id!=null){
+            return trainDao.queryThisTrain(tr_id);
+        }
+        return null;
+    }
+
+    public boolean updateState(Train train) {
+        if(train!=null){
+            return trainDao.updateState(train);
+        }return false;
+    }
+
+    public boolean updateTrain(Train train) {
+        if(train!=null){
+            return trainDao.updateTrain(train);
+        }return false;
+    }
 }

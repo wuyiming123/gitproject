@@ -26,43 +26,21 @@
 <ul>
     <li>
         <c:if test="${time==0}">
-            <%
-            if(ready_to_work==null){
-            %>
+            <%if(ready_to_work==null){%>
             <a href="helloCheckWork?sdid=${staffDetail.sd_id}">上班打卡</a>
-            <%
-            }else {
-            %>
-            已打上班卡
-            <%
-            }
-            %>
+            <%}else {%>已打上班卡<%}%>
         </c:if>
         <c:if test="${time==1}">
-            <%
-                if(ready_to_home==null){
-            %>
+            <%if(ready_to_home==null){%>
             <a href="bybyCheckWork?sdid=${staffDetail.sd_id}">下班打卡</a>
-            <%
-            }else {
-            %>
-            已打下班卡
-            <%
-                }
-            %>
+            <%}else if(ready_to_home==999){%>
+            <h3>今日已迟到三小时，旷工！</h3>
+            <%}else if(ready_to_home==1){%>已打下班卡<%}%>
         </c:if>
         <c:if test="${time==666}">
-            <%
-                if(WTF==null){
-            %>
+            <%if(WTF==null){%>
             <a href="fuckCheckWork?sdid=${staffDetail.sd_id}">迟到打卡</a>
-            <%
-            }else {
-            %>
-            已打迟到卡
-            <%
-                }
-            %>
+            <%}else {%>已打迟到卡<%}%>
         </c:if>
     </li>
     <li><a>个人信息</a></li>

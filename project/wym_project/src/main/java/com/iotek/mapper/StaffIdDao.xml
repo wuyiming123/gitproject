@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.StaffIdDao">
+    <insert id="addStaffId">
+        insert into T_STAFFID (SID_ID, SID_SDID, SID_TAID)
+        values (STAFFID_SEQ.nextval,#{sid_sdid},#{sid_taid})
+    </insert>
+
+    <delete id="delBy_sid_id">
+        delete from T_STAFFID WHERE SID_ID=#{sid_id}
+    </delete>
+    <select id="queryStaffIdBy_sid_taid" resultType="com.iotek.model.StaffId">
+        select * from T_STAFFID WHERE SID_TAID=#{sid_taid}
+    </select>
+    <select id="queryBy_sid_id" resultType="com.iotek.model.StaffId">
+        select * from T_STAFFID where SID_ID=#{sid_id}
+    </select>
+    <select id="queryStaffId" resultType="com.iotek.model.StaffId">
+        select * from T_STAFFID where SID_SDID=#{sid_sdid} and SID_TAID=#{sid_taid}
+    </select>
+</mapper>
