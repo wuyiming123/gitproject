@@ -8,4 +8,7 @@
     <select id="foundChangeBydate_id" resultType="com.iotek.model.Change">
         select * from T_CHANGE where C_SID=#{c_sid} and C_TIME=#{c_time}
     </select>
+    <select id="queryAllChangeBy_sid" resultType="com.iotek.model.Change">
+        select * from T_CHANGE where C_SID=#{c_sid}
+    </select>
 </mapper>

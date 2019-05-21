@@ -40,4 +40,11 @@ public class TrainServiceImpl implements TrainService {
             return trainDao.delTrain(tr_id);
         }return false;
     }
+
+    public boolean addTrain(Train train) {
+        if(train!=null){
+            return trainDao.addTrain(train);
+        }
+        return false;
+    }
 }

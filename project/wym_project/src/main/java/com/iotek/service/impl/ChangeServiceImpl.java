@@ -6,6 +6,7 @@ import com.iotek.service.ChangeService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ChangeServiceImpl implements ChangeService {
@@ -29,6 +30,12 @@ public class ChangeServiceImpl implements ChangeService {
     public Change foundChangeBydate_id(Change change) {
         if(change!=null){
             return changeDao.foundChangeBydate_id(change);
+        }return null;
+    }
+
+    public List<Change> queryAllChangeBy_sid(Change change) {
+        if(change!=null){
+            return changeDao.queryAllChangeBy_sid(change);
         }return null;
     }
 }

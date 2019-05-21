@@ -24,7 +24,7 @@
     <input type="submit" value="提交">
     <input type="hidden" name="sd_id" value="${mystaffdetail.sd_id}">
 </form>
-<a>奖惩记录</a></br>
+<a href="changeRecord?sd_id=${mystaffdetail.sd_id}">奖惩记录</a></br>
 
 </body>
 </html>

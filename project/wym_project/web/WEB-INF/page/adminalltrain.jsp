@@ -40,6 +40,17 @@
                 $("#message").val(tr_message);
                 $("#sid").val(tr_id);
             })
+
+            $("#newtrain").click(function () {
+                $("#smallSmallBox").remove();
+                $("#smallBox").append("<form action='newtrain' method='post' ><div id='smallSmallBox'><table>" +
+                    "<tr><td>标题：</td><td><input type='text' required name='tr_title'></td></tr>" +
+                    "<tr><td>内容：</td><td><input type='text' required name='tr_message'></td></tr>" +
+                    "<tr><td>时间：</td><td><input type='datetime-local' required name='tr_time'>" +
+                    "<input type='hidden' name='tr_state' value='0'></td></tr>" +
+                    "<tr><input type='submit' value='提交'></tr>" +
+                    "</table></div></form>")
+            })
         })
     </script>
 </head>
@@ -87,7 +98,7 @@
         </tr>
     </c:forEach>
     </table>
-    <a href="newtrain">发起一场新的培训</a>
+    <a id="newtrain">发起一场新的培训</a>
 </c:if>
 <div id="smallBox">
     <div id="smallSmallBox"></div>

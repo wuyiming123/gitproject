@@ -12,6 +12,7 @@ public class CaoGao {
 //        Date date2 = new Date();
         DateFormat df2 = DateFormat.getDateTimeInstance();
         System.err.println(df2.format(date1));
+
         Calendar cal = Calendar.getInstance();
         int hour=cal.get(Calendar.HOUR);//小时
         int minute=cal.get(Calendar.MINUTE);//分
@@ -20,13 +21,14 @@ public class CaoGao {
         String m = String.valueOf(minute);
         String s = String.valueOf(second);
         String hms = h+":"+m+":"+s;
-
         String tr_time = "2019-05-30T13:00";
         Date date = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").parse(tr_time);
         date.getMonth();
         Long ms = (Long) ((date1.getTime()-date.getTime())/1000/24/60);
-        System.out.println("ms"+ms);
-
+        System.out.println(date);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String aaa = formatter.format(date);
+        System.err.println("aaa="+aaa);
         /*
         关于上下班打卡设计。首先员工登录进去时判断
         如果时间没到12点 则页面显示上班打卡

@@ -258,8 +258,38 @@ public class StaffController {
                 ck.add(CK);
             }
         }
+        if(ck.isEmpty()){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('该月暂无打卡记录！');");
+            out.println("</script>");
+            return "staffinformation";
+        }
+        System.err.println(ck.size());
         request.setAttribute("CK",ck);
-        request.setAttribute("Number",month);
+        String number = month+"月";
+        request.setAttribute("Number",number);
         return "staffMyCK";
     }
+
+    @RequestMapping("changeRecord")
+    public String changeRecord(Integer sd_id,HttpServletRequest request,HttpServletResponse response)throws Exception{
+        PrintWriter out = response.getWriter();
+        StaffDetail staffDetail = staffDetailService.foundDetailBySD_ID(sd_id);
+        request.setAttribute("name", staffDetail.getSd_tname());
+        Change change = new Change();
+        change.setC_sid(sd_id);
+        List<Change> changes = changeService.queryAllChangeBy_sid(change);
+        if(changes.isEmpty()){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('该月暂无奖惩记录！');");
+            out.println("</script>");
+            return "staffinformation";
+        }else {
+            request.setAttribute("changs",changes);
+            return "staffChange";
+        }
+    }
+
 }

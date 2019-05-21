@@ -27,7 +27,7 @@
                 <tr><td>地　址　：</td><td><input type="text" required name="sd_taddress"  value="${mystaffdetail.sd_taddress}"></td></tr>
                 <tr><td>性　别　：</td><td><input type="text" readonly="readonly" name="sd_tsex" value="${mystaffdetail.sd_tsex}"></td></tr>
                 <tr><td>入职时间：</td><td><input type="text" readonly="readonly" name="sd_time" value="${mystaffdetail.sd_time}"></td></tr>
-                <tr><td>工资卡　：</td><td><input type="number" required  name="sd_card"  placeholder="${mystaffdetail.sd_card}"></td></tr>
+                <tr><td>工资卡　：</td><td><input type="number" required  name="sd_card"  value="${mystaffdetail.sd_card}"></td></tr>
                 <tr><td><input type="submit" value="提交"><input type="hidden" name="sd_id" id="sd_id" value="${mystaffdetail.sd_id}"></td></tr>
             </table>
         </form>

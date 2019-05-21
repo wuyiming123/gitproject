@@ -226,11 +226,23 @@ public class AdminStaffController {
 
     @RequestMapping("updatetrain")
     public String updatetrain(HttpServletRequest request,HttpServletResponse response,HttpSession session)throws Exception{
+        PrintWriter out = response.getWriter();
         String id = request.getParameter("sid");
         Integer tr_id = Integer.parseInt(id);
         String tr_title = request.getParameter("title");
         String tr_message = request.getParameter("message");
         String tr_time = request.getParameter("datetime");
+        Date date = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").parse(tr_time);
+        Date date1 = new Date();
+        int ms = (int) ((date1.getTime()-date.getTime())/1000/24/60/60);
+        if(ms>0){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('求求你！别秀了！');");
+            out.println("</script>");
+            return "adminalltrain";
+        }
+
         Train train = new Train();
         train.setTr_id(tr_id);
         train.setTr_time(tr_time);
@@ -284,5 +296,25 @@ public class AdminStaffController {
         return "adminalltrain";
     }
 
+    @RequestMapping("newtrain")
+    public String newtrain(Train train,HttpSession session,HttpServletResponse response)throws Exception{
+        PrintWriter out = response.getWriter();
+        String tr_time = train.getTr_time();
+        Date date = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").parse(tr_time);
+        Date date1 = new Date();
+        int ms = (int) ((date1.getTime()-date.getTime())/1000/24/60/60);
+        if(ms>0){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('别预约过去的时间！');");
+            out.println("</script>");
+            return "adminalltrain";
+        }
+
+        boolean b = trainService.addTrain(train);
+        List<Train> trains = trainService.queryAllTrain();
+        session.setAttribute("trains",trains);
+        return "adminalltrain";
+    }
 
 }

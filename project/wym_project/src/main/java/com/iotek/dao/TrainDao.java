@@ -11,4 +11,5 @@ public interface TrainDao {
     boolean updateState(Train train);
     boolean updateTrain(Train train);
     boolean delTrain(@Param("tr_id") Integer tr_id);
+    boolean addTrain(Train train);
 }
