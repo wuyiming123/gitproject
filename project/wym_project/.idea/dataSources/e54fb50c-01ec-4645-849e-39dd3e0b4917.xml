@@ -6,9 +6,9 @@
     </root>
     <schema id="2" parent="1" name="WUYIMING">
       <ObjectId>50</ObjectId>
-      <IntrospectionTimestamp>2019-05-21.00:17:12</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2019-05-21.18:41:57</IntrospectionTimestamp>
       <CreatedTimestamp>2019-05-14.03:58:50</CreatedTimestamp>
-      <ModifiedTimestamp>2019-05-20.23:59:58</ModifiedTimestamp>
+      <ModifiedTimestamp>2019-05-21.18:41:21</ModifiedTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -230,13 +230,13 @@
     <table id="46" parent="2" name="T_STAFF">
       <ObjectId>20310</ObjectId>
       <CreatedTimestamp>2019-05-14.19:07:53</CreatedTimestamp>
-      <ModifiedTimestamp>2019-05-14.19:07:53</ModifiedTimestamp>
+      <ModifiedTimestamp>2019-05-21.18:35:19</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="47" parent="2" name="T_STAFFDETAIL">
       <ObjectId>20313</ObjectId>
       <CreatedTimestamp>2019-05-14.19:19:25</CreatedTimestamp>
-      <ModifiedTimestamp>2019-05-19.22:42:39</ModifiedTimestamp>
+      <ModifiedTimestamp>2019-05-21.18:41:21</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="48" parent="2" name="T_STAFFID">
@@ -702,7 +702,11 @@
       <Position>4</Position>
       <DataType>VARCHAR2(255 byte)|0s</DataType>
     </column>
-    <index id="137" parent="46" name="SYS_C007083">
+    <column id="137" parent="46" name="S_STATE">
+      <Position>5</Position>
+      <DataType>NUMBER(11 digit)|0s</DataType>
+    </column>
+    <index id="138" parent="46" name="SYS_C007083">
       <ObjectId>20311</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2019-05-14.19:07:53</CreatedTimestamp>
@@ -711,7 +715,7 @@
       <ColNames>S_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="138" parent="46" name="SYS_C007083">
+    <key id="139" parent="46" name="SYS_C007083">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2019-05-14.19:07:53</ModifiedTimestamp>
       <ColNames>S_ID</ColNames>
@@ -719,44 +723,48 @@
       <UnderlyingIndexName>SYS_C007083</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="139" parent="47" name="SD_ID">
+    <column id="140" parent="47" name="SD_ID">
       <Position>1</Position>
       <DataType>NUMBER(11 digit)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="140" parent="47" name="SD_TNAME">
+    <column id="141" parent="47" name="SD_TNAME">
       <Position>2</Position>
       <DataType>VARCHAR2(255 byte)|0s</DataType>
     </column>
-    <column id="141" parent="47" name="SD_DEID">
+    <column id="142" parent="47" name="SD_DEID">
       <Position>3</Position>
       <DataType>NUMBER(11 digit)|0s</DataType>
     </column>
-    <column id="142" parent="47" name="SD_POID">
+    <column id="143" parent="47" name="SD_POID">
       <Position>4</Position>
       <DataType>NUMBER(11 digit)|0s</DataType>
     </column>
-    <column id="143" parent="47" name="SD_TSALARY">
+    <column id="144" parent="47" name="SD_TSALARY">
       <Position>5</Position>
       <DataType>NUMBER(11 digit)|0s</DataType>
     </column>
-    <column id="144" parent="47" name="SD_TADDRESS">
+    <column id="145" parent="47" name="SD_TADDRESS">
       <Position>6</Position>
       <DataType>VARCHAR2(255 byte)|0s</DataType>
     </column>
-    <column id="145" parent="47" name="SD_TPHONE">
+    <column id="146" parent="47" name="SD_TPHONE">
       <Position>7</Position>
       <DataType>VARCHAR2(255 byte)|0s</DataType>
     </column>
-    <column id="146" parent="47" name="SD_TSEX">
+    <column id="147" parent="47" name="SD_TSEX">
       <Position>8</Position>
       <DataType>VARCHAR2(255 byte)|0s</DataType>
     </column>
-    <column id="147" parent="47" name="SD_TIME">
+    <column id="148" parent="47" name="SD_TIME">
       <Position>9</Position>
       <DataType>VARCHAR2(255 byte)|0s</DataType>
     </column>
-    <index id="148" parent="47" name="SYS_C007085">
+    <column id="149" parent="47" name="SD_CARD">
+      <Position>10</Position>
+      <DataType>VARCHAR2(255 byte)|0s</DataType>
+    </column>
+    <index id="150" parent="47" name="SYS_C007085">
       <ObjectId>20314</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2019-05-14.19:19:25</CreatedTimestamp>
@@ -765,7 +773,7 @@
       <ColNames>SD_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="149" parent="47" name="SYS_C007085">
+    <key id="151" parent="47" name="SYS_C007085">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2019-05-14.19:19:25</ModifiedTimestamp>
       <ColNames>SD_ID</ColNames>
@@ -773,20 +781,20 @@
       <UnderlyingIndexName>SYS_C007085</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="150" parent="48" name="SID_ID">
+    <column id="152" parent="48" name="SID_ID">
       <Position>1</Position>
       <DataType>NUMBER(11 digit)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="151" parent="48" name="SID_SDID">
+    <column id="153" parent="48" name="SID_SDID">
       <Position>2</Position>
       <DataType>NUMBER(11 digit)|0s</DataType>
     </column>
-    <column id="152" parent="48" name="SID_TAID">
+    <column id="154" parent="48" name="SID_TAID">
       <Position>3</Position>
       <DataType>NUMBER(11 digit)|0s</DataType>
     </column>
-    <index id="153" parent="48" name="SYS_C007138">
+    <index id="155" parent="48" name="SYS_C007138">
       <ObjectId>20528</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2019-05-20.23:09:10</CreatedTimestamp>
@@ -795,7 +803,7 @@
       <ColNames>SID_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="154" parent="48" name="SYS_C007138">
+    <key id="156" parent="48" name="SYS_C007138">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2019-05-20.23:09:10</ModifiedTimestamp>
       <ColNames>SID_ID</ColNames>
@@ -803,20 +811,20 @@
       <UnderlyingIndexName>SYS_C007138</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="155" parent="49" name="T_ID">
+    <column id="157" parent="49" name="T_ID">
       <Position>1</Position>
       <DataType>NUMBER(11 digit)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="156" parent="49" name="T_NAME">
+    <column id="158" parent="49" name="T_NAME">
       <Position>2</Position>
       <DataType>VARCHAR2(255 byte)|0s</DataType>
     </column>
-    <column id="157" parent="49" name="T_PASS">
+    <column id="159" parent="49" name="T_PASS">
       <Position>3</Position>
       <DataType>VARCHAR2(255 byte)|0s</DataType>
     </column>
-    <index id="158" parent="49" name="SYS_C007067">
+    <index id="160" parent="49" name="SYS_C007067">
       <ObjectId>20214</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2019-05-14.03:58:50</CreatedTimestamp>
@@ -825,7 +833,7 @@
       <ColNames>T_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="159" parent="49" name="SYS_C007067">
+    <key id="161" parent="49" name="SYS_C007067">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2019-05-14.03:58:50</ModifiedTimestamp>
       <ColNames>T_ID</ColNames>
@@ -833,32 +841,32 @@
       <UnderlyingIndexName>SYS_C007067</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="160" parent="50" name="TR_ID">
+    <column id="162" parent="50" name="TR_ID">
       <Position>1</Position>
       <DataType>NUMBER(11 digit)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="161" parent="50" name="TR_SID">
+    <column id="163" parent="50" name="TR_SID">
       <Position>2</Position>
       <DataType>NUMBER(11 digit)|0s</DataType>
     </column>
-    <column id="162" parent="50" name="TR_MESSAGE">
+    <column id="164" parent="50" name="TR_MESSAGE">
       <Position>3</Position>
       <DataType>VARCHAR2(2000 byte)|0s</DataType>
     </column>
-    <column id="163" parent="50" name="TR_TIME">
+    <column id="165" parent="50" name="TR_TIME">
       <Position>4</Position>
       <DataType>VARCHAR2(255 byte)|0s</DataType>
     </column>
-    <column id="164" parent="50" name="TR_STATE">
+    <column id="166" parent="50" name="TR_STATE">
       <Position>5</Position>
       <DataType>NUMBER(11 digit)|0s</DataType>
     </column>
-    <column id="165" parent="50" name="TR_TITLE">
+    <column id="167" parent="50" name="TR_TITLE">
       <Position>6</Position>
       <DataType>VARCHAR2(200 byte)|0s</DataType>
     </column>
-    <index id="166" parent="50" name="SYS_C007097">
+    <index id="168" parent="50" name="SYS_C007097">
       <ObjectId>20332</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2019-05-14.21:55:49</CreatedTimestamp>
@@ -867,7 +875,7 @@
       <ColNames>TR_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="167" parent="50" name="SYS_C007097">
+    <key id="169" parent="50" name="SYS_C007097">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2019-05-14.21:55:49</ModifiedTimestamp>
       <ColNames>TR_ID</ColNames>

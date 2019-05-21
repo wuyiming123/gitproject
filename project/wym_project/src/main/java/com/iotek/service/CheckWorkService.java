@@ -7,4 +7,5 @@ import java.util.List;
 public interface CheckWorkService {
     boolean hellocheckwork(CheckWork checkWork);
     List<CheckWork> foundTodayCheckWork(CheckWork checkWork);
+    List<CheckWork> foundTodayCheckWorkBySD_ID(Integer cw_sdid);
 }

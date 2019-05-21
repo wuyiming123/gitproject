@@ -1,3 +1,4 @@
+<%@ page import="com.iotek.model.Staff" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -20,8 +21,24 @@
     <%Integer ready_to_work = (Integer) session.getAttribute("ready_to_work");%>
     <%Integer ready_to_home = (Integer) session.getAttribute("ready_to_home");%>
     <%Integer WTF = (Integer) session.getAttribute("WTF");%>
+    <%Staff staff = (Staff) session.getAttribute("staff");%>
+    <script>
+        window.onload = function(){
+            function getDate(){
+                debugger;
+                var today = new Date();
+                var date;
+                date = (today.getFullYear()) +"-" + (today.getMonth() + 1 ) + "-" + today.getDate() + "-" + today.toLocaleTimeString();
+                return date;
+            }
+            window.setInterval(function(){
+                document.getElementById("getBookTime").value=getDate();
+            }, 1000);
+        }
+    </script>
 </head>
 <body>
+<input type="text" style="border: 0px"  name="getBookTime" id="getBookTime" value="">
 <h3>${dename}部门的${poname},${staffDetail.sd_tname}同志,你好啊！</h3>
 <ul>
     <li>
@@ -43,7 +60,7 @@
             <%}else {%>已打迟到卡<%}%>
         </c:if>
     </li>
-    <li><a>个人信息</a></li>
+    <li><a href="myDetail?sdid=${staffDetail.sd_id}">个人信息</a></li>
     <li><a href="staffdetail">通讯录</a></li>
 </ul>
 

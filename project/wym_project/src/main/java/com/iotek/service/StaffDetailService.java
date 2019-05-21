@@ -10,4 +10,5 @@ public interface StaffDetailService {
     StaffDetail fountDetailByT_NAME( String sd_tname);
     StaffDetail foundDetailBySD_ID(Integer sd_id);
     List<StaffDetail> queryAllStaffDetail();
+    boolean updateStaffDetail(StaffDetail staffDetail);
 }

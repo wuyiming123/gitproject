@@ -21,19 +21,11 @@ public class CaoGao {
         String s = String.valueOf(second);
         String hms = h+":"+m+":"+s;
 
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-        String date11 = formatter.format(date1);
-
-        Date date333 = formatter.parse(hms);
-        System.out.println(date333+"aaa");
-
-        String date2 = "09:00:00";
-        String date3 = "02:11:11";
-        SimpleDateFormat ymd = new SimpleDateFormat("HH:mm:ss");
-        Date date22 = ymd.parse(date2);
-        Date date33 = ymd.parse(date3);
-        int ms = (int) (date333.getTime()-date22.getTime())/1000/60;
-        System.out.println(ms);
+        String tr_time = "2019-05-30T13:00";
+        Date date = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").parse(tr_time);
+        date.getMonth();
+        Long ms = (Long) ((date1.getTime()-date.getTime())/1000/24/60);
+        System.out.println("ms"+ms);
 
         /*
         关于上下班打卡设计。首先员工登录进去时判断

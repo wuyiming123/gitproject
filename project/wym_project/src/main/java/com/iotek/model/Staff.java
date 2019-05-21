@@ -7,8 +7,17 @@ public class Staff implements Serializable {
     private Integer s_sdid;
     private String s_sid;//工号
     private String s_spass;//密码
+    private Integer s_state;
 
     public Staff() {
+    }
+
+    public Integer getS_state() {
+        return s_state;
+    }
+
+    public void setS_state(Integer s_state) {
+        this.s_state = s_state;
     }
 
     public Integer getS_id() {

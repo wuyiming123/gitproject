@@ -9,5 +9,8 @@
     <select id="foundTodayCheckWork" resultType="com.iotek.model.CheckWork">
         select * from T_CHECKWORK where CW_DATE=#{cw_date} and CW_SDID=#{cw_sdid} and CW_STATE=#{cw_state}
     </select>
+    <select id="foundTodayCheckWorkBySD_ID" resultType="com.iotek.model.CheckWork">
+        select * from T_CHECKWORK where CW_SDID=#{cw_sdid}
+    </select>
 
 </mapper>

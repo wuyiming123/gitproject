@@ -11,6 +11,9 @@
         set TR_TITLE=#{tr_title},TR_MESSAGE=#{tr_message},TR_TIME=#{tr_time}
         where tr_id=#{tr_id}
     </update>
+    <delete id="delTrain">
+        delete from T_TRAIN where TR_ID=#{tr_id}
+    </delete>
     <select id="queryAllTrain" resultType="com.iotek.model.Train">
         select * from T_TRAIN
     </select>

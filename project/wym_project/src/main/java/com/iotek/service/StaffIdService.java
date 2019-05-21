@@ -11,4 +11,6 @@ public interface StaffIdService {
     StaffId queryBy_sid_id( Integer sid_id);
     boolean addStaffId(StaffId staffId);
     StaffId queryStaffId(StaffId staffId);
+    boolean delStaffID(Integer sid_taid);
+    List<StaffId> queryStaffIdBy(Integer sid_sdid);
 }

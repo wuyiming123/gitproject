@@ -51,4 +51,16 @@ public class StaffIdServiceImpl implements StaffIdService {
         }
         return null;
     }
+
+    public boolean delStaffID(Integer sid_taid) {
+        if(sid_taid!=null){
+            return staffIdDao.delStaffID(sid_taid);
+        }return false;
+    }
+
+    public List<StaffId> queryStaffIdBy(Integer sid_sdid) {
+        if(sid_sdid!=null){
+            return staffIdDao.queryStaffIdBy(sid_sdid);
+        }return null;
+    }
 }

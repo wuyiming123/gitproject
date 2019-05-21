@@ -10,4 +10,5 @@ public interface TrainService {
     Train queryThisTrain(Integer tr_id);
     boolean updateState(Train train);
     boolean updateTrain(Train train);
+    boolean delTrain(Integer tr_id);
 }

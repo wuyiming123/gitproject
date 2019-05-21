@@ -242,4 +242,47 @@ public class AdminStaffController {
         session.setAttribute("trains",trains);
         return "adminalltrain";
     }
+
+    @RequestMapping("delTrain")
+    public String delTrain(Integer tr_id,HttpServletResponse response)throws Exception{
+        PrintWriter out = response.getWriter();
+        Train train = trainService.queryThisTrain(tr_id);
+        String tr_time = train.getTr_time();
+        Date date = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").parse(tr_time);
+        Date date1 = new Date();
+        Long ms = (Long) ((date1.getTime()-date.getTime())/1000/24/60);
+        System.err.println("培训结束还有"+ms);
+        if(ms>0){
+            trainService.delTrain(tr_id);
+            staffIdService.delStaffID(tr_id);
+            out.flush();
+            out.println("<script>");
+            out.println("alert('培训结束,培训记录删除！');");
+            out.println("</script>");
+            return "admin";
+        }else if(0>=ms){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('培训还没到时间，不能删除！');");
+            out.println("</script>");
+            return "adminalltrain";
+        }
+        return "adminalltrain";
+    }
+
+    @RequestMapping("NOWdelTrain")
+    public String NOWdelTrain(Integer tr_id,HttpServletResponse response,HttpSession session)throws Exception{
+        PrintWriter out = response.getWriter();
+        trainService.delTrain(tr_id);
+        staffIdService.delStaffID(tr_id);
+        List<Train> trains = trainService.queryAllTrain();
+        session.setAttribute("trains",trains);
+        out.flush();
+        out.println("<script>");
+        out.println("alert('培训记录删除！');");
+        out.println("</script>");
+        return "adminalltrain";
+    }
+
+
 }

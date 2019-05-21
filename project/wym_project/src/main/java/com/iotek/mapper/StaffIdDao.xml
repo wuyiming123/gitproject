@@ -9,6 +9,9 @@
     <delete id="delBy_sid_id">
         delete from T_STAFFID WHERE SID_ID=#{sid_id}
     </delete>
+    <delete id="delStaffID">
+        delete from T_STAFFID WHERE SID_TAID=#{sid_taid}
+    </delete>
     <select id="queryStaffIdBy_sid_taid" resultType="com.iotek.model.StaffId">
         select * from T_STAFFID WHERE SID_TAID=#{sid_taid}
     </select>
@@ -17,5 +20,8 @@
     </select>
     <select id="queryStaffId" resultType="com.iotek.model.StaffId">
         select * from T_STAFFID where SID_SDID=#{sid_sdid} and SID_TAID=#{sid_taid}
+    </select>
+    <select id="queryStaffIdBy" resultType="com.iotek.model.StaffId">
+        select * from T_STAFFID WHERE SID_SDID=#{sid_sdid}
     </select>
 </mapper>

@@ -12,4 +12,7 @@ public interface StaffIdDao {
     StaffId queryBy_sid_id(@Param("sid_id") Integer sid_id);
     boolean addStaffId(StaffId staffId);
     StaffId queryStaffId(StaffId staffId);
+    boolean delStaffID(@Param("sid_taid") Integer sid_taid);
+    List<StaffId> queryStaffIdBy(@Param("sid_sdid") Integer sid_sdid);
+
 }

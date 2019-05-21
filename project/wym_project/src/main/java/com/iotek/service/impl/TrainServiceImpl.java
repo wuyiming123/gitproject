@@ -34,4 +34,10 @@ public class TrainServiceImpl implements TrainService {
             return trainDao.updateTrain(train);
         }return false;
     }
+
+    public boolean delTrain(Integer tr_id) {
+        if(tr_id!=null){
+            return trainDao.delTrain(tr_id);
+        }return false;
+    }
 }

@@ -22,6 +22,14 @@
                 #{sd_time})
 
     </insert>
+    <update id="updateStaffDetail">
+        update T_STAFFDETAIL
+        set SD_TNAME = #{sd_tname},
+            SD_TPHONE = #{sd_tphone},
+            SD_TADDRESS = #{sd_taddress},
+            SD_CARD = #{sd_card}
+        where SD_ID=#{sd_id}
+    </update>
     <select id="foundNewDetail" resultType="com.iotek.model.StaffDetail">
         select * from T_STAFFDETAIL where SD_DEID=#{sd_deid} and
                                           SD_POID=#{sd_poid} and

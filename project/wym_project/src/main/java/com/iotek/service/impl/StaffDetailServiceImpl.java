@@ -49,4 +49,10 @@ public class StaffDetailServiceImpl implements StaffDetailService {
         return staffDetailDao.queryAllStaffDetail();
     }
 
+    public boolean updateStaffDetail(StaffDetail staffDetail) {
+        if(staffDetail!=null){
+            return staffDetailDao.updateStaffDetail(staffDetail);
+        }return false;
+    }
+
 }

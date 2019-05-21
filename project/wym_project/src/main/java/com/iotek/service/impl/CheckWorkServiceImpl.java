@@ -27,5 +27,11 @@ public class CheckWorkServiceImpl implements CheckWorkService {
         return null;
     }
 
+    public List<CheckWork> foundTodayCheckWorkBySD_ID(Integer cw_sdid) {
+        if(cw_sdid!=null){
+            return checkWorkDao.foundTodayCheckWorkBySD_ID(cw_sdid);
+        }return null;
+    }
+
 
 }

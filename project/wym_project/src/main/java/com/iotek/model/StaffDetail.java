@@ -15,8 +15,17 @@ public class StaffDetail implements Serializable {
     private String sd_tphone;
     private String sd_tsex;
     private String sd_time;
+    private String sd_card;
 
     public StaffDetail() {
+    }
+
+    public String getSd_card() {
+        return sd_card;
+    }
+
+    public void setSd_card(String sd_card) {
+        this.sd_card = sd_card;
     }
 
     public Integer getSd_id() {
@@ -103,6 +112,7 @@ public class StaffDetail implements Serializable {
                 ", sd_tphone='" + sd_tphone + '\'' +
                 ", sd_tsex='" + sd_tsex + '\'' +
                 ", sd_time='" + sd_time + '\'' +
+                ", sd_card='" + sd_card + '\'' +
                 '}';
     }
 }

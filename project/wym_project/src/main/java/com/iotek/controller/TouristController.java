@@ -38,6 +38,8 @@ public class TouristController {
     private PositionService positionService;
     @Resource
     private CheckWorkService checkWorkService;
+    @Resource
+    private ChangeService changeService;
 
     @RequestMapping("toindex")
     public String toindex(){
@@ -87,7 +89,6 @@ public class TouristController {
                 SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
                 Date date1 = formatter.parse("09:00:00");
                 Date date2 = formatter.parse("12:00:00");
-
                 Calendar cal = Calendar.getInstance();
                 int year=cal.get(Calendar.YEAR);//年
                 int month=cal.get(Calendar.MONTH)+1;//月
@@ -101,9 +102,7 @@ public class TouristController {
                 checkWork.setCw_date(ymd);
                 checkWork.setCw_sdid(aaa);
                 int newhour = cal.get(Calendar.HOUR_OF_DAY);
-
                 System.err.println(newhour-9);
-
                 if(newhour<9){
                     checkWork.setCw_state(0);
                     List<CheckWork> checkWork1 = checkWorkService.foundTodayCheckWork(checkWork);
@@ -113,7 +112,6 @@ public class TouristController {
                     }
                     session.setAttribute("time",0);
                 }
-
                 if(newhour>=9){
                     checkWork.setCw_state(666);
                     List<CheckWork> checkWork1 = checkWorkService.foundTodayCheckWork(checkWork);
@@ -121,6 +119,16 @@ public class TouristController {
                     List<CheckWork> checkWork2 = checkWorkService.foundTodayCheckWork(checkWork);
                     if(checkWork1.isEmpty() && checkWork2.isEmpty()){
                         if((newhour-9)>=3){
+                            Change change = new Change();
+                            change.setC_sid(s_sdid);
+                            change.setC_money(-300);
+                            change.setC_time(ymd);
+                            change.setC_why("旷工");
+                            change.setC_state(-1);
+                            Change change1 = changeService.foundChangeBydate_id(change);
+                            if(change1==null){
+                                changeService.addNewChange(change);
+                            }
                             session.setAttribute("time",1);
                             session.setAttribute("ready_to_home",999);
                         }else if(3>=(newhour-9)){

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.ChangeDao">
+    <insert id="addNewChange">
+        insert into T_CHANGE (C_ID, C_SID, C_MONEY, C_TIME, C_WHY, C_STATE)
+        values (CHANGE_SEQ.nextval,#{c_sid},#{c_money},#{c_time},#{c_why},#{c_state})
+    </insert>
+    <select id="foundChangeBydate_id" resultType="com.iotek.model.Change">
+        select * from T_CHANGE where C_SID=#{c_sid} and C_TIME=#{c_time}
+    </select>
+</mapper>
