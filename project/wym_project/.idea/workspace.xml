@@ -10,27 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca46ddc3-5087-4fe5-b3e7-d8810981c57c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/iotek/controller/JumpPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/page/adminStaffcheck.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/caogao/CaoGao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/caogao/CaoGao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/controller/AdminStaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/controller/AdminStaffController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/controller/TouristController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/controller/TouristController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/dao/ChangeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/dao/ChangeDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/mapper/ChangeDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/mapper/ChangeDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/mapper/RecruitDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/mapper/RecruitDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/mapper/TrainDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/mapper/TrainDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/service/ChangeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/service/ChangeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iotek/service/impl/ChangeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/service/impl/ChangeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/page/adminAllStaffDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/page/adminAllStaffDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/page/adminalldelivery.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/page/adminalldelivery.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/page/adminalltrain.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/page/adminalltrain.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/page/admindeliverydetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/page/admindeliverydetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/page/adminreview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/page/adminreview.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/page/admintoRelieveGuard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/page/admintoRelieveGuard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/page/myresume.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/page/myresume.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/page/thisdepartment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/page/thisdepartment.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -137,7 +117,7 @@
           <entry key="java" value="22567" />
           <entry key="jsp" value="98610" />
           <entry key="properties" value="18" />
-          <entry key="txt" value="493" />
+          <entry key="txt" value="506" />
           <entry key="xml" value="2764" />
         </counts>
       </usages-collector>
@@ -146,7 +126,7 @@
           <entry key="HTML" value="223" />
           <entry key="JAVA" value="22567" />
           <entry key="JSP" value="98512" />
-          <entry key="PLAIN_TEXT" value="501" />
+          <entry key="PLAIN_TEXT" value="514" />
           <entry key="Properties" value="18" />
           <entry key="SQL" value="82" />
           <entry key="XML" value="2682" />
@@ -520,7 +500,7 @@
     <property name="SearchEverywhereHistoryKey" value="querydepartmentbydeid&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558599557132" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558599965281" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="E:/JavaEE_Lesson_Test/mall_project_hs_5.2" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -664,7 +644,7 @@
       <workItem from="1558534985833" duration="2238000" />
       <workItem from="1558534407499" duration="13764000" />
       <workItem from="1558573457094" duration="9149000" />
-      <workItem from="1558587742554" duration="11700000" />
+      <workItem from="1558587742554" duration="12106000" />
     </task>
     <task id="LOCAL-00001" summary="DayFirst~wuyiming">
       <created>1557826692847</created>
@@ -743,11 +723,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558577762664</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="2019-5-23 16:00&#10;准备完成部分：&#10;员工离职；&#10;CSS&#10;BUG记录：&#10;所有的分页；(今日完成 2019-5-23 16:00）&#10;优化页面之间的连接；">
+      <created>1558599927249</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1558599927254</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268711000" />
+    <option name="totallyTimeSpent" value="269117000" />
   </component>
   <component name="TodoView" selected-index="1" />
   <component name="ToolWindowManager">
@@ -840,7 +827,8 @@
     <MESSAGE value="2019-5-17&#10;今日已完成部分：&#10;培训完成；&#10;个人信息修改；&#10;奖惩记录；&#10;&#10;准备完成部分:&#10;查看打卡记录和奖惩记录；" />
     <MESSAGE value="2019-5-21 22:00&#10;未完成部分：&#10;薪资所有均未完成；&#10;员工换岗；&#10;员工离职；&#10;管理员查看考勤；&#10;存疑记录：&#10;培训发布期间是否能能够修改人员？&#10;游客和员工之间是否需要关联？&#10;BUG记录：&#10;所有的表单验证；&#10;所有的分页；&#10;优化各个作用域；&#10;优化页面之间的连接；" />
     <MESSAGE value="2019-5-23 10:00&#10;未完成部分：&#10;员工离职；&#10;BUG记录：&#10;所有的表单验证；(今日完成 2019-5-23 10:00）&#10;所有的分页；(今日完成 2019-5-23 10:00）&#10;优化各个作用域；&#10;优化页面之间的连接；" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019-5-23 10:00&#10;未完成部分：&#10;员工离职；&#10;BUG记录：&#10;所有的表单验证；(今日完成 2019-5-23 10:00）&#10;所有的分页；(今日完成 2019-5-23 10:00）&#10;优化各个作用域；&#10;优化页面之间的连接；" />
+    <MESSAGE value="2019-5-23 16:00&#10;准备完成部分：&#10;员工离职；&#10;CSS&#10;BUG记录：&#10;所有的分页；(今日完成 2019-5-23 16:00）&#10;优化页面之间的连接；" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019-5-23 16:00&#10;准备完成部分：&#10;员工离职；&#10;CSS&#10;BUG记录：&#10;所有的分页；(今日完成 2019-5-23 16:00）&#10;优化页面之间的连接；" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
