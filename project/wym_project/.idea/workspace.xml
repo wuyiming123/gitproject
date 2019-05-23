@@ -196,8 +196,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/adminStaffcheck.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="70" column="22" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+            <state relative-caret-position="436">
+              <caret line="75" column="17" lean-forward="true" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -303,8 +303,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
-    <option name="width" value="1939" />
-    <option name="height" value="1099" />
+    <option name="width" value="1940" />
+    <option name="height" value="1100" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -500,7 +500,7 @@
     <property name="SearchEverywhereHistoryKey" value="querydepartmentbydeid&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558600028178" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558600111326" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="E:/JavaEE_Lesson_Test/mall_project_hs_5.2" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -644,7 +644,7 @@
       <workItem from="1558534985833" duration="2238000" />
       <workItem from="1558534407499" duration="13764000" />
       <workItem from="1558573457094" duration="9149000" />
-      <workItem from="1558587742554" duration="12106000" />
+      <workItem from="1558587742554" duration="12349000" />
     </task>
     <task id="LOCAL-00001" summary="DayFirst~wuyiming">
       <created>1557826692847</created>
@@ -730,11 +730,25 @@
       <option name="project" value="LOCAL" />
       <updated>1558599927254</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="2019-5-23 16:00&#10;准备完成部分：&#10;员工离职；&#10;CSS&#10;BUG记录：&#10;所有的分页；(今日完成 2019-5-23 16:00）&#10;优化页面之间的连接；">
+      <created>1558599988509</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1558599988509</updated>
+    </task>
+    <task id="LOCAL-00014" summary="2019-5-23 16:00&#10;准备完成部分：&#10;员工离职；&#10;CSS&#10;BUG记录：&#10;所有的分页；(今日完成 2019-5-23 16:00）&#10;优化页面之间的连接；">
+      <created>1558600121843</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1558600121843</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="269117000" />
+    <option name="totallyTimeSpent" value="269360000" />
   </component>
   <component name="TodoView" selected-index="1" />
   <component name="ToolWindowManager">
@@ -1223,8 +1237,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/page/adminStaffcheck.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="70" column="22" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+        <state relative-caret-position="436">
+          <caret line="75" column="17" lean-forward="true" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
         </state>
       </provider>
     </entry>
