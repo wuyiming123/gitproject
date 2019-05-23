@@ -21,7 +21,8 @@
     <script>
         $(function () {
             $("#adddepart").click(function () {
-                $("body").append("<form action='adddepart' method='post' ><div id='smallbox'><table>" +
+                $("#smallsmallbox").remove();
+                $("#smallbox").append("<form action='adddepart' method='post' ><div id='smallsmallbox'><table>" +
                     "<tr><td>部门名称:</td>" +
                     "<td><input type='text' maxlength='30' placeholder='最多30字符' name='de_name' id='de_name' required></td>" +
                     "<td><input type='submit' value='提交' ></td></tr>" +
@@ -56,5 +57,7 @@
 <%
     }
 %>
+<a href="admin">上一层</a>
+<div id="smallbox"><div id="smallsmallbox"></div></div>
 </body>
 </html>

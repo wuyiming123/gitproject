@@ -23,13 +23,14 @@
     <script>
         $(function () {
             $(".addposition").click(function () {
+                $("#smallsmallbox").remove();
                 var po_deid = $(this).next().val();
-                $("body").append("<form action='addPosition' method='post'><table>" +
+                $("#smallbox").append("<div id='smallsmallbox'><form action='addPosition' method='post'><table>" +
                     "<tr><td>职位名称：</td>" +
                     "<td><input type='text' maxlength='30' placeholder='最多30字符' name='po_name' id='po_name' required>" +
                     "<input type='hidden' id='po_deid' name='po_deid'></td></tr>" +
                     "<tr><input type='submit' value='提交'></tr>" +
-                    "</table></form>")
+                    "</table></form></div>")
                 $("#po_deid").val(po_deid);
             })
         })
@@ -69,5 +70,7 @@
 </table>
 <a class="addposition">添加职位</a>
 <input type="hidden" name="po_deid<%=thisdepartment.getDe_id()%>" value="<%=thisdepartment.getDe_id()%>">
+<a href="toadminreview">上一层</a>
+<div id="smallbox"><div id="smallsmallbox"></div></div>
 </body>
 </html>

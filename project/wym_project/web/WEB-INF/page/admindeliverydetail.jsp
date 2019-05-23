@@ -31,13 +31,22 @@
                     "<table><tr><td>招聘对象：</td><td><input type='text' name='r_name' id='r_name' style='border: 0px'></td>" +
                     "</tr><tr><td>面试岗位：</td><td><input type='text' name='ri_position' id='ri_position' style='border: 0px'></td></tr>" +
                     "<tr><td>面试地点：</td><td><input  style='border: 0px' required type='text' maxlength='50' placeholder='最多输入50个字' name='i_address'></td></tr>" +
-                    "<tr><td>联系电话：</td><td><input type='number' name='i_phone' style='border: 0px' required maxlength='11' ></td></tr>" +
-                    "<tr><td>面试时间：</td><td><input type='date' name='i_time' id='i_time' style='border: 0px' required>" +
+                    "<tr><td>联系电话：</td><td><input type='number' name='i_phone' id='i_phone' style='border: 0px' required maxlength='11' ></td></tr>" +
+                    "<tr><td>面试时间：</td><td><input type='datetime-local' name='i_time' id='i_time' style='border: 0px' required>" +
                     "<input type='hidden' name='r_id' id='r_id'>" +
                     "<input type='hidden' name='ri_id' id='ri_id'>" +
-                    "</td></tr><tr><td><input type='submit' value='确认'></td><td><a href='returnadmindeliverydetail'>取消</a></td></tr>" +
+                    "</td></tr><tr><td><input type='submit' id='button3' value='确认'></td><td><a href='returnadmindeliverydetail'>取消</a></td></tr>" +
                     "</table>" +
                     "</form></div>")
+                $("#i_phone").blur(function () {
+                    var name = $("#i_phone").val();
+                    if (!(/^.{11,20}$/.test(name))) {
+                        alert("请输入正确手机号！");
+                        $('#button3').attr('disabled',"true");
+                    } else {
+                        $('#button3').removeAttr("disabled");
+                    }
+                })
                 $("#r_name").val(r_name);
                 $("#ri_position").val(ri_position);
                 $("#r_id").val(r_id);
@@ -103,5 +112,6 @@
 <input type="hidden" name="r_id<%=resume.getR_id()%>" value="<%=resume.getR_id()%>">
 <input type="hidden" name="ri_id<%=thisrecruit.getRi_id()%>" value="<%=thisrecruit.getRi_id()%>">
 
+<a href="toadmindelivery">上一层</a>
 </body>
 </html>

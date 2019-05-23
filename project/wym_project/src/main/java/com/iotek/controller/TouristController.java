@@ -211,13 +211,28 @@ public class TouristController {
 
     @RequestMapping("addresume")
     public String addresumefirst(Resume resume,HttpSession session, HttpServletResponse response)throws Exception{
+        PrintWriter out = response.getWriter();
         String r_birthday1 = resume.getR_birthday();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date1 = sdf.parse(r_birthday1);
-        Date date2 = new Date("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        int month=cal.get(Calendar.MONTH)+1;//月
+        int year=cal.get(Calendar.YEAR);//年
+        int day=cal.get(Calendar.DATE);//日
+        String y = String.valueOf(year);
+        String mon = String.valueOf(month);
+        String d = String.valueOf(day);
+        String ymd = y+"-"+mon+"-"+d;
+        Date date2 = sdf.parse(ymd);
+        if((date2.getYear()-date1.getYear())<=18){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('18岁再出来工作');");
+            out.println("history.back();");
+            out.println("</script>");
+            return "myresume";
+        }
 
-
-        PrintWriter out = response.getWriter();
         System.out.println(resume);
         String r_birthday = resume.getR_birthday();
         resume.setR_birthday(r_birthday);

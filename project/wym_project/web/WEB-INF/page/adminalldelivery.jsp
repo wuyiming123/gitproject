@@ -51,5 +51,7 @@
     </tr>
 </table>
 </c:forEach>
+
+<a href="admin">上一层</a>
 </body>
 </html>

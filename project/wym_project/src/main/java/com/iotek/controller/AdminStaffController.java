@@ -545,10 +545,12 @@ public class AdminStaffController {
         return salaries1;
     }
 
+
     @RequestMapping("toadminallstaffdetail")
     public String toadminallstaffdetail()throws Exception{
         return "adminAllStaffDetail";
     }
+
 
     @RequestMapping("thisManSalary")
     public String thisManSalary(Integer sd_id,HttpSession session)throws Exception{
@@ -562,6 +564,7 @@ public class AdminStaffController {
         session.setAttribute("positions",positions);
         return "allSalarys";
     }
+
 
     @RequestMapping("opt")
     public String opt(Integer id,HttpServletResponse response)throws Exception{
@@ -585,6 +588,7 @@ public class AdminStaffController {
         return "adminAllStaffDetail";
     }
 
+
     @RequestMapping("queryThisSalaryBy_sd_id")
     @ResponseBody
     public List<Salary> queryThisSalaryBy_sd_id(Integer sd_id,HttpSession session)throws Exception{
@@ -596,10 +600,8 @@ public class AdminStaffController {
         int day=cal.get(Calendar.DATE);//日
         String y = String.valueOf(year);
         String mon = String.valueOf(month);
-
         String ymd = y+"-"+mon;
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");
-
         if(!salaries.isEmpty()){
             boolean flag = true;
             for (Salary salary:salaries){
@@ -620,7 +622,6 @@ public class AdminStaffController {
                 salaryService.addShangYiGeMonth(salary);
             }
         }
-
         Date aa = new Date();
         int today = aa.getDate();
         List<CheckWork> checkWorks = checkWorkService.queryMonth(sd_id,month);
@@ -632,7 +633,6 @@ public class AdminStaffController {
         double changeM= 0;
         double overM= 0;
         for (int i = 1; i < today ; i++) {
-
             for(CheckWork checkWork:checkWorks){
                 if(i>22){
                     con=999;
@@ -684,7 +684,6 @@ public class AdminStaffController {
             }
             con=0;
         }
-
         if(changeM==0){
             changeM=1000;
         }
@@ -705,4 +704,41 @@ public class AdminStaffController {
         List<Salary> salaries1 = salaryService.queryAllSalaryBystate(sd_id,"已核算");
         return salaries1;
     }
+
+    @RequestMapping("foundRecord")
+    public String jiangcheng(HttpServletResponse response,HttpServletRequest request,HttpSession session)throws Exception{
+        String onth = request.getParameter("month");
+        String staffName = request.getParameter("staffName");
+        PrintWriter out = response.getWriter();
+        if(onth=="" || staffName==""){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('请选择月份');");
+            out.println("</script>");
+            return "adminAllStaffDetail";
+        }
+        Integer month = Integer.parseInt(onth);
+        if(month>12 || month<=0){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('请输入正确月份');");
+            out.println("</script>");
+            return "adminAllStaffDetail";
+        }
+        Integer sd_id = Integer.parseInt(staffName);
+        List<CheckWork> checkWorks = checkWorkService.queryMonth(sd_id, month);
+        request.setAttribute("MONTH",month);
+        request.setAttribute("checkWorks",checkWorks);
+        StaffDetail getthisshtaff = staffDetailService.getthisshtaff(sd_id);
+        String sd_tname = getthisshtaff.getSd_tname();
+        request.setAttribute("staffname",sd_tname);
+        request.setAttribute("ooo","打卡记录");
+
+        List<Change> changes = changeService.queryByMonth(sd_id, month);
+        request.setAttribute("changs",changes);
+        request.setAttribute("sss","奖惩记录");
+
+        return "adminStaffcheck";
+    }
+
 }

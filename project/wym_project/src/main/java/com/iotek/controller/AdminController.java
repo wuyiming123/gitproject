@@ -114,7 +114,17 @@ public class AdminController {
         String i_address = request.getParameter("i_address");
         String i_phone = request.getParameter("i_phone");
         String i_time = request.getParameter("i_time");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 
+        Date date1 = sdf.parse(i_time);
+        Date date2 = new Date();
+        if((date1.getTime()-date2.getTime())<0){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('请输入未来时间！');");
+            out.println("</script>");
+            return "admindeliverydetail";
+        }
         Delivery delivery = deliveryService.fountDeliByridAndriid(d_riid, d_rid);
         Integer d_id = delivery.getD_id();
 

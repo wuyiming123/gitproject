@@ -44,4 +44,11 @@ public class ChangeServiceImpl implements ChangeService {
             return changeDao.queryTime_Change(change);
         }return null;
     }
+
+    public List<Change> queryByMonth(Integer c_sid, Integer month) {
+        if(c_sid!=null || month!=null){
+            return changeDao.queryByMonth(c_sid,month);
+        }
+        return null;
+    }
 }

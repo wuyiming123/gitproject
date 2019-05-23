@@ -76,5 +76,6 @@
     </br>
     <input type="submit" value="提交" >
 </form>
+<a href="admin">上一层</a>
 </body>
 </html>

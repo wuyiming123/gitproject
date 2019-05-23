@@ -18,6 +18,28 @@
     <script src="js/jquery-3.1.0.js"></script>
     <script>
         $(function () {
+            $("#oldDePart").change(function () {
+                $.get("querydepartmentbydeid",{"de_id":$(this).val()},function (obj) {
+                    $("#oldPoSi option").remove();
+                    $("#staffName option").remove();
+                    $("#Month").remove();
+                    for (var i in obj) {
+                        $("#oldPoSi").append("<option value='"+obj[i]['po_id']+"'>"+obj[i]['po_name']+"</option>")
+                    }
+                })
+            })
+            $("#oldPoSi").change(function () {
+                $.get("querystaffbypoid",{"po_id":$(this).val()},function(obj){
+                    $("#staffName option").remove();
+                    $("#Month").remove();
+                    for(var i in obj){
+                        $("#staffName").append("<option value='"+obj[i]['sd_id']+"'>"+obj[i]['sd_tname']+"</option>")
+                    }
+                })
+            })
+
+
+
             $(".click").click(function () {
                 $("#smallSmallBox").remove();
                 var sd_tname = $(this).next().val();
@@ -139,8 +161,33 @@
         </tr>
     </c:forEach>
 </table>
+
+<table>
+    <tr id="smalltr">
+        <select id="oldDePart" required>
+            <option>-----</option>
+            <c:forEach items="${sessionScope.departements}" var="alldepart">
+                <option value="${alldepart.de_id}">${alldepart.de_name}</option>
+            </c:forEach>
+        </select>
+        <select id="oldPoSi" required>
+            <option>-----</option>
+        </select>
+        <form method="post" action="foundRecord">
+            <select id="staffName" name="staffName" required>
+                <option>-----</option>
+            </select>
+            <input type="number" name="month" placeholder="请输入月份">
+            <input type="submit" id="daka" value="check">
+            <input type="radio" required value="checkwork" name="chooise">打卡记录
+            <input type="radio" required value="change" name="chooise">奖惩记录
+        </form>
+    </tr>
+</table>
+
 <div id="smallBox">
     <div id="smallSmallBox"></div>
 </div>
+<a href="admin">上一层</a>
 </body>
 </html>

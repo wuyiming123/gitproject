@@ -3,7 +3,7 @@
 <mapper namespace="com.iotek.dao.TrainDao">
     <insert id="addTrain">
         insert into T_TRAIN (TR_ID,TR_MESSAGE, TR_TIME, TR_STATE, TR_TITLE)
-        values (TRAIN_SEQ.nextval,#{tr_message},#{tr_time},#{tr_state},#{tr_title});
+        values (TRAIN_SEQ.nextval,#{tr_message},#{tr_time},#{tr_state},#{tr_title})
     </insert>
     <update id="updateState">
         update T_TRAIN

@@ -18,12 +18,12 @@
     <script src="js/jquery-3.1.0.js"></script>
     <script>
         $(function () {
-            $("#no").click(function () {
+            $(".no").click(function () {
                 alert("请在未发布的时候修改")
             })
-            $("#hahah").click(function () {
-                alert("发布之后不得撤回！")
-            })
+            // $("#hahah").click(function () {
+            //     alert("发布之后不得撤回！")
+            // })
 
             $("#yes").click(function () {
                 $("#smallSmallBox").remove();
@@ -74,19 +74,20 @@
                     <a style="color:red;" href="changeState?tr_state=1&tr_id=${trains.tr_id}">待发布</a>
                 </c:if>
                 <c:if test="${trains.tr_state==1}">
-                    <a style="color:green;" id="hahah" >已发布</a>
+                    <a style="color:green;" href="changeState?tr_state=0&tr_id=${trains.tr_id}" >已发布</a>
                 </c:if>
             </td>
             <td>${trains.tr_title}</td>
             <td>${trains.tr_message}</td>
             <td>${trains.tr_time}</td>
             <td width="200px" align="center">
-                <a href="addtrainstaff?tr_id=${trains.tr_id}">增删人员\</a>
                 <c:if test="${trains.tr_state==1}">
-                    <a id="no">修改\</a>
+                    <a class="no">增删人员\</a>
+                    <a class="no">修改\</a>
                     <a href="delTrain?tr_id=${trains.tr_id}">删除</a>
                 </c:if>
                 <c:if test="${trains.tr_state==0}">
+                    <a href="addtrainstaff?tr_id=${trains.tr_id}">增删人员\</a>
                     <a id="yes">修改\</a>
                     <input type="hidden" value="${trains.tr_title}">
                     <input type="hidden" value="${trains.tr_message}">
@@ -103,5 +104,6 @@
 <div id="smallBox">
     <div id="smallSmallBox"></div>
 </div>
+<a href="admin">上一层</a>
 </body>
 </html>

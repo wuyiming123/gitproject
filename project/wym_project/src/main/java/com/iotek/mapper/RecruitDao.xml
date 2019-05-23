@@ -18,7 +18,7 @@
     <update id="updateThisRecruit">
         update T_RECRUIT
         set RI_SALARY = #{ri_salary},RI_REQUIREMENT=#{ri_requirement},RI_INFORMATION=#{ri_information}
-        where RI_ID=#{ri_id};
+        where RI_ID=#{ri_id}
     </update>
     <update id="become_NoBodySee">
         update T_RECRUIT set RI_ISON=#{ri_ison} where RI_ID=#{ri_id}

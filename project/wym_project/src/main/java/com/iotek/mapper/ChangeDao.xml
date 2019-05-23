@@ -14,4 +14,7 @@
     <select id="queryTime_Change" resultType="com.iotek.model.Change">
         select * from T_CHANGE where C_TIME=#{c_time} and C_SID=#{c_sid}
     </select>
+    <select id="queryByMonth" resultType="com.iotek.model.Change">
+        select * from T_CHANGE where C_SID=#{param1} and C_TIME LIKE '%-'||#{param2}||'-%'
+    </select>
 </mapper>

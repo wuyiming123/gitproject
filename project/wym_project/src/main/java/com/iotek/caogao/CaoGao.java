@@ -8,9 +8,8 @@ import java.util.Date;
 
 public class CaoGao {
     public static void main(String[] args) throws ParseException {
-        Date date = new Date();
-        int date1 = date.getDate();
-        System.out.println(date1);
+        Date date2 = new Date("yyyy-MM-dd");
+        System.out.println(date2);
 
 
 //        String date = "2019-4-1";

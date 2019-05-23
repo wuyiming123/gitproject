@@ -9,4 +9,5 @@ public interface ChangeDao {
     Change foundChangeBydate_id(Change change);
     List<Change> queryAllChangeBy_sid(Change change);
     Change queryTime_Change(Change change);
+    List<Change> queryByMonth(Integer c_sid,Integer month);
 }
