@@ -33,5 +33,9 @@ public class CheckWorkServiceImpl implements CheckWorkService {
         }return null;
     }
 
+    public List<CheckWork> queryMonth(Integer cw_sdid, Integer month) {
+        return checkWorkDao.queryMonth(cw_sdid,month);
+    }
+
 
 }

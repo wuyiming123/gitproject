@@ -25,9 +25,19 @@
                     "<span id=\"spanname\"></span><br/>" +
                     "用户密码:<input type=\"password\" name=\"pass\" id=\"password1\" required>" +
                     "<span id=\"spanpassword\"></span><br/>" +
-                    "<input type=\"submit\" value=\"注册\" id='button'>" +
+                    "<input type=\"submit\" value=\"注册\" id='button3'>" +
                     "<a href=\"index.jsp\">关闭</a>" +
                     "</form></div>")
+                $("#name1").blur(function () {
+                    var name = $("#name1").val();
+                    if (!(/^.{11,20}$/.test(name))) {
+                        $("#spanname").html("<font color='red' face='仿宋'>用户名得11-20位之内</font>");
+                        $('#button3').attr('disabled',"true");
+                    } else {
+                        $("#spanname").html("");
+                        $('#button3').removeAttr("disabled");
+                    }
+                })
             })
 
             $("#log").click(function () {
@@ -72,6 +82,7 @@
             bottom: 200px;
         }
     </style>
+
 </head>
 <body>
 <a id="regi" >注册 </a>

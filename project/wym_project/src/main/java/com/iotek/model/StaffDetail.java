@@ -16,8 +16,17 @@ public class StaffDetail implements Serializable {
     private String sd_tsex;
     private String sd_time;
     private String sd_card;
+    private Integer sd_state;
 
     public StaffDetail() {
+    }
+
+    public Integer getSd_state() {
+        return sd_state;
+    }
+
+    public void setSd_state(Integer sd_state) {
+        this.sd_state = sd_state;
     }
 
     public String getSd_card() {

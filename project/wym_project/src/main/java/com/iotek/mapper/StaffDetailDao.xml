@@ -10,7 +10,8 @@
                                    SD_TADDRESS,
                                    SD_TPHONE,
                                    SD_TSEX,
-                                   SD_TIME)
+                                   SD_TIME,
+                                   SD_STATE)
         values (STAFFDETAIL_SEQ.nextval,
                 #{sd_tname},
                 #{sd_deid},
@@ -19,7 +20,8 @@
                 #{sd_taddress},
                 #{sd_tphone},
                 #{sd_tsex},
-                #{sd_time})
+                #{sd_time},
+                #{sd_state})
 
     </insert>
     <update id="updateStaffDetail">
@@ -29,6 +31,17 @@
             SD_TADDRESS = #{sd_taddress},
             SD_CARD = #{sd_card}
         where SD_ID=#{sd_id}
+    </update>
+    <update id="updateDE_PO">
+        update T_STAFFDETAIL
+        set SD_DEID = #{sd_deid},
+            SD_POID = #{sd_poid}
+        where SD_ID=#{sd_id}
+    </update>
+    <update id="updateState">
+        update T_STAFFDETAIL
+        set SD_STATE=#{sd_state}
+        WHERE sd_id=#{sd_id}
     </update>
     <select id="foundNewDetail" resultType="com.iotek.model.StaffDetail">
         select * from T_STAFFDETAIL where SD_DEID=#{sd_deid} and
@@ -44,6 +57,12 @@
     </select>
     <select id="queryAllStaffDetail" resultType="com.iotek.model.StaffDetail">
         select * from T_STAFFDETAIL
+    </select>
+    <select id="queryAllStaffDetailBypo_id" resultType="com.iotek.model.StaffDetail">
+        select * from T_STAFFDETAIL where SD_POID=#{sd_poid}
+    </select>
+    <select id="getthisshtaff" resultType="com.iotek.model.StaffDetail">
+        select * from T_STAFFDETAIL where SD_ID=#{sd_id}
     </select>
 
 </mapper>

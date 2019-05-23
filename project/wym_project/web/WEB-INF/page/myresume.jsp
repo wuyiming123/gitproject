@@ -45,9 +45,10 @@
                     "<tr><td>现住址：</td><td colspan='3'><input required style='border: 0px' required type='text' maxlength='50' placeholder='最多输入50个字' name='r_address'></td></tr>" +
                     "<tr><td colspan='4' align='center'>自我描述</td></tr>" +
                     "<tr><td colspan='4'><textarea name='r_evaluation' maxlength='225'/><input type='hidden' id='r_tid' name='r_tid'></td></tr>" +
-                    "<tr><td colspan='4' align='center' ><input type='submit' value='提交'></td></tr>" +
+                    "<tr><td colspan='4' align='center' ><input type='submit' name='button3' value='提交'></td></tr>" +
                     "</table></form>")
                 $("#r_tid").val(r_tid);
+
             })
         })
     </script>

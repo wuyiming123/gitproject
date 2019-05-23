@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.SalaryDao">
+    <insert id="addShangYiGeMonth">
+        insert into T_SALARY (SA_ID, SA_SDID,SA_DATE)
+        values (SALARY_SEQ.nextval,#{sa_sdid},#{sa_date})
+    </insert>
+    <update id="updateShangYiGeMonth">
+        update T_SALARY
+        set SA_STATE = #{sa_state},
+            SA_OVERTIME = #{sa_overtime},
+            SA_MONEY = #{sa_money},
+            SA_SOCIAL = #{sa_social},
+            SA_CHANGE = #{sa_change},
+            SA_BASE = #{sa_base}
+        where SA_SDID = #{sa_sdid} and SA_DATE=#{sa_date}
+    </update>
+    <update id="updatestate">
+        update T_SALARY
+        set SA_STATE = #{sa_state}
+        where SA_ID=#{sa_id}
+    </update>
+
+    <select id="queryAllSalary" resultType="com.iotek.model.Salary">
+        select * from T_SALARY where SA_SDID=#{sd_id}
+    </select>
+    <select id="querybystate" resultType="com.iotek.model.Salary">
+        select * from T_SALARY where SA_STATE=#{sa_state}
+                                and SA_DATE=#{sa_date}
+                                and SA_SDID=#{sa_sdid}
+    </select>
+    <select id="queryById" resultType="com.iotek.model.Salary">
+        select * from T_SALARY where SA_ID=#{sa_id}
+    </select>
+    <select id="queryAllSalaryBystate" resultType="com.iotek.model.Salary">
+        select * from T_SALARY where SA_SDID=#{sd_id} and SA_STATE=#{sd_state}
+    </select>
+</mapper>

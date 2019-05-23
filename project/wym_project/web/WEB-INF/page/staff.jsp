@@ -22,23 +22,15 @@
     <%Integer ready_to_home = (Integer) session.getAttribute("ready_to_home");%>
     <%Integer WTF = (Integer) session.getAttribute("WTF");%>
     <%Staff staff = (Staff) session.getAttribute("staff");%>
-    <script>
-        window.onload = function(){
-            function getDate(){
-                debugger;
-                var today = new Date();
-                var date;
-                date = (today.getFullYear()) +"-" + (today.getMonth() + 1 ) + "-" + today.getDate() + "-" + today.toLocaleTimeString();
-                return date;
-            }
-            window.setInterval(function(){
-                document.getElementById("getBookTime").value=getDate();
-            }, 1000);
-        }
-    </script>
+
 </head>
 <body>
-<input type="text" style="border: 0px"  name="getBookTime" id="getBookTime" value="">
+<div id="time">
+    <script>
+        document.getElementById('time').innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());
+        setInterval("document.getElementById('time').innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",1000);
+    </script>
+</div>
 <h3>${dename}部门的${poname},${staffDetail.sd_tname}同志,你好啊！</h3>
 <ul>
     <li>

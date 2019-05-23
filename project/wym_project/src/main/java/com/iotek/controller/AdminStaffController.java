@@ -4,6 +4,7 @@ import com.iotek.model.*;
 import com.iotek.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,15 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 @Controller
 public class AdminStaffController {
     @Resource
+    private ChangeService changeService;
+    @Resource
     private DeliveryService deliveryService;
     @Resource
-    private TouristService touristService;
+    private SalaryService salaryService;
     @Resource
     private RecruitService recruitService;
     @Resource
@@ -38,6 +42,15 @@ public class AdminStaffController {
     private TrainService trainService;
     @Resource
     private StaffIdService staffIdService;
+    @Resource
+    private CheckWorkService checkWorkService;
+
+    public int getMaxDayByYearMonth(int year, int month) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year - 1);
+        calendar.set(Calendar.MONTH, month-1);
+        return calendar.getActualMaximum(Calendar.DATE);
+    }
 
 
     @RequestMapping("Employment")
@@ -102,6 +115,7 @@ public class AdminStaffController {
             staffDetail.setSd_taddress(resumByID.getR_address());///address
             staffDetail.setSd_tname(resumByID.getR_name());///name
             System.err.println(staffDetail);
+            staffDetail.setSd_state(0);
             staffDetailService.addStaffDetail(staffDetail);
             StaffDetail staffDetail1 = staffDetailService.foundNewDetail(staffDetail);
             Integer sd_id = staffDetail1.getSd_id();///得到新的STAFFDETAIL的ID
@@ -127,6 +141,7 @@ public class AdminStaffController {
             staff.setS_sdid(sd_id);
             staff.setS_sid(s_sid);
             staff.setS_spass(s_spass);
+            staff.setS_state(0);
             staffService.addStaff(staff);
             InterView aa =  interviewService.queryIntByi_id(i_id);
             Integer i_did3 = aa.getI_did();
@@ -317,4 +332,377 @@ public class AdminStaffController {
         return "adminalltrain";
     }
 
+    @RequestMapping("toRelieveGuard")
+    public String toRelieveGuard(HttpSession session)throws Exception{
+        session.setAttribute("alldepartment",departmentService.queryAllDepartment());
+        session.setAttribute("allposition",positionService.queryAllPosi());
+        session.setAttribute("allstaffdetail",staffDetailService.queryAllStaffDetail());
+        return "admintoRelieveGuard";
+    }
+
+    @RequestMapping("querystaffbypoid")
+    @ResponseBody
+    public List<StaffDetail> querystaffbypoid(Integer po_id)throws Exception{
+        List<StaffDetail> staffDetails = staffDetailService.queryAllStaffDetailBypo_id(po_id);
+        System.err.println("staffdetails===>"+staffDetails);
+        return staffDetails;
+    }
+
+    @RequestMapping("update_de_po")
+    public String update_de_po(HttpServletResponse response,HttpServletRequest request)throws Exception{
+        PrintWriter out = response.getWriter();
+        String staffName = request.getParameter("staffName");
+        String newDePart = request.getParameter("newDePart");
+        String newPoSi = request.getParameter("newPoSi");
+        System.err.println("test==="+staffName);
+        System.err.println("test==="+newDePart);
+        System.err.println("test==="+newPoSi);
+        if(staffName.equals("-----") || newDePart.equals("-----") || newPoSi.equals("-----")){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('空值输入！');");
+            out.println("</script>");
+            return "admintoRelieveGuard";
+        }
+        Integer sd_id = Integer.parseInt(staffName);
+        Integer sd_deid = Integer.parseInt(newDePart);
+        Integer sd_poid = Integer.parseInt(newPoSi);
+        StaffDetail staffDetail1 = staffDetailService.foundDetailBySD_ID(sd_id);
+
+        if(staffDetail1.getSd_poid()==sd_poid || staffDetail1.getSd_deid()==sd_deid){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('请别同岗位调换！');");
+            out.println("</script>");
+            return "admintoRelieveGuard";
+        }
+
+        StaffDetail staffDetail = new StaffDetail();
+        staffDetail.setSd_id(sd_id);
+        staffDetail.setSd_deid(sd_deid);
+        staffDetail.setSd_poid(sd_poid);
+        staffDetailService.updateDE_PO(staffDetail);
+        Position position = positionService.queryPositionBypoid(sd_poid);
+        Departement departement = departmentService.queryThisDepart(sd_deid);
+        position.setPo_stcount(position.getPo_stcount()+1);
+        departement.setDe_stcount(departement.getDe_stcount()+1);
+        positionService.updatePositionCOUNT(position);
+        departmentService.updateDepartmentCOUNT(departement);
+        out.flush();
+        out.println("<script>");
+        out.println("alert('换岗完成！');");
+        out.println("</script>");
+        return "admintoRelieveGuard";
+    }
+
+    @RequestMapping("allStaff")
+    public String allStaff(HttpSession session)throws Exception{
+        List<Position> positions = positionService.queryAllPosi();
+        List<Departement> departements = departmentService.queryAllDepartment();
+        List<StaffDetail> staffDetails = staffDetailService.queryAllStaffDetail();
+        session.setAttribute("positions",positions);
+        session.setAttribute("departements",departements);
+        session.setAttribute("staffDetails",staffDetails);
+        return "adminAllStaffDetail";
+    }
+
+    @RequestMapping("become_Wegular_Worker")
+    public String become_Wegular_Worker(Integer sd_id,HttpSession session)throws Exception{
+        StaffDetail staffDetail = new StaffDetail();
+        staffDetail.setSd_id(sd_id);
+        staffDetail.setSd_state(1);
+        staffDetailService.updateState(staffDetail);
+        List<StaffDetail> staffDetails = staffDetailService.queryAllStaffDetail();
+        session.setAttribute("staffDetails",staffDetails);
+        return "adminAllStaffDetail";
+    }
+
+    @RequestMapping("querySalaryBy_sd_id")
+    @ResponseBody
+    public List<Salary> querySalaryBy_sd_id(Integer sd_id,HttpSession session)throws Exception{
+        List<Salary> salaries = salaryService.queryAllSalary(sd_id);
+        Calendar cal = Calendar.getInstance();
+        int month=cal.get(Calendar.MONTH)+1;//月
+        int month1=cal.get(Calendar.MONTH);//月
+        int year=cal.get(Calendar.YEAR);//年
+        int day=cal.get(Calendar.DATE);//日
+        String y = String.valueOf(year);
+        String mon = String.valueOf(month);
+        String mon1 = String.valueOf(month1);
+        String d = String.valueOf(day);
+        String ymd = y+"-"+mon;
+        String ymd1 = y+"-"+mon1;
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");
+        if(salaries.isEmpty()){
+            Salary salary = new Salary();
+            salary.setSa_sdid(sd_id);
+            salary.setSa_date(ymd1);
+            salaryService.addShangYiGeMonth(salary);}
+//        }else if(!salaries.isEmpty()){
+//            boolean flag = true;
+//            for (Salary salary:salaries){
+//                String sa_date = salary.getSa_date();
+//                Date date = formatter.parse(sa_date);
+//                int recordMonth = date.getMonth()+1;
+//                if(recordMonth==month){
+//                    flag=false;
+//                    break;
+//                }else if(recordMonth!=month){
+//                    flag=true;
+//                }
+//            }
+//            if(flag==true){
+//                Salary salary = new Salary();
+//                salary.setSa_sdid(sd_id);
+//                salary.setSa_date(ymd);
+//                salaryService.addShangYiGeMonth(salary);
+//            }
+//        }
+        ///////////////////////////////////////以上是自动生成工资单模板的代码//////////////////////////////////
+        int maxDayByYearMonth = getMaxDayByYearMonth(year,month1);
+        int count = 0;
+        List<CheckWork> checkWorks = checkWorkService.queryMonth(sd_id,month1);
+
+        System.err.println(checkWorks);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date tdate = null;
+        String cw_date=null;
+        int a= 1;
+        int con = 0;
+        double changeM= 0;
+        double overM= 0;
+        for (int i = 1; i <= maxDayByYearMonth ; i++) {
+            for(CheckWork checkWork:checkWorks){
+                if(i>22){
+                    con=999;
+                    break;
+                }
+                System.err.println("进来最大一个循环了");
+                cw_date = checkWork.getCw_date();
+                tdate=sdf.parse(cw_date);
+                Integer cw_state = checkWork.getCw_state();
+                if(cw_state==1){
+                    Integer cw_smalltime1 = checkWork.getCw_smalltime();
+                    overM = overM+(cw_smalltime1*0.5);
+                }
+                if(tdate.getDate()==i){
+                    con++;
+                }
+            }
+            if(con==0){
+                Change change = new Change();
+                change.setC_state(-1);
+                change.setC_why("管理员记录："+month1+"月"+i+"日"+"当天没打卡记录！");
+                change.setC_money(-300);
+                change.setC_sid(sd_id);
+                change.setC_time("2019-"+month1+"-"+i);
+                Change change1 = changeService.queryTime_Change(change);
+                System.err.println(change1+"==="+a);
+                a++;
+                if(change1==null){
+                    changeM = changeM+(-300);
+                    changeService.addNewChange(change);
+                }if(change1!=null){
+                    changeM = changeM+change1.getC_money();
+                }
+            }
+            if(con==1){
+                Change change = new Change();
+                change.setC_state(-1);
+                change.setC_why("管理员记录："+month1+"月"+i+"日"+"当天没打下班卡！");
+                change.setC_money(-100);
+                change.setC_sid(sd_id);
+                change.setC_time("2019-"+month1+"-"+i);
+                Change change1 = changeService.queryTime_Change(change);
+                if(change1==null){
+                    changeM = changeM+(-100);
+                    changeService.addNewChange(change);
+                }if(change1!=null){
+                    changeM = changeM+change1.getC_money();
+                }
+            }
+            con=0;
+        }
+        if(changeM==0){
+            changeM=1000;
+        }
+        StaffDetail getthisshtaff = staffDetailService.getthisshtaff(sd_id);
+        Integer BASE = getthisshtaff.getSd_tsalary();
+        Salary salarynew = new Salary();
+        salarynew.setSa_base(BASE);
+        salarynew.setSa_change(changeM);
+        salarynew.setSa_overtime(overM);
+        double sccial = (BASE+changeM+overM)*0.1;
+        salarynew.setSa_social(sccial);
+        double money = (BASE+changeM+overM)-sccial;
+        salarynew.setSa_money(money);
+        salarynew.setSa_state("待发");
+        salarynew.setSa_sdid(sd_id);
+        salarynew.setSa_date(ymd1);
+        salaryService.updateShangYiGeMonth(salarynew);
+        List<Salary> salaries1 = salaryService.queryAllSalaryBystate(sd_id,"待发");
+        return salaries1;
+    }
+
+    @RequestMapping("toadminallstaffdetail")
+    public String toadminallstaffdetail()throws Exception{
+        return "adminAllStaffDetail";
+    }
+
+    @RequestMapping("thisManSalary")
+    public String thisManSalary(Integer sd_id,HttpSession session)throws Exception{
+        List<Salary> salaries = salaryService.queryAllSalary(sd_id);
+        session.setAttribute("salarys",salaries);
+        List<StaffDetail> staffDetails = staffDetailService.queryAllStaffDetail();
+        session.setAttribute("staffDetails",staffDetails);
+        List<Departement> departements = departmentService.queryAllDepartment();
+        List<Position> positions = positionService.queryAllPosi();
+        session.setAttribute("departements",departements);
+        session.setAttribute("positions",positions);
+        return "allSalarys";
+    }
+
+    @RequestMapping("opt")
+    public String opt(Integer id,HttpServletResponse response)throws Exception{
+        PrintWriter out = response.getWriter();
+        Salary salary1 = salaryService.queryById(id);
+        if(salary1.getSa_state().equals("已发")){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('请勿重复操作！');");
+            out.println("</script>");
+            return "adminAllStaffDetail";
+        }
+        Salary salary = new Salary();
+        salary.setSa_id(id);
+        salary.setSa_state("已发");
+        salaryService.updatestate(salary);
+        out.flush();
+        out.println("<script>");
+        out.println("alert('工资已发送！');");
+        out.println("</script>");
+        return "adminAllStaffDetail";
+    }
+
+    @RequestMapping("queryThisSalaryBy_sd_id")
+    @ResponseBody
+    public List<Salary> queryThisSalaryBy_sd_id(Integer sd_id,HttpSession session)throws Exception{
+        List<Salary> salaries = salaryService.queryAllSalary(sd_id);
+        Calendar cal = Calendar.getInstance();
+        int month=cal.get(Calendar.MONTH)+1;//月
+        int month1=cal.get(Calendar.MONTH);//月
+        int year=cal.get(Calendar.YEAR);//年
+        int day=cal.get(Calendar.DATE);//日
+        String y = String.valueOf(year);
+        String mon = String.valueOf(month);
+
+        String ymd = y+"-"+mon;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");
+
+        if(!salaries.isEmpty()){
+            boolean flag = true;
+            for (Salary salary:salaries){
+                String sa_date = salary.getSa_date();
+                Date date = formatter.parse(sa_date);
+                int recordMonth = date.getMonth()+1;
+                if(recordMonth==month){
+                    flag=false;
+                    break;
+                }else if(recordMonth!=month){
+                    flag=true;
+                }
+            }
+            if(flag==true){
+                Salary salary = new Salary();
+                salary.setSa_sdid(sd_id);
+                salary.setSa_date(ymd);
+                salaryService.addShangYiGeMonth(salary);
+            }
+        }
+
+        Date aa = new Date();
+        int today = aa.getDate();
+        List<CheckWork> checkWorks = checkWorkService.queryMonth(sd_id,month);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date tdate = null;
+        String cw_date=null;
+        int a= 1;
+        int con = 0;
+        double changeM= 0;
+        double overM= 0;
+        for (int i = 1; i < today ; i++) {
+
+            for(CheckWork checkWork:checkWorks){
+                if(i>22){
+                    con=999;
+                    break;
+                }
+                System.err.println("进来最大一个循环了");
+                cw_date = checkWork.getCw_date();
+                tdate=sdf.parse(cw_date);
+                Integer cw_state = checkWork.getCw_state();
+                if(cw_state==1){
+                    Integer cw_smalltime1 = checkWork.getCw_smalltime();
+                    overM = overM+(cw_smalltime1*0.5);
+                }
+                if(tdate.getDate()==i){
+                    con++;
+                }
+            }
+            if(con==0){
+                Change change = new Change();
+                change.setC_state(-1);
+                change.setC_why("管理员记录："+month1+"月"+i+"日"+"当天没打卡记录！");
+                change.setC_money(-300);
+                change.setC_sid(sd_id);
+                change.setC_time("2019-"+month+"-"+i);
+                Change change1 = changeService.queryTime_Change(change);
+                System.err.println(change1+"==="+a);
+                a++;
+                if(change1==null){
+                    changeM = changeM+(-300);
+                    changeService.addNewChange(change);
+                }if(change1!=null){
+                    changeM = changeM+change1.getC_money();
+                }
+            }
+            if(con==1){
+                Change change = new Change();
+                change.setC_state(-1);
+                change.setC_why("管理员记录："+month1+"月"+i+"日"+"当天没打下班卡！");
+                change.setC_money(-100);
+                change.setC_sid(sd_id);
+                change.setC_time("2019-"+month+"-"+i);
+                Change change1 = changeService.queryTime_Change(change);
+                if(change1==null){
+                    changeM = changeM+(-100);
+                    changeService.addNewChange(change);
+                }if(change1!=null){
+                    changeM = changeM+change1.getC_money();
+                }
+            }
+            con=0;
+        }
+
+        if(changeM==0){
+            changeM=1000;
+        }
+        StaffDetail getthisshtaff = staffDetailService.getthisshtaff(sd_id);
+        Integer BASE = getthisshtaff.getSd_tsalary();
+        Salary salarynew = new Salary();
+        salarynew.setSa_base(BASE);
+        salarynew.setSa_change(changeM);
+        salarynew.setSa_overtime(overM);
+        double sccial = (BASE+changeM+overM)*0.1;
+        salarynew.setSa_social(sccial);
+        double money = (BASE+changeM+overM)-sccial;
+        salarynew.setSa_money(money);
+        salarynew.setSa_state("已核算");
+        salarynew.setSa_sdid(sd_id);
+        salarynew.setSa_date(ymd);
+        salaryService.updateShangYiGeMonth(salarynew);
+        List<Salary> salaries1 = salaryService.queryAllSalaryBystate(sd_id,"已核算");
+        return salaries1;
+    }
 }

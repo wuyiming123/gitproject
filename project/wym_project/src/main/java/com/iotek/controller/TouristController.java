@@ -211,6 +211,12 @@ public class TouristController {
 
     @RequestMapping("addresume")
     public String addresumefirst(Resume resume,HttpSession session, HttpServletResponse response)throws Exception{
+        String r_birthday1 = resume.getR_birthday();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = sdf.parse(r_birthday1);
+        Date date2 = new Date("yyyy-MM-dd");
+
+
         PrintWriter out = response.getWriter();
         System.out.println(resume);
         String r_birthday = resume.getR_birthday();

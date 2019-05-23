@@ -12,5 +12,8 @@
     <select id="foundTodayCheckWorkBySD_ID" resultType="com.iotek.model.CheckWork">
         select * from T_CHECKWORK where CW_SDID=#{cw_sdid}
     </select>
+    <select id="queryMonth" resultType="com.iotek.model.CheckWork">
+        select * from T_CHECKWORK where CW_SDID=#{param1} and CW_DATE LIKE '%-'||#{param2}||'-%'
+    </select>
 
 </mapper>

@@ -55,4 +55,28 @@ public class StaffDetailServiceImpl implements StaffDetailService {
         }return false;
     }
 
+    public List<StaffDetail> queryAllStaffDetailBypo_id(Integer sd_poid) {
+        if(sd_poid!=null){
+            return staffDetailDao.queryAllStaffDetailBypo_id(sd_poid);
+        }return null;
+    }
+
+    public boolean updateDE_PO(StaffDetail staffDetail) {
+        if(staffDetail!=null){
+            staffDetailDao.updateDE_PO(staffDetail);
+        }return false;
+    }
+
+    public boolean updateState(StaffDetail staffDetail) {
+        if (staffDetail!=null){
+            return staffDetailDao.updateState(staffDetail);
+        }return false;
+    }
+
+    public StaffDetail getthisshtaff(Integer sd_id) {
+        if(sd_id!=null){
+            return staffDetailDao.getthisshtaff(sd_id);
+        }return null;
+    }
+
 }

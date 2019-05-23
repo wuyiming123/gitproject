@@ -11,5 +11,9 @@ public interface StaffDetailDao {
     StaffDetail fountDetailByT_NAME(@Param("sd_tname") String sd_tname);
     StaffDetail foundDetailBySD_ID(@Param("sd_id") Integer sd_id);
     List<StaffDetail> queryAllStaffDetail();
+    List<StaffDetail> queryAllStaffDetailBypo_id(@Param("sd_poid") Integer sd_poid);
     boolean updateStaffDetail(StaffDetail staffDetail);
+    boolean updateDE_PO(StaffDetail staffDetail);
+    boolean updateState(StaffDetail staffDetail);
+    StaffDetail getthisshtaff(@Param("sd_id") Integer sd_id);
 }

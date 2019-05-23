@@ -8,4 +8,5 @@ public interface CheckWorkService {
     boolean hellocheckwork(CheckWork checkWork);
     List<CheckWork> foundTodayCheckWork(CheckWork checkWork);
     List<CheckWork> foundTodayCheckWorkBySD_ID(Integer cw_sdid);
+    List<CheckWork> queryMonth(Integer cw_sdid,Integer month);
 }

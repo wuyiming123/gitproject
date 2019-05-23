@@ -38,4 +38,10 @@ public class ChangeServiceImpl implements ChangeService {
             return changeDao.queryAllChangeBy_sid(change);
         }return null;
     }
+
+    public Change queryTime_Change(Change change) {
+        if(change!=null){
+            return changeDao.queryTime_Change(change);
+        }return null;
+    }
 }

@@ -11,4 +11,8 @@ public interface StaffDetailService {
     StaffDetail foundDetailBySD_ID(Integer sd_id);
     List<StaffDetail> queryAllStaffDetail();
     boolean updateStaffDetail(StaffDetail staffDetail);
+    List<StaffDetail> queryAllStaffDetailBypo_id(Integer sd_poid);
+    boolean updateDE_PO(StaffDetail staffDetail);
+    boolean updateState(StaffDetail staffDetail);
+    StaffDetail getthisshtaff(Integer sd_id);
 }

@@ -46,7 +46,8 @@
 %>
 <a href="review">检阅部门</a></br>
 <a href="allrecruit">招聘信息</a></br>
-<a href="alltrain">员工培训</a>
-
+<a href="alltrain">员工培训</a><br>
+<a href="toRelieveGuard">员工换岗</a></br>
+<a href="allStaff">员工查询</a></br>
 </body>
 </html>
