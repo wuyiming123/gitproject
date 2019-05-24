@@ -8,7 +8,7 @@
     <update id="updatePositionCOUNT">
         update T_POSITION
         set  PO_STCOUNT=#{po_stcount}
-        where PO_ID=#{po_id};
+        where PO_ID=#{po_id}
     </update>
     <delete id="delPosition">
         delete from T_POSITION where PO_DEID=#{po_deid}

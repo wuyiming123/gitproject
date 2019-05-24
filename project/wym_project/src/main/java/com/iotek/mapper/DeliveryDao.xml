@@ -12,7 +12,7 @@
         select * from T_DELIVERY
     </select>
     <select id="founddelivery" resultType="com.iotek.model.Delivery">
-        select * from T_DELIVERY where D_TID=#{d_tid} and D_RIID=#{d_riid}
+        select * from T_DELIVERY where D_TID=#{d_tid} and D_RIID=#{d_riid} and D_STATE=#{d_state}
     </select>
     <select id="fountDeliByridAndriid" resultType="com.iotek.model.Delivery">
         select * from T_DELIVERY where D_RIID=#{d_riid} and D_RID=#{d_rid}
@@ -28,5 +28,8 @@
     </select>
     <select id="fountDeliByid" resultType="com.iotek.model.Delivery">
         select * from T_DELIVERY where D_ID=#{d_id}
+    </select>
+    <select id="founddeliverynostate" resultType="com.iotek.model.Delivery">
+        select * from T_DELIVERY where D_TID=#{d_tid} and D_RIID=#{d_riid}
     </select>
 </mapper>

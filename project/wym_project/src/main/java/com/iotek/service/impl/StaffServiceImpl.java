@@ -6,6 +6,7 @@ import com.iotek.service.StaffService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class StaffServiceImpl implements StaffService {
@@ -35,6 +36,12 @@ public class StaffServiceImpl implements StaffService {
     public Staff Stafflogin(Staff staff) {
         if(staff!=null){
             return staffDao.Stafflogin(staff);
+        }return null;
+    }
+
+    public List<Staff> queryAll(Staff staff) {
+        if(staff!=null){
+            return staffDao.queryAll(staff);
         }return null;
     }
 }

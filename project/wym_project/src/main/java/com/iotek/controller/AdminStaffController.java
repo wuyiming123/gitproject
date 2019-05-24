@@ -83,6 +83,17 @@ public class AdminStaffController {
             Delivery delivery = deliveryService.fountDeliByid(i_did);
             Integer d_rid = delivery.getD_rid();
             Integer d_riid = delivery.getD_riid();
+            Integer d_tid = delivery.getD_tid();
+            Staff sad = new Staff();
+            sad.setS_state(d_tid);
+            List<Staff> staff1 = staffService.queryAll(sad);
+            if(staff1!=null){
+                out.flush();
+                out.println("<script>");
+                out.println("alert('对方已经是员工了！');");
+                out.println("</script>");
+                return "allinterview";
+            }
             Recruit recruit = recruitService.getRecruit(d_riid);//得到了招聘表信息
             Resume resumByID = resumService.getResumByID(d_rid);//得到了简历表信息
             StaffDetail staffDetail = new StaffDetail();
@@ -141,7 +152,9 @@ public class AdminStaffController {
             staff.setS_sdid(sd_id);
             staff.setS_sid(s_sid);
             staff.setS_spass(s_spass);
-            staff.setS_state(0);
+            staff.setS_state(d_tid);
+
+
             staffService.addStaff(staff);
             InterView aa =  interviewService.queryIntByi_id(i_id);
             Integer i_did3 = aa.getI_did();
@@ -369,7 +382,7 @@ public class AdminStaffController {
         Integer sd_poid = Integer.parseInt(newPoSi);
         StaffDetail staffDetail1 = staffDetailService.foundDetailBySD_ID(sd_id);
 
-        if(staffDetail1.getSd_poid()==sd_poid || staffDetail1.getSd_deid()==sd_deid){
+        if(staffDetail1.getSd_poid()==sd_poid && staffDetail1.getSd_deid()==sd_deid){
             out.flush();
             out.println("<script>");
             out.println("alert('请别同岗位调换！');");

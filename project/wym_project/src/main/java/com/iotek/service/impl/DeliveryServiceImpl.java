@@ -28,11 +28,19 @@ public class DeliveryServiceImpl implements DeliveryService {
         return deliveryDao.queryAllDeBystate2(d_state);
     }
 
-    public Delivery founddelivery(Integer d_tid, Integer d_riid) {
+    public Delivery founddelivery(Integer d_tid, Integer d_riid,Integer d_state) {
         if(d_riid==null | d_tid==null){
             return null;
         }else{
-            return deliveryDao.founddelivery(d_tid,d_riid);
+            return deliveryDao.founddelivery(d_tid,d_riid,d_state);
+        }
+    }
+
+    public Delivery founddeliverynostate(Integer d_tid, Integer d_riid) {
+        if(d_riid==null | d_tid==null){
+            return null;
+        }else{
+            return deliveryDao.founddeliverynostate(d_tid,d_riid);
         }
     }
 

@@ -326,11 +326,17 @@ public class TouristController {
         PrintWriter out = response.getWriter();
         List<Resume> resumes = resumService.allResumByTid(t_id);
         Recruit recruit = recruitService.getRecruit(ri_id);
-        if(deliveryService.founddelivery(t_id,ri_id)!=null){
+        if(deliveryService.founddelivery(t_id,ri_id,666)!=null){
             out.flush();
             out.println("<script>");
-            out.println("alert('莫要重复投递简历');");
-            out.println("history.back();");
+            out.println("alert('您已经胜任了这份工作！');");
+            out.println("</script>");
+            return "hello";
+        }
+        if(deliveryService.founddeliverynostate(t_id,ri_id)!=null){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('您已经投递过这份工作！');");
             out.println("</script>");
             return "hello";
         }

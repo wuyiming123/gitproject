@@ -11,4 +11,7 @@
     <select id="Stafflogin" resultType="com.iotek.model.Staff">
         select * from T_STAFF where S_SID=#{s_sid} and S_SPASS=#{s_spass}
     </select>
+    <select id="queryAll" resultType="com.iotek.model.Staff">
+        select * from T_STAFF WHERE S_STATE=#{s_state}
+    </select>
 </mapper>
