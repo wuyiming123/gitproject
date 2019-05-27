@@ -13,4 +13,6 @@ public interface SalaryDao {
     boolean updatestate(Salary salary);
     Salary querybystate(Salary salary);
     Salary queryById(@Param("sa_id") Integer sa_id);
+    Salary querySalary_By_Month(Integer sa_sdid,Integer month);
+    List<Salary> queryall(Integer sa_sdid,String sa_state,Integer month);
 }

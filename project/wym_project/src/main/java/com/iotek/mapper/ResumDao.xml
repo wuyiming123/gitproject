@@ -15,6 +15,11 @@
         R_ZIPCODE=#{r_zipcode},R_PHONE=#{r_phone},R_EMAIL=#{r_email},R_ADDRESS=#{r_address},R_EVALUATION=#{r_evaluation},R_TID=#{r_tid}
         where r_id=#{r_id}
     </update>
+    <update id="updateStateResume">
+        update T_RESUME
+        set R_STATE = #{r_state}
+        where R_ID=#{r_id}
+    </update>
     <delete id="delThisResume">
         delete from T_RESUME where R_ID=#{r_id}
     </delete>

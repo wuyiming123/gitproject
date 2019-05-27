@@ -2,11 +2,13 @@ package com.iotek.controller;
 
 import com.iotek.model.*;
 import com.iotek.service.*;
+import com.iotek.util.DoPage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -120,7 +122,7 @@ public class AdminStaffController {
             }
             staffDetail.setSd_tsalary(recruit.getRi_salary());///得到了员工薪资
             staffDetail.setSd_tsex(resumByID.getR_sex());///sex
-            Integer r_phone = resumByID.getR_phone();///phone
+            String r_phone = resumByID.getR_phone();///phone
             String r_phone1 = String.valueOf(r_phone);
             staffDetail.setSd_tphone(r_phone1);
             staffDetail.setSd_taddress(resumByID.getR_address());///address
@@ -182,8 +184,25 @@ public class AdminStaffController {
     @RequestMapping("alltrain")
     public String alltrain(HttpSession session)throws Exception{
         List<Train> trains = trainService.queryAllTrain();
-        session.setAttribute("trains",trains);
-        System.err.println(trains);
+        List<Train> currentPage = DoPage.getCurrentPage(trains, 1, 1);
+        session.setAttribute("trains",currentPage);
+        int size = trains.size();
+        session.setAttribute("size",size);
+        return "adminalltrain";
+    }
+
+    @RequestMapping("currentpage")
+    public String currentpage(Integer size,HttpSession session)throws Exception{
+        List<Train> trains = trainService.queryAllTrain();
+        List<Train> currentPage = DoPage.getCurrentPage(trains, size, 1);
+        session.setAttribute("trains",currentPage);
+        int size1 = trains.size();
+        session.setAttribute("size",size1);
+        return "adminalltrain";
+    }
+
+    @RequestMapping("toadminalltrain")
+    public String toadminalltrain()throws Exception{
         return "adminalltrain";
     }
 
@@ -219,7 +238,7 @@ public class AdminStaffController {
             PrintWriter out = response.getWriter();
             out.flush();
             out.println("<script>");
-            out.println("alert('成功发送面试邀请，对方将会受到一份面试邀请通知书');");
+            out.println("alert('不要添加重复人员');");
             out.println("</script>");
             return "admintrainstaff";
         }
@@ -246,7 +265,10 @@ public class AdminStaffController {
         boolean b = trainService.updateState(train);
         if(b!=false){
             List<Train> trains = trainService.queryAllTrain();
-            session.setAttribute("trains",trains);
+            List<Train> currentPage = DoPage.getCurrentPage(trains, 1, 1);
+            session.setAttribute("trains",currentPage);
+            int size = trains.size();
+            session.setAttribute("size",size);
             return "adminalltrain";
         }
         return "adminalltrain";
@@ -341,7 +363,10 @@ public class AdminStaffController {
 
         boolean b = trainService.addTrain(train);
         List<Train> trains = trainService.queryAllTrain();
-        session.setAttribute("trains",trains);
+        List<Train> currentPage = DoPage.getCurrentPage(trains, 1, 1);
+        session.setAttribute("trains",currentPage);
+        int size = trains.size();
+        session.setAttribute("size",size);
         return "adminalltrain";
     }
 
@@ -389,7 +414,16 @@ public class AdminStaffController {
             out.println("</script>");
             return "admintoRelieveGuard";
         }
-
+        String oldDePart = request.getParameter("oldDePart");
+        String oldPoSi = request.getParameter("oldPoSi");
+        Integer deid = Integer.parseInt(oldDePart);
+        Integer poid = Integer.parseInt(oldPoSi);
+        Departement departement1 = departmentService.queryThisDepart(deid);
+        departement1.setDe_stcount(departement1.getDe_stcount()-1);
+        departmentService.updateDepartmentCOUNT(departement1);
+        Position position1 = positionService.queryPositionBypoid(poid);
+        position1.setPo_stcount(position1.getPo_stcount()-1);
+        positionService.updatePositionCOUNT(position1);
         StaffDetail staffDetail = new StaffDetail();
         staffDetail.setSd_id(sd_id);
         staffDetail.setSd_deid(sd_deid);
@@ -445,6 +479,10 @@ public class AdminStaffController {
         String d = String.valueOf(day);
         String ymd = y+"-"+mon;
         String ymd1 = y+"-"+mon1;
+        List<Salary> queryall = salaryService.queryall(sd_id, "已发", month1);
+        if(!queryall.isEmpty()){
+            return queryall;
+        }
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");
         if(salaries.isEmpty()){
@@ -476,7 +514,35 @@ public class AdminStaffController {
         int maxDayByYearMonth = getMaxDayByYearMonth(year,month1);
         int count = 0;
         List<CheckWork> checkWorks = checkWorkService.queryMonth(sd_id,month1);
-
+        int gongping=0;
+        if(checkWorks.size()<10){
+            System.err.println(101010);
+            for (CheckWork ca:checkWorks){
+                Integer cws = ca.getCw_state();
+                if(cws==0){
+                    gongping++;
+                }
+                if(cws==666){
+                    gongping++;
+                }
+            }
+            if(gongping<5){
+                Salary salarynew = new Salary();
+                salarynew.setSa_base(0);
+                salarynew.setSa_change(0);
+                salarynew.setSa_overtime(0);
+                double sccial = 0;
+                salarynew.setSa_social(sccial);
+                double money = 0;
+                salarynew.setSa_money(money);
+                salarynew.setSa_state("上个月上班不足五天，不予发放工资");
+                salarynew.setSa_sdid(sd_id);
+                salarynew.setSa_date(ymd1);
+                salaryService.updateShangYiGeMonth(salarynew);
+                List<Salary> salaries333 = salaryService.queryAllSalaryBystate(sd_id,"上个月上班不足五天，不予发放工资");
+                return salaries333;
+            }
+        }
         System.err.println(checkWorks);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date tdate = null;
@@ -536,6 +602,7 @@ public class AdminStaffController {
                 }
             }
             con=0;
+
         }
         if(changeM==0){
             changeM=1000;
@@ -590,10 +657,12 @@ public class AdminStaffController {
             out.println("</script>");
             return "adminAllStaffDetail";
         }
+        System.err.println("id:"+id);
         Salary salary = new Salary();
         salary.setSa_id(id);
         salary.setSa_state("已发");
-        salaryService.updatestate(salary);
+        boolean updatestate = salaryService.updatestate(salary);
+        System.err.println("update:"+updatestate);
         out.flush();
         out.println("<script>");
         out.println("alert('工资已发送！');");
@@ -714,8 +783,8 @@ public class AdminStaffController {
         salarynew.setSa_sdid(sd_id);
         salarynew.setSa_date(ymd);
         salaryService.updateShangYiGeMonth(salarynew);
-        List<Salary> salaries1 = salaryService.queryAllSalaryBystate(sd_id,"已核算");
-        return salaries1;
+        List<Salary> salaries12 = salaryService.queryAllSalaryBystate(sd_id,"已核算");
+        return salaries12;
     }
 
     @RequestMapping("foundRecord")
@@ -746,12 +815,148 @@ public class AdminStaffController {
         String sd_tname = getthisshtaff.getSd_tname();
         request.setAttribute("staffname",sd_tname);
         request.setAttribute("ooo","打卡记录");
-
+        request.setAttribute("sdid",sd_id);
         List<Change> changes = changeService.queryByMonth(sd_id, month);
         request.setAttribute("changs",changes);
         request.setAttribute("sss","奖惩记录");
-
         return "adminStaffcheck";
     }
 
+    @RequestMapping("delThisChange")
+    public String delThisChange(Integer c_id,Integer c_sid,Integer month,HttpServletRequest request)throws Exception{
+        changeService.delchangeBy_id(c_id);
+        Integer sd_id = c_sid;
+        System.err.println(month);
+        List<CheckWork> checkWorks = checkWorkService.queryMonth(sd_id, month);
+        request.setAttribute("MONTH",month);
+        request.setAttribute("checkWorks",checkWorks);
+        StaffDetail getthisshtaff = staffDetailService.getthisshtaff(sd_id);
+        String sd_tname = getthisshtaff.getSd_tname();
+        request.setAttribute("staffname",sd_tname);
+        request.setAttribute("ooo","打卡记录");
+        request.setAttribute("sdid",sd_id);
+        List<Change> changes = changeService.queryByMonth(sd_id, month);
+        request.setAttribute("changs",changes);
+        request.setAttribute("sss","奖惩记录");
+        return "adminStaffcheck";
+    }
+
+    @RequestMapping("updThisChange")
+    public String updThisChange(Change change,HttpSession session,Integer month1,HttpServletRequest request)throws Exception{
+        Integer sd_id = change.getC_sid();
+        Integer c_money = change.getC_money();
+        if(c_money<0){
+            change.setC_state(-1);
+        }else {
+            change.setC_state(1);
+        }
+        changeService.updateChange(change);
+        List<CheckWork> checkWorks = checkWorkService.queryMonth(sd_id, month1);
+        request.setAttribute("MONTH",month1);
+        request.setAttribute("checkWorks",checkWorks);
+        StaffDetail getthisshtaff = staffDetailService.getthisshtaff(sd_id);
+        String sd_tname = getthisshtaff.getSd_tname();
+        request.setAttribute("staffname",sd_tname);
+        request.setAttribute("ooo","打卡记录");
+        request.setAttribute("sdid",sd_id);
+        List<Change> changes = changeService.queryByMonth(sd_id, month1);
+        request.setAttribute("changs",changes);
+        request.setAttribute("sss","奖惩记录");
+        return "adminStaffcheck";
+    }
+
+    @RequestMapping("addNewChange")
+    public String addNewChange(Change change,HttpSession session,Integer month,HttpServletRequest request,HttpServletResponse response)throws Exception{
+        PrintWriter out = response.getWriter();
+        String day = request.getParameter("day");
+        Integer dd = Integer.parseInt(day);
+        Calendar cal = Calendar.getInstance();
+        if(dd<=0 || dd>=32){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('日期不规范！');");
+            out.println("</script>");
+            return "adminStaffcheck";
+        }
+        int year1=cal.get(Calendar.YEAR);//年
+        String month1 = String.valueOf(month);
+        String year = String.valueOf(year1);
+        String ymd = year+"-"+month1+"-"+day;
+        change.setC_time(ymd);
+        changeService.addNewChange(change);
+        Integer sd_id = change.getC_sid();
+        List<CheckWork> checkWorks = checkWorkService.queryMonth(sd_id, month);
+        request.setAttribute("MONTH",month);
+        request.setAttribute("checkWorks",checkWorks);
+        StaffDetail getthisshtaff = staffDetailService.getthisshtaff(sd_id);
+        String sd_tname = getthisshtaff.getSd_tname();
+        request.setAttribute("staffname",sd_tname);
+        request.setAttribute("ooo","打卡记录");
+        request.setAttribute("sdid",sd_id);
+        List<Change> changes = changeService.queryByMonth(sd_id, month);
+        request.setAttribute("changs",changes);
+        request.setAttribute("sss","奖惩记录");
+        return "adminStaffcheck";
+    }
+
+    @RequestMapping("query_AllSalary")
+    @ResponseBody
+    public List<Salary> query_AllSalary(Integer sd_id,HttpSession session)throws Exception{
+        List<Salary> salaries = salaryService.queryAllSalary(sd_id);
+        return salaries;
+    }
+
+    @RequestMapping("queryThisStaff_Why_To_SayGoodBy")
+    @ResponseBody
+    public StaffDetail queryThisStaff_Why_To_SayGoodBy(Integer sd_id)throws Exception{
+        StaffDetail getthisshtaff = staffDetailService.getthisshtaff(sd_id);
+        return getthisshtaff;
+    }
+
+
+    @RequestMapping("iagree")
+    public String iagree(Integer sd_id, HttpServletResponse response,HttpSession session)throws Exception{
+        PrintWriter out = response.getWriter();
+        Date date = new Date();
+        int month = date.getMonth()+1;
+        Salary salary = salaryService.querySalary_By_Month(sd_id, month);
+        if(salary==null){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('请手动核算这月工资！');");
+            out.println("</script>");
+            return "adminAllStaffDetail";
+        }
+        StaffDetail staffDetail = staffDetailService.getthisshtaff(sd_id);
+        Integer sd_deid = staffDetail.getSd_deid();
+        Integer sd_poid = staffDetail.getSd_poid();
+        Departement departement = departmentService.queryThisDepart(sd_deid);
+        Position position = positionService.queryPositionBypoid(sd_poid);
+        departement.setDe_stcount(departement.getDe_stcount()-1);
+        position.setPo_stcount(position.getPo_stcount()-1);
+        departmentService.updateDepartmentCOUNT(departement);
+        positionService.updatePositionCOUNT(position);
+        staffDetail.setSd_state(2);
+        staffDetail.setSd_poid(staffDetail.getSd_deid());
+        staffDetail.setSd_deid(staffDetail.getSd_poid());
+        staffDetailService.Staffresignation(staffDetail);
+        Staff staff = staffService.foundStaffByS_SDID(sd_id);
+        System.err.println(staff);
+        staff.setS_overtime(1);
+        staffService.updateovertime(staff);
+        salary.setSa_state("已发");
+        salaryService.updatestate(salary);
+        out.flush();
+        out.println("<script>");
+        out.println("alert('已同意员工离职，消息已通知，相关讯息已经自动删除，账号将于今晚的00.00分删除，该月薪资已发放！！');");
+        out.println("</script>");
+        staffIdService.del_By_sid_sdid(sd_id);
+        List<StaffDetail> staffDetails = staffDetailService.queryAllStaffDetail();
+        List<Departement> departements = departmentService.queryAllDepartment();
+        List<Position> positions = positionService.queryAllPosi();
+        session.setAttribute("staffDetails",staffDetails);
+        session.setAttribute("departements",departements);
+        session.setAttribute("positions",positions);
+        return "adminAllStaffDetail";
+    }
 }

@@ -37,6 +37,7 @@ public class DeliveryController {
             out.flush();
             out.println("<script>");
             out.println("alert('投递失败');");
+//            out.println("history.back();");
             out.println("</script>");
             return "hello";
         }

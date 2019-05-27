@@ -2,6 +2,8 @@ package com.iotek.controller;
 
 import com.iotek.model.*;
 import com.iotek.service.*;
+import com.iotek.util.DoPage;
+import com.iotek.util.GetTotalPage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -41,10 +43,7 @@ public class TouristController {
     @Resource
     private ChangeService changeService;
 
-    @RequestMapping("toindex")
-    public String toindex(){
-        return "../../index";
-    }
+
 
     @RequestMapping("tohello")
     public String tohello(){
@@ -68,6 +67,14 @@ public class TouristController {
                 session.setAttribute("deliveries1",deliveries1);
                 System.out.println(T);
                 session.setAttribute("tourist",T);
+
+                List<Recruit> recruits = recruitService.AllrecruitByOn();
+                List<Recruit> currentPage = DoPage.getCurrentPage(recruits, 1, 3);
+                session.setAttribute("recruit",currentPage);
+                int size = recruits.size();
+                int tp = GetTotalPage.getTp(size);
+                session.setAttribute("sizeindex",tp);
+
                 return "hello";
             }
             else {
@@ -83,6 +90,14 @@ public class TouristController {
             staff.setS_sid(name);
             staff.setS_spass(pass);
             Staff stafflogin = staffService.Stafflogin(staff);
+            if(stafflogin==null){
+                out.flush();
+                out.println("<script>");
+                out.println("alert('账号或者密码错误');");
+                out.println("history.back();");
+                out.println("</script>");
+                return "../../index";
+            }
             Integer s_sdid = stafflogin.getS_sdid();
             if(stafflogin!=null){
                 Date date = new Date();
@@ -142,7 +157,8 @@ public class TouristController {
                         session.setAttribute("WTF",666);
                     }
                 }
-                if(newhour>18){
+
+                if(newhour>=9){
                     checkWork.setCw_state(0);
                     List<CheckWork> checkWork1 = checkWorkService.foundTodayCheckWork(checkWork);
                     checkWork.setCw_state(1);
@@ -290,11 +306,11 @@ public class TouristController {
     @RequestMapping("delthisresume")
     public String delthisresume(Integer rid,HttpSession session, HttpServletResponse response)throws Exception{
         PrintWriter out = response.getWriter();
+        Resume resumByID = resumService.getResumByID(rid);
+        Integer r_tid = resumByID.getR_tid();
         if(rid!=null){
-            boolean b = resumService.delThisResume(rid);
+            boolean b = resumService.updateStateResume(rid,"nobodysee");
             if(b!=false){
-                Resume resumByID = resumService.getResumByID(rid);
-                Integer r_tid = resumByID.getR_tid();
                 List<Resume> resumes = resumService.allResumByTid(r_tid);
                 session.setAttribute("myresum",resumes);
                 out.flush();
@@ -358,6 +374,14 @@ public class TouristController {
     public String thisinterview(Integer id,HttpSession session,HttpServletResponse response)throws Exception{
         PrintWriter out = response.getWriter();
         Delivery delivery = deliveryService.fountDeliByid(id);
+        if(delivery.getD_state()==1){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('对方还没回复您的简历呢，请再耐心等一等吧！');");
+            out.println("history.back();");
+            out.println("</script>");
+            return "myinterview";
+        }
         session.setAttribute("thisdeli",delivery);
         Integer d_rid = delivery.getD_rid();
         Integer d_riid = delivery.getD_riid();
@@ -373,14 +397,7 @@ public class TouristController {
         Integer sd_id = staffDetail.getSd_id();
         Staff staff = staffService.foundStaffByS_SDID(sd_id);
         session.setAttribute("staff",staff);
-        if(interView.getI_state()==1){
-            out.flush();
-            out.println("<script>");
-            out.println("alert('对方还没回复您的简历呢，请再耐心等一等吧！');");
-            out.println("history.back();");
-            out.println("</script>");
-            return "myinterview";
-        }
+
         return "thisinterview";
     }
 

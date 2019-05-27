@@ -2,6 +2,8 @@ package com.iotek.controller;
 
 import com.iotek.model.Recruit;
 import com.iotek.service.RecruitService;
+import com.iotek.util.DoPage;
+import com.iotek.util.GetTotalPage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,9 +24,28 @@ public class RecruitController {
 
     @RequestMapping("showRecruit")
     public String showRecruit(HttpSession session)throws Exception{
-        List<Recruit> allRecruit = recruitService.getAllRecruit();
-        session.setAttribute("recruit",allRecruit);
+        List<Recruit> recruits = recruitService.AllrecruitByOn();
+        List<Recruit> currentPage = DoPage.getCurrentPage(recruits, 1, 3);
+        session.setAttribute("recruit",currentPage);
+        int size = recruits.size();
+        int tp = GetTotalPage.getTp(size);
+        session.setAttribute("sizeindex",tp);
         return "../../index";
+    }
+
+    @RequestMapping("indexdopage")
+    public String indexdopage(Integer size,HttpSession session)throws Exception{
+        List<Recruit> recruits = recruitService.AllrecruitByOn();
+        List<Recruit> currentPage = DoPage.getCurrentPage(recruits, size, 3);
+        session.setAttribute("recruit",currentPage);
+        return "../../index";
+    }
+    @RequestMapping("indexdopage1")
+    public String indexdopage1(Integer size,HttpSession session)throws Exception{
+        List<Recruit> recruits = recruitService.AllrecruitByOn();
+        List<Recruit> currentPage = DoPage.getCurrentPage(recruits, size, 3);
+        session.setAttribute("recruit",currentPage);
+        return "hello";
     }
 
     @RequestMapping("lookRecruit")

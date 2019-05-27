@@ -10,6 +10,11 @@
         set  DE_STCOUNT=#{de_stcount}
         where DE_ID=#{de_id}
     </update>
+    <update id="updatedename">
+        update T_DEPARTMENT
+        set  DE_NAME=#{de_name}
+        where DE_ID=#{de_id}
+    </update>
     <delete id="delDepartmentBydeid">
         delete from T_DEPARTMENT where DE_ID=#{de_id}
     </delete>
@@ -18,5 +23,8 @@
     </select>
     <select id="queryThisDepart" resultType="com.iotek.model.Departement">
         select * from T_DEPARTMENT where DE_ID=#{de_id}
+    </select>
+    <select id="queryforname" resultType="com.iotek.model.Departement">
+        select * from T_DEPARTMENT where DE_NAME=#{de_name}
     </select>
 </mapper>

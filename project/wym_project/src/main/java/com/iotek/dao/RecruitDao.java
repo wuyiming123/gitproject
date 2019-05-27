@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface RecruitDao {
     List<Recruit> getAllRecruit();
+    List<Recruit> AllrecruitByOn(@Param("ri_ison") String ri_ison);
     Recruit getRecruit(@Param("ri_id") Integer ri_id);
     boolean updateRecruiton(@Param("ri_id")Integer ri_id,@Param("ri_ison")String ri_ison);
     boolean updateRecruitoff(@Param("ri_id")Integer ri_id,@Param("ri_ison")String ri_ison);

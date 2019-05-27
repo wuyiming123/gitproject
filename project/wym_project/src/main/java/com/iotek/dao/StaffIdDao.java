@@ -14,5 +14,5 @@ public interface StaffIdDao {
     StaffId queryStaffId(StaffId staffId);
     boolean delStaffID(@Param("sid_taid") Integer sid_taid);
     List<StaffId> queryStaffIdBy(@Param("sid_sdid") Integer sid_sdid);
-
+    boolean del_By_sid_sdid(@Param("sid_sdid") Integer sid_sdid);
 }

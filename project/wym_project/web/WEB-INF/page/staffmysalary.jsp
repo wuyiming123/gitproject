@@ -2,8 +2,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Maibenben
-  Date: 2019/5/21
-  Time: 22:19
+  Date: 2019/5/24
+  Time: 10:57
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -28,24 +28,32 @@
         </div>
     </div>
 </nav>
-
-<table  class="table">
-    <caption>${Number}</caption>
+<h3>您好！${staffDetail.sd_tname}</h3>
+<hr>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>日期</td>
+            <td>人员</td>
+            <td>基础工资</td>
+            <td>加班工资</td>
+            <td>奖惩</td>
+            <td>社保</td>
+            <td>总金额</td>
+            <td></td>
+        </tr>
+    </thead>
     <tbody>
-        <c:forEach items="${CK}" var="ck">
+        <c:forEach items="${requestScope.salaries}" var="salaries">
             <tr>
-                <td>打卡时间：</td><td>${ck.cw_date}^${ck.cw_time}</td>
-                <td>
-                    <c:if test="${ck.cw_state==666}">
-                        迟到卡
-                    </c:if>
-                    <c:if test="${ck.cw_state==1}">
-                        下班卡
-                    </c:if>
-                    <c:if test="${ck.cw_state==0}">
-                        上班卡
-                    </c:if>
-                </td>
+                <td>${salaries.sa_date}</td>
+                <td>${staffDetail.sd_tname}</td>
+                <td>${salaries.sa_base}</td>
+                <td>${salaries.sa_overtime}</td>
+                <td>${salaries.sa_change}</td>
+                <td>${salaries.sa_social}</td>
+                <td>${salaries.sa_money}</td>
+                <td>${salaries.sa_state}</td>
             </tr>
         </c:forEach>
     </tbody>

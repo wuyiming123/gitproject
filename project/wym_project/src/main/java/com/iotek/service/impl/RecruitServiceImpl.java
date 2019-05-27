@@ -25,6 +25,11 @@ public class RecruitServiceImpl implements RecruitService {
         return allRecruit;
     }
 
+    public List<Recruit> AllrecruitByOn() {
+        String ri_ison="on";
+        return recruitDao.AllrecruitByOn(ri_ison);
+    }
+
     public Recruit getRecruit(Integer ri_id) {
         if(ri_id!=null){
             Recruit recruit = recruitDao.getRecruit(ri_id);

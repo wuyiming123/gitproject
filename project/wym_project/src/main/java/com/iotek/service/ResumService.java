@@ -11,4 +11,5 @@ public interface ResumService {
     boolean updateResume(Resume resume);
     boolean delThisResume(Integer r_id);
     List<Resume> queryAllResume();
+    boolean updateStateResume(Integer r_id,String r_state);
 }

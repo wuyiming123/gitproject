@@ -44,4 +44,16 @@ public class DepartmentServiceImpl implements DepartmentService {
             return departmentDao.updateDepartmentCOUNT(departement);
         }return false;
     }
+
+    public Departement queryforname(Departement departement) {
+        if(departement!=null){
+            return departmentDao.queryforname(departement);
+        }return null;
+    }
+
+    public boolean updatedename(Departement departement) {
+        if(departement!=null){
+            return departmentDao.updatedename(departement);
+        }return false;
+    }
 }

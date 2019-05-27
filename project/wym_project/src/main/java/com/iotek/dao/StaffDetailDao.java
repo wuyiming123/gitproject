@@ -16,4 +16,6 @@ public interface StaffDetailDao {
     boolean updateDE_PO(StaffDetail staffDetail);
     boolean updateState(StaffDetail staffDetail);
     StaffDetail getthisshtaff(@Param("sd_id") Integer sd_id);
+    boolean sayGoodBy(StaffDetail staffDetail);
+    boolean Staffresignation(StaffDetail staffDetail);
 }

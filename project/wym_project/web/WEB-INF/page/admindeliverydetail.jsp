@@ -17,8 +17,12 @@
     <base href="<%=basePath%>"/>
     <title>Title</title>
     <script src="js/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <% Resume resume = (Resume) session.getAttribute("thisresume");%>
     <%Recruit thisrecruit = (Recruit) session.getAttribute("thisrecruit");%>
+
 
     <script>
         $(function () {
@@ -65,11 +69,20 @@
             top: 150px;
             bottom: 200px;
         }
+
     </style>
 </head>
 <body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="toadmindelivery" class="navbar-brand">上一层</a>
+        </div>
+    </div>
+</nav>
 
-<table border="1">
+<table  class="table table-bordered" >
+    <tbody>
         <tr><td colspan="4">我的简历（<%=resume.getR_id()%>）</td></tr>
         <tr><td>姓名：</td><td><%=resume.getR_name()%></td>
             <td>性别:</td><td><%=resume.getR_sex()%></tr>
@@ -92,14 +105,20 @@
         <tr>
             <td colspan="4"><%=resume.getR_evaluation()%></td>
         </tr>
+    </tbody>
 </table>
-    <table>
-        <tr><td>招聘部门：</td><td><%=thisrecruit.getRi_department()%></td></tr>
-        <tr><td>招聘职位：</td><td><%=thisrecruit.getRi_position()%></td></tr>
-        <tr><td>薪资待遇：</td><td><%=thisrecruit.getRi_salary()%></td></tr>
-        <tr><td>要求：</td><td><%=thisrecruit.getRi_requirement()%></td></tr>
-        <tr><td>具体要求：</td><td><%=thisrecruit.getRi_information()%></td></tr>
-    </table>
+<hr style="height:10px">
+
+<table class="table table-bordered">
+    <tbody>
+    <tr><td>招聘部门：</td><td><%=thisrecruit.getRi_department()%></td></tr>
+    <tr><td>招聘职位：</td><td><%=thisrecruit.getRi_position()%></td></tr>
+    <tr><td>薪资待遇：</td><td><%=thisrecruit.getRi_salary()%></td></tr>
+    <tr><td>要求：</td><td><%=thisrecruit.getRi_requirement()%></td></tr>
+    <tr><td>具体要求：</td><td><%=thisrecruit.getRi_information()%></td></tr>
+    </tbody>
+</table>
+
 <form action="refuse" method="post">
     <input type="submit" value="残忍拒绝">
     <input type="hidden" name="r_id" value="<%=resume.getR_id()%>">
@@ -112,6 +131,6 @@
 <input type="hidden" name="r_id<%=resume.getR_id()%>" value="<%=resume.getR_id()%>">
 <input type="hidden" name="ri_id<%=thisrecruit.getRi_id()%>" value="<%=thisrecruit.getRi_id()%>">
 
-<a href="toadmindelivery">上一层</a>
+
 </body>
 </html>

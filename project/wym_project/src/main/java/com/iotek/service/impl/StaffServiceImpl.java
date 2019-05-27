@@ -44,4 +44,20 @@ public class StaffServiceImpl implements StaffService {
             return staffDao.queryAll(staff);
         }return null;
     }
+
+    public boolean delStaff(Staff staff) {
+        if(staff!=null){
+            return staffDao.delStaff(staff);
+        }return false;
+    }
+
+    public boolean updateovertime(Staff staff) {
+        if(staff!=null){
+            return staffDao.updateovertime(staff);
+        }return false;
+    }
+
+    public List<Staff> queryAllStaff() {
+        return staffDao.queryAllStaff();
+    }
 }

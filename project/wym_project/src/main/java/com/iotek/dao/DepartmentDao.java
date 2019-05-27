@@ -11,4 +11,6 @@ public interface DepartmentDao {
     Departement queryThisDepart(@Param("de_id") Integer de_id);
     boolean delDepartmentBydeid(Integer de_id);
     boolean updateDepartmentCOUNT(Departement departement);
+    Departement queryforname(Departement departement);
+    boolean updatedename(Departement departement);
 }

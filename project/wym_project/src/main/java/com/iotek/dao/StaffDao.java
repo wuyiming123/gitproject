@@ -10,4 +10,7 @@ public interface StaffDao {
     Staff foundStaffByS_SDID(@Param("s_sdid") Integer s_sdid);
     Staff Stafflogin(Staff staff);
     List<Staff> queryAll(Staff staff);
+    boolean delStaff(Staff staff);
+    boolean updateovertime(Staff staff);
+    List<Staff> queryAllStaff();
 }

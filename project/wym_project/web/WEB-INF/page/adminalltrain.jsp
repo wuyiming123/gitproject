@@ -16,6 +16,10 @@
     <base href="<%=basePath%>"/>
     <title>Title</title>
     <script src="js/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <%Integer size = (Integer) session.getAttribute("size");%>
     <script>
         $(function () {
             $(".no").click(function () {
@@ -30,12 +34,12 @@
                 var tr_title = $(this).next().val();
                 var tr_message = $(this).next().next().val();
                 var tr_id = $(this).next().next().next().val();
-                $("#smallBox").append("<form action='updatetrain' method='post'><div id='smallSmallBox'><table>" +
+                $("#smallBox").append("<form action='updatetrain' method='post'><div id='smallSmallBox'><table class=\"table\"><tbody>" +
                     "<tr><td>培训标题：</td><td><input required type='text' name='title' id='title'></td><tr>" +
                     "<tr><td>培训内容：</td><td><input required type='text' name='message' id='message'></td><tr>" +
                     "<tr><td>培训时间：</td><td><input required type='datetime-local' name='datetime' id='datetime'></td><tr>" +
                     "<tr><td><input type='submit' value='提交'><input type='hidden' name='sid' id='sid'></td><td></td><tr>" +
-                    "</table></div></form>")
+                    "</tbody></table></div></form>")
                 $("#title").val(tr_title);
                 $("#message").val(tr_message);
                 $("#sid").val(tr_id);
@@ -43,23 +47,33 @@
 
             $("#newtrain").click(function () {
                 $("#smallSmallBox").remove();
-                $("#smallBox").append("<form action='newtrain' method='post' ><div id='smallSmallBox'><table>" +
+                $("#smallBox").append("<form action='newtrain' method='post' ><div id='smallSmallBox'><table class=\"table\"><tbody>" +
                     "<tr><td>标题：</td><td><input type='text' required name='tr_title'></td></tr>" +
                     "<tr><td>内容：</td><td><input type='text' required name='tr_message'></td></tr>" +
                     "<tr><td>时间：</td><td><input type='datetime-local' required name='tr_time'>" +
                     "<input type='hidden' name='tr_state' value='0'></td></tr>" +
-                    "<tr><input type='submit' value='提交'></tr>" +
-                    "</table></div></form>")
+                    "<tr><td><input type='submit' value='提交'></td></tr>" +
+                    "</tbody></table></div></form>")
             })
         })
     </script>
 </head>
 <body>
-<c:if test="${trains==null}">
-    <a href="newtrain">发起新的培训</a>
-</c:if>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="admin" class="navbar-brand">上一层</a>
+        </div>
+        <div class="navbar-header">
+            <a id="newtrain" class="navbar-brand">发起新的培训</a>
+        </div>
+    </div>
+</nav>
+
 <c:if test="${trains!=null}">
-    <table>
+    <table class="table">
+        <caption>培训</caption>
+        <thead>
         <tr>
             <td>发布状态</td>
             <td>标题</td>
@@ -67,6 +81,8 @@
             <td>培训时间</td>
             <td width="200px" align="center">培训人员</td>
         </tr>
+        </thead>
+        <tbody>
     <c:forEach items="${sessionScope.trains}" var="trains">
         <tr>
             <td>
@@ -98,12 +114,21 @@
             </td>
         </tr>
     </c:forEach>
+        <tr>
+            <%
+                for (int i = 1; i <=size ; i++) {
+             %>
+            <a href="currentpage?size=<%=i%>"><-<%=i%>-></a>
+            <%
+                }
+            %>
+        </tr>
+        </tbody>
     </table>
-    <a id="newtrain">发起一场新的培训</a>
 </c:if>
 <div id="smallBox">
     <div id="smallSmallBox"></div>
 </div>
-<a href="admin">上一层</a>
+
 </body>
 </html>

@@ -13,4 +13,6 @@ public interface SalaryService {
     Salary querybystate(Salary salary);
     Salary queryById(Integer sa_id);
     List<Salary> queryAllSalaryBystate(Integer sd_id,String sd_state);
+    Salary querySalary_By_Month(Integer sa_sdid,Integer month);
+    List<Salary> queryall(Integer sa_sdid,String sa_state,Integer month);
 }

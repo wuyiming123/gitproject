@@ -62,4 +62,10 @@ public class ResumServiceImpl implements ResumService {
     public List<Resume> queryAllResume() {
         return resumDao.queryAllResume();
     }
+
+    public boolean updateStateResume(Integer r_id, String r_state) {
+        if(r_id!=null && r_state!=null){
+            return resumDao.updateStateResume(r_id,r_state);
+        }return false;
+    }
 }

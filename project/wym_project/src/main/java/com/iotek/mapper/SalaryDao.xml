@@ -35,4 +35,12 @@
     <select id="queryAllSalaryBystate" resultType="com.iotek.model.Salary">
         select * from T_SALARY where SA_SDID=#{sd_id} and SA_STATE=#{sd_state}
     </select>
+    <select id="querySalary_By_Month" resultType="com.iotek.model.Salary">
+        select * from T_SALARY where SA_SDID=#{param1} and SA_DATE LIKE '%-'||#{param2}||'%'
+    </select>
+    <select id="queryall" resultType="com.iotek.model.Salary">
+        select * from T_SALARY where SA_SDID=#{param1}
+                                 and SA_STATE=#{param2}
+                                 and SA_DATE LIKE '%-'||#{param3}||'%'
+    </select>
 </mapper>

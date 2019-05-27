@@ -10,4 +10,5 @@ public interface CheckWorkDao {
     List<CheckWork> foundTodayCheckWork(CheckWork checkWork);
     List<CheckWork> foundTodayCheckWorkBySD_ID(@Param("cw_sdid") Integer cw_sdid);
     List<CheckWork> queryMonth(Integer cw_sdid,Integer month);
+    CheckWork foundCheckWorkBydate_id(CheckWork checkWork);
 }

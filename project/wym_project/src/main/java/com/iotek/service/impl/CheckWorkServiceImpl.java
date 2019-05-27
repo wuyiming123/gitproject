@@ -37,5 +37,11 @@ public class CheckWorkServiceImpl implements CheckWorkService {
         return checkWorkDao.queryMonth(cw_sdid,month);
     }
 
+    public CheckWork foundCheckWorkBydate_id(CheckWork checkWork) {
+        if(checkWork!=null){
+            return checkWorkDao.foundCheckWorkBydate_id(checkWork);
+        }return null;
+    }
+
 
 }

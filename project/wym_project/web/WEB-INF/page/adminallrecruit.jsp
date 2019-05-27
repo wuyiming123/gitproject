@@ -16,6 +16,9 @@
     <base href="<%=basePath%>"/>
     <title>Title</title>
     <script src="js/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         $(function () {
             $(".thisrecrits").click(function () {
@@ -25,14 +28,15 @@
                 var ri_salary = $(this).next().next().next().next().val();
                 var ri_requirement = $(this).next().next().next().next().next().val();
                 var ri_information = $(this).next().next().next().next().next().next().val();
-                $("body").append("<form action='update_this_recrits' method='post'><table border='1px'>" +
+                $("body").append("<form action='update_this_recrits' method='post'><table class=\"table table-hover\">" +
+                    "<caption>全新的招聘信息</caption><tbody>" +
                     "<input type='hidden' name='ri_id' id='ri_id'>" +
                     "<tr><td>招聘部门：</td><td><input required type='text' readonly=\"readonly\" name='ri_department' id='ri_department'></td><tr>" +
                     "<tr><td>招聘职位：</td><td><input required type='text' readonly=\"readonly\" name='ri_position' id='ri_position'></td><tr>" +
                     "<tr><td>薪　资　：</td><td><input required type='number' name='ri_salary' id='ri_salary'></td><tr>" +
                     "<tr><td>职位要求：</td><td><input required type='text' name='ri_requirement' id='ri_requirement'></td><tr>" +
                     "<tr><td>详细要求：</td><td><input required type='text' name='ri_information' id='ri_information'></td><tr>" +
-                    "<tr><td><input type='submit' value='提交更改'></td><td><a href='allrecruit'>取消</a></td><tr>" +
+                    "<tr><td><input type='submit' value='提交更改'></td><td><a href='allrecruit'>取消</a></td><tr><tbody>" +
                     "</table><form>")
                 $("#ri_id").val(ri_id);
                 $("#ri_department").val(ri_department);
@@ -45,15 +49,30 @@
     </script>
 </head>
 <body>
-<table border="1px">
-<tr><td colspan="5">招聘信息</td></tr>
-<tr>
-    <td width="90px"></td>
-    <td width="90px">招聘部门</td>
-    <td width="90px">招聘职位</td>
-    <td width="90px">发布状态</td>
-    <td width="90px"></td>
-</tr>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="addnewrecruit" class="navbar-brand">发布新的招聘信息</a>
+        </div>
+        <div class="navbar-header">
+            <a href="admin" class="navbar-brand">上一层</a>
+        </div>
+    </div>
+</nav>
+
+
+<table class="table table-bordered">
+    <caption>招聘信息</caption>
+    <thead>
+        <tr>
+            <td width="90px"></td>
+            <td width="90px">招聘部门</td>
+            <td width="90px">招聘职位</td>
+            <td width="90px">发布状态</td>
+            <td width="90px"></td>
+        </tr>
+    </thead>
+    <tbody>
 <c:forEach items="${sessionScope.recruits}" var="recruits">
     <c:if test="${recruits.ri_ison eq'on'}">
         <tr>
@@ -106,8 +125,8 @@
         </tr>
     </c:if>
 </c:forEach>
+    </tbody>
 </table>
-<a href="addnewrecruit">发布新的招聘信息</a>
-<a href="admin">上一层</a>
+
 </body>
 </html>

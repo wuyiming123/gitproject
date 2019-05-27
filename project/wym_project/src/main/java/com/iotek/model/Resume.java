@@ -14,13 +14,22 @@ public class Resume implements Serializable {
     private String r_major;///zhuanye
     private String r_education;///xueli
     private Integer r_zipcode;////youzhengbianma
-    private Integer r_phone;
+    private String r_phone;
     private String r_email;
     private String r_address;
     private String r_evaluation;///ziwopinggu
     private Integer r_tid;
+    private String r_state;
 
     public Resume() {
+    }
+
+    public String getR_state() {
+        return r_state;
+    }
+
+    public void setR_state(String r_state) {
+        this.r_state = r_state;
     }
 
     public Integer getR_id() {
@@ -111,11 +120,11 @@ public class Resume implements Serializable {
         this.r_zipcode = r_zipcode;
     }
 
-    public Integer getR_phone() {
+    public String getR_phone() {
         return r_phone;
     }
 
-    public void setR_phone(Integer r_phone) {
+    public void setR_phone(String r_phone) {
         this.r_phone = r_phone;
     }
 

@@ -43,6 +43,18 @@
         set SD_STATE=#{sd_state}
         WHERE sd_id=#{sd_id}
     </update>
+    <update id="sayGoodBy">
+        update T_STAFFDETAIL
+        set SD_WHY=#{sd_why}
+        WHERE SD_ID=#{sd_id}
+    </update>
+    <update id="Staffresignation">
+        update T_STAFFDETAIL
+        set SD_POID=#{sd_poid},
+            SD_DEID=#{sd_deid},
+            SD_STATE=#{sd_state}
+        WHERE SD_ID=#{sd_id}
+    </update>
     <select id="foundNewDetail" resultType="com.iotek.model.StaffDetail">
         select * from T_STAFFDETAIL where SD_DEID=#{sd_deid} and
                                           SD_POID=#{sd_poid} and

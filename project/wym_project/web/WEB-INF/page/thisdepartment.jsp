@@ -18,6 +18,9 @@
     <base href="<%=basePath%>"/>
     <title>Title</title>
     <script src="js/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <%Departement thisdepartment = (Departement) session.getAttribute("thisdepartment");%>
     <%List<Position> positions = (List<Position>) session.getAttribute("positions");%>
     <script>
@@ -25,11 +28,11 @@
             $(".addposition").click(function () {
                 $("#smallsmallbox").remove();
                 var po_deid = $(this).next().val();
-                $("#smallbox").append("<div id='smallsmallbox'><form action='addPosition' method='post'><table>" +
-                    "<tr><td>职位名称：</td>" +
+                $("#smallbox").append("<div id='smallsmallbox'><form action='addPosition' method='post'><table class=\"table table-striped\">" +
+                    "<tbody><tr><td>职位名称：</td>" +
                     "<td><input type='text' maxlength='30' placeholder='最多30字符' name='po_name' id='po_name' required>" +
-                    "<input type='hidden' id='po_deid' name='po_deid'></td></tr>" +
-                    "<tr><input type='submit' value='提交'></tr>" +
+                    "<input type='hidden' id='po_deid' name='po_deid'></td>" +
+                    "<td><input type='submit' value='提交'></td></tr></tbody>" +
                     "</table></form></div>")
                 $("#po_deid").val(po_deid);
             })
@@ -37,7 +40,19 @@
     </script>
 </head>
 <body>
-<table>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="addposition navbar-brand" >添加职位</a>
+            <input type="hidden" name="po_deid<%=thisdepartment.getDe_id()%>" value="<%=thisdepartment.getDe_id()%>">
+        </div>
+        <div class="navbar-header">
+            <a href="toadminreview"  class="navbar-brand">上一层</a>
+        </div>
+    </div>
+</nav>
+<table class="table table-hover">
+    <tbody>
     <tr><td>部门号：</td><td><%=thisdepartment.getDe_id()%></td></tr>
     <tr><td>部门名：</td><td><%=thisdepartment.getDe_name()%></td></tr>
     <tr><td>部门职工人数：</td><td><%=thisdepartment.getDe_stcount()%></td></tr>
@@ -67,10 +82,8 @@
     <%
     }
     %>
+    </tbody>
 </table>
-<a class="addposition">添加职位</a>
-<input type="hidden" name="po_deid<%=thisdepartment.getDe_id()%>" value="<%=thisdepartment.getDe_id()%>">
-<a href="toadminreview">上一层</a>
 <div id="smallbox"><div id="smallsmallbox"></div></div>
 </body>
 </html>

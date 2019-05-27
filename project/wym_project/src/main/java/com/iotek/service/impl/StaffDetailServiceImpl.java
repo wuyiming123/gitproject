@@ -79,4 +79,16 @@ public class StaffDetailServiceImpl implements StaffDetailService {
         }return null;
     }
 
+    public boolean sayGoodBy(StaffDetail staffDetail) {
+        if(staffDetail!=null){
+            return staffDetailDao.sayGoodBy(staffDetail);
+        }return false;
+    }
+
+    public boolean Staffresignation(StaffDetail staffDetail) {
+        if(staffDetail!=null){
+            return staffDetailDao.Staffresignation(staffDetail);
+        }return false;
+    }
+
 }

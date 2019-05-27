@@ -16,10 +16,21 @@
     <base href="<%=basePath%>"/>
     <title>Title</title>
     <script src="js/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<table>
-    <tr><td colspan="7">面试单</td></tr>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="admin" id="aasa" class="navbar-brand">上一层</a>
+        </div>
+    </div>
+</nav>
+<table class="table">
+    <caption>面试单</caption>
+    <thead>
     <tr>
         <td width="120px">面试人</td>
         <td width="120px">面试岗位</td>
@@ -29,6 +40,8 @@
         <td width="120px">面试时间</td>
         <td width="120px"></td>
     </tr>
+    </thead>
+    <tbody>
     <c:forEach items="${sessionScope.interViews}" var="interViews">
     <tr>
         <c:forEach items="${sessionScope.alldeli}" var="alldeli">
@@ -69,6 +82,7 @@
         </c:if>
     </tr>
     </c:forEach>
+    </tbody>
 </table>
 </body>
 </html>

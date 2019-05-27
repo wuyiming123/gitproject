@@ -1,15 +1,24 @@
 package com.iotek.caogao;
 
+import com.iotek.util.DoPage;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class CaoGao {
     public static void main(String[] args) throws ParseException {
-        Date date2 = new Date("yyyy-MM-dd");
-        System.out.println(date2);
+        List<Integer> aa = new ArrayList<Integer>();
+        aa.add(1111);
+        aa.add(2222);
+        aa.add(3333);
+        aa.add(4444);
+        List<Integer> currentPage = DoPage.getCurrentPage(aa, 4, 1);
+        System.err.println(currentPage);
 
 
 //        String date = "2019-4-1";

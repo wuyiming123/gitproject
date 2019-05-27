@@ -35,6 +35,8 @@ public class StaffController {
     private TrainService trainService;
     @Resource
     private ChangeService changeService;
+    @Resource
+    private SalaryService salaryService;
 
     @RequestMapping("staffdetail")
     public String staffdetail(HttpSession session)throws Exception{
@@ -85,7 +87,13 @@ public class StaffController {
         String ymd = y+"-"+mon+"-"+d;
         checkWork.setCw_date(ymd);
         System.err.println(ymd);
-        session.setAttribute("ready_to_work",0);
+//        session.setAttribute("ready_to_work",0);
+        if(hour<18){
+            session.setAttribute("time",2);
+        }
+        if(hour>18){
+            session.setAttribute("time",1);
+        }
         checkWorkService.hellocheckwork(checkWork);
         return "staff";
     }
@@ -107,8 +115,11 @@ public class StaffController {
         Date bybydate = formatter.parse(hms);
         String date0 = "18:00:00";
         Date date1 = formatter.parse(date0);
-        int ms = (int) Math.abs(bybydate.getTime()-date1.getTime())/1000/60;
+        int ms = (int)(bybydate.getTime()-date1.getTime())/1000/60;
         checkWork.setCw_smalltime(ms);
+        if(ms<0){
+            checkWork.setCw_smalltime(0);
+        }
         checkWork.setCw_time(hms);
         int year=cal.get(Calendar.YEAR);//年
         int month=cal.get(Calendar.MONTH)+1;//月
@@ -118,22 +129,51 @@ public class StaffController {
         String d = String.valueOf(day);
         String ymd = y+"-"+mon+"-"+d;
         checkWork.setCw_date(ymd);
-        if(hour<18){
+        CheckWork ck = new CheckWork();
+        if(hour<15){
+            Change change = new Change();
+            change.setC_sid(sdid);
+            change.setC_money(-300);
+            change.setC_time(ymd);
+            change.setC_why("晚上早退:"+ms+"分钟,旷工处理");
+            change.setC_state(-1);
+            Change change1 = changeService.foundChangeBydate_id(change);
+            ck.setCw_sdid(sdid);
+            ck.setCw_date(ymd);
+            CheckWork checkWork1 = checkWorkService.foundCheckWorkBydate_id(ck);
+            if(checkWork1!=null){
+                changeService.delchange(change);
+
+            }
+            changeService.addNewChange(change);
+        }
+        if(hour<18 && hour>=15){
             Change change = new Change();
             change.setC_sid(sdid);
             change.setC_money(-50);
             change.setC_time(ymd);
             change.setC_why("晚上早退:"+ms+"分钟");
             change.setC_state(-1);
-            changeService.addNewChange(change);
+            Change change1 = changeService.foundChangeBydate_id(change);
+            ck.setCw_sdid(sdid);
+            ck.setCw_date(ymd);
+            CheckWork checkWork1 = checkWorkService.foundCheckWorkBydate_id(ck);
+            if(checkWork1!=null){
+                Integer cw_smalltime =Math.abs(checkWork1.getCw_smalltime());
+                if(cw_smalltime>=180){
+                    changeService.delchange(change);
+                    change.setC_why("迟到早退总计超过3小时，按旷工处理");
+                    change.setC_money(-300);
+                    changeService.addNewChange(change);
+                }
+                if(cw_smalltime<180){
+                    changeService.delchange(change);
+                    changeService.addNewChange(change);
+                }
+            }if(checkWork1==null){
+                changeService.addNewChange(change);
+            }
         }
-        Change change = new Change();
-        change.setC_sid(sdid);
-        change.setC_money(-50);
-        change.setC_time(ymd);
-        change.setC_why("晚上早退:"+ms+"分钟");
-        change.setC_state(-1);
-        changeService.addNewChange(change);
 
         session.setAttribute("ready_to_home",1);
         checkWorkService.hellocheckwork(checkWork);
@@ -168,7 +208,13 @@ public class StaffController {
         String d = String.valueOf(day);
         String ymd = y+"-"+mon+"-"+d;
         checkWork.setCw_date(ymd);
-        session.setAttribute("WTF",666);
+//        session.setAttribute("WTF",666);
+        if(hour<18){
+            session.setAttribute("time",2);
+        }
+        if(hour>18){
+            session.setAttribute("time",1);
+        }
         Change change = new Change();
         change.setC_sid(sdid);
         change.setC_money(-50);
@@ -177,6 +223,10 @@ public class StaffController {
         change.setC_state(-1);
         changeService.addNewChange(change);
         checkWorkService.hellocheckwork(checkWork);
+        return "staff";
+    }
+    @RequestMapping("tostaff")
+    public String tostaff()throws Exception{
         return "staff";
     }
 
@@ -194,11 +244,13 @@ public class StaffController {
     }
 
     @RequestMapping("updateMyDetail")
-    public String updateMyDetail(Integer sd_id,HttpSession session)throws Exception{
+    public String updateMyDetail(Integer sd_id,HttpSession session,HttpServletRequest request)throws Exception{
         StaffDetail staffDetail = staffDetailService.foundDetailBySD_ID(sd_id);
-        session.setAttribute("mystaffdetail",staffDetail);
-        System.err.println(sd_id);
-        System.err.println(staffDetail);
+        request.setAttribute("mystaffdetail",staffDetail);
+        List<Departement> departements = departmentService.queryAllDepartment();
+        List<Position> positions = positionService.queryAllPosi();
+        session.setAttribute("departements",departements);
+        session.setAttribute("positions",positions);
         return "staffupdatedetail";
     }
 
@@ -292,4 +344,33 @@ public class StaffController {
         }
     }
 
+    @RequestMapping("Mysalary")
+    public String Mysalary(Integer sd_id,HttpServletRequest request)throws Exception{
+        List<Salary> salaries = salaryService.queryAllSalary(sd_id);
+        ArrayList<Salary> salary = new ArrayList<Salary>();
+        Date date1 = new Date();
+        int month1 = date1.getMonth();
+        for(Salary s:salaries){
+            String sa_date = s.getSa_date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");
+            Date date = formatter.parse(sa_date);
+            int month = date.getMonth();
+            if(month1!=month){
+                salary.add(s);
+            }
+        }
+        request.setAttribute("salaries",salary);
+        return "staffmysalary";
+    }
+
+    @RequestMapping("hahahaGoodBy")
+    public String hahahaGoodBy(String sd_why,Integer sdid,HttpSession session)throws Exception{
+        StaffDetail staffDetail = new StaffDetail();
+        staffDetail.setSd_id(sdid);
+        staffDetail.setSd_why(sd_why);
+        staffDetailService.sayGoodBy(staffDetail);
+        StaffDetail getthisshtaff = staffDetailService.getthisshtaff(sdid);
+        session.setAttribute("mystaffdetail",getthisshtaff);
+        return "staffinformation";
+    }
 }

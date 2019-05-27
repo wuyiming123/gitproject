@@ -29,4 +29,7 @@
     <select id="getRecruit" resultType="com.iotek.model.Recruit">
         select * from T_RECRUIT where RI_ID=#{ri_id}
     </select>
+    <select id="AllrecruitByOn" resultType="com.iotek.model.Recruit">
+        select * from T_RECRUIT WHERE RI_ISON=#{ri_ison}
+    </select>
 </mapper>

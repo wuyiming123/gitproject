@@ -19,35 +19,89 @@
     <script src="js/jquery-3.1.0.js"></script>
     <%List<Delivery> alldeli = (List<Delivery>) session.getAttribute("state2deli");%>
     <%List<InterView> interViews = (List<InterView>) session.getAttribute("interViews");%>
-
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .imgsrc{
+            opacity: 0.3;
+            position: absolute;
+            height: 680px;
+            width: 1530px;
+        }
+    </style>
 </head>
 <body>
-<%
-    if(alldeli==null){
-%>
-<a href="lookdeli">暂未有人投递简历！</a></br>
-<%
-    }else{
-%>
-<a href="lookdeli">收到<%=alldeli.size()%>条新的简历投递</a></br>
-<%
-    }
-%>
-<%
-    if(interViews==null){
-%>
-<a href="lookInter">还没有发起任何面试！</a></br>
-<%
-    }else {
-%>
-<a href="lookInter">查看面试邀请</a></br>
-<%
-    }
-%>
-<a href="review">检阅部门</a></br>
-<a href="allrecruit">招聘信息</a></br>
-<a href="alltrain">员工培训</a><br>
-<a href="toRelieveGuard">员工换岗</a></br>
-<a href="allStaff">员工查询</a></br>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <%
+                if(alldeli==null){
+            %>
+            <a  class="navbar-brand" href="lookdeli">暂未有人投递简历！</a></br>
+            <%
+            }else{
+            %>
+            <a  class="navbar-brand" href="lookdeli" style="color: red">收到<%=alldeli.size()%>条新的简历投递</a></br>
+            <%
+                }
+            %>
+        </div>
+        <div class="navbar-header">
+            <%
+                if(interViews==null){
+            %>
+            <a  class="navbar-brand" href="lookInter">还没有发起任何面试！</a></br>
+            <%
+            }else {
+            %>
+            <a  class="navbar-brand" href="lookInter" style="color: red">查看面试邀请</a></br>
+            <%
+                }
+            %>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" >|</a></br>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="review">检阅部门</a></br>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" >|</a></br>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="allrecruit">招聘信息</a></br>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" >|</a></br>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="alltrain">员工培训</a><br>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" >|</a></br>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="toRelieveGuard">员工换岗</a></br>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" >|</a></br>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="allStaff">员工查询</a></br>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" >|</a></br>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="toindex" >返回首页</a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" >|</a></br>
+        </div>
+    </div>
+</nav>
+<hr>
+<img src="picturess/630a7e9e73ff6824ddd3a7ae44b_p24_mk24.png"  class="imgsrc">
 </body>
 </html>

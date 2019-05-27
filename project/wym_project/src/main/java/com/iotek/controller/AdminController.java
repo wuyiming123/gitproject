@@ -46,6 +46,27 @@ public class AdminController {
         return "adminreview";
     }
 
+    @RequestMapping("renamedepart")
+    public String renamedepart(Integer deid,String newdename,HttpServletResponse response,HttpSession session)throws Exception{
+        PrintWriter out = response.getWriter();
+        Departement departement = new Departement();
+        departement.setDe_id(deid);
+        departement.setDe_name(newdename);
+        Departement queryforname = departmentService.queryforname(departement);
+        if(queryforname!=null){
+            out.flush();
+            out.println("<script>");
+            out.println("alert('部门重名了');");
+            out.println("</script>");
+            return "adminreview";
+        }
+        departmentService.updatedename(departement);
+        List<Departement> departements = departmentService.queryAllDepartment();
+        session.setAttribute("alldepartment",departements);
+
+        return "adminreview";
+    }
+
     @RequestMapping("admin")
     public String admin(HttpSession session)throws Exception{
         List<Delivery> deliveries = deliveryService.queryAllDe();
@@ -153,6 +174,18 @@ public class AdminController {
     @RequestMapping("adddepart")
     public String adddepart(String de_name,HttpSession session,HttpServletResponse response)throws Exception{
         PrintWriter out = response.getWriter();
+        List<Departement> departements1 = departmentService.queryAllDepartment();
+        for(Departement d:departements1){
+            if(d.getDe_name().equals(de_name)){
+                out.flush();
+                out.println("<script>");
+                out.println("alert('部门重名无法创建！');");
+                out.println("</script>");
+                return "adminreview";
+            }
+        }
+
+
         Departement departement = new Departement();
         departement.setDe_name(de_name);
         departement.setDe_stcount(0);
@@ -190,6 +223,17 @@ public class AdminController {
     @RequestMapping("addPosition")
     public String addPosition(Integer po_deid,String po_name,HttpSession session,HttpServletResponse response)throws Exception{
         PrintWriter out = response.getWriter();
+        List<Position> positions1 = positionService.queryAllPosi();
+        for (Position p:positions1){
+            if(p.getPo_name().equals(po_name)){
+                out.flush();
+                out.println("<script>");
+                out.println("alert('职位重名');");
+                out.println("</script>");
+                return "thisdepartment";
+            }
+        }
+
         Position position = new Position();
         position.setPo_deid(po_deid);
         position.setPo_name(po_name);

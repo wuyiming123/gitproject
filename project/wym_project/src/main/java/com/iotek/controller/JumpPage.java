@@ -15,4 +15,17 @@ public class JumpPage {
     public String toadminreview(){
         return "adminreview";
     }
+
+    @RequestMapping("toindex")
+    public String toindex(){return "../../index";}
+
+    @RequestMapping("tomyinterview")
+    public String tomyinterview()throws Exception{
+        return "myinterview";
+    }
+
+    @RequestMapping("tomyresum")
+    public String tomyresum()throws Exception{
+        return "myresume";
+    }
 }

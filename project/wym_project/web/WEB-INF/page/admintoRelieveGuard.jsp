@@ -16,6 +16,9 @@
     <base href="<%=basePath%>"/>
     <title>Title</title>
     <script src="js/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         $(function () {
             $("#oldDePart").change(function () {
@@ -46,36 +49,60 @@
     </script>
 </head>
 <body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="admin" class="navbar-brand">上一层</a>
+        </div>
+    </div>
+</nav>
+
 <form action="update_de_po" method="post" >
-    <select id="oldDePart" required>
-        <option>-----</option>
-        <c:forEach items="${sessionScope.alldepartment}" var="alldepart">
-            <option value="${alldepart.de_id}">${alldepart.de_name}</option>
-        </c:forEach>
-    </select>
-    <select id="oldPoSi" required>
-        <option>-----</option>
-    </select>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>调换前</td>
+                <td>调换后</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <select id="oldDePart" name="oldDePart" required>
+                        <option>-----</option>
+                        <c:forEach items="${sessionScope.alldepartment}" var="alldepart">
+                            <option value="${alldepart.de_id}">${alldepart.de_name}</option>
+                        </c:forEach>
+                    </select>
+                    <select id="oldPoSi" name="oldPoSi" required>
+                        <option>-----</option>
+                    </select>
 
-    <select id="staffName" name="staffName" required>
-        <option>-----</option>
-    </select>
+                    <select id="staffName" name="staffName" required>
+                        <option>-----</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="newDePart" name="newDePart" required>
+                        <option>-----</option>
+                        <c:forEach items="${sessionScope.alldepartment}" var="alldepart">
+                            <option value="${alldepart.de_id}">${alldepart.de_name}</option>
+                        </c:forEach>
+                    </select>
 
-    ==调==换==>
-
-    <select id="newDePart" name="newDePart" required>
-        <option>-----</option>
-        <c:forEach items="${sessionScope.alldepartment}" var="alldepart">
-            <option value="${alldepart.de_id}">${alldepart.de_name}</option>
-        </c:forEach>
-    </select>
-
-    <select id="newPoSi" name="newPoSi" required>
-        <option>-----</option>
-    </select>
-    </br>
-    <input type="submit" value="提交" >
+                    <select id="newPoSi" name="newPoSi" required>
+                        <option>-----</option>
+                    </select>
+                    </br>
+                </td>
+                <td>
+                    <input type="submit" value="提交" >
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </form>
-<a href="admin">上一层</a>
+
 </body>
 </html>

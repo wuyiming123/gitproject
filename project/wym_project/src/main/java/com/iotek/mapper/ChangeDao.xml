@@ -5,6 +5,19 @@
         insert into T_CHANGE (C_ID, C_SID, C_MONEY, C_TIME, C_WHY, C_STATE)
         values (CHANGE_SEQ.nextval,#{c_sid},#{c_money},#{c_time},#{c_why},#{c_state})
     </insert>
+    <update id="updateChange">
+        update T_CHANGE
+        set  C_STATE=#{c_state},
+             C_WHY=#{c_why},
+             C_MONEY=#{c_money}
+        where C_ID=#{c_id}
+    </update>
+    <delete id="delchange">
+        delete from T_CHANGE where C_SID=#{c_sid} and C_TIME=#{c_time}
+    </delete>
+    <delete id="delchangeBy_id">
+        delete from T_CHANGE where C_ID=#{c_id}
+    </delete>
     <select id="foundChangeBydate_id" resultType="com.iotek.model.Change">
         select * from T_CHANGE where C_SID=#{c_sid} and C_TIME=#{c_time}
     </select>

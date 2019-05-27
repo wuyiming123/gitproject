@@ -62,4 +62,15 @@ public class SalaryServiceImpl implements SalaryService {
     public List<Salary> queryAllSalaryBystate(Integer sd_id, String sd_state) {
         return salaryDao.queryAllSalaryBystate(sd_id,sd_state);
     }
+
+    public Salary querySalary_By_Month(Integer sa_sdid, Integer month) {
+        if(sa_sdid!=null){
+            return salaryDao.querySalary_By_Month(sa_sdid,month);
+        }
+        return null;
+    }
+
+    public List<Salary> queryall(Integer sa_sdid, String sa_state, Integer month) {
+        return salaryDao.queryall(sa_sdid,sa_state,month);
+    }
 }

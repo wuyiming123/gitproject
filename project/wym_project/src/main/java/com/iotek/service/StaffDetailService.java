@@ -15,4 +15,6 @@ public interface StaffDetailService {
     boolean updateDE_PO(StaffDetail staffDetail);
     boolean updateState(StaffDetail staffDetail);
     StaffDetail getthisshtaff(Integer sd_id);
+    boolean sayGoodBy(StaffDetail staffDetail);
+    boolean Staffresignation(StaffDetail staffDetail);
 }

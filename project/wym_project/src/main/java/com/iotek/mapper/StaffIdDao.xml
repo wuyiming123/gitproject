@@ -12,6 +12,9 @@
     <delete id="delStaffID">
         delete from T_STAFFID WHERE SID_TAID=#{sid_taid}
     </delete>
+    <delete id="del_By_sid_sdid">
+        delete from T_STAFFID where SID_SDID=#{sid_sdid}
+    </delete>
     <select id="queryStaffIdBy_sid_taid" resultType="com.iotek.model.StaffId">
         select * from T_STAFFID WHERE SID_TAID=#{sid_taid}
     </select>

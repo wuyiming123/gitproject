@@ -5,6 +5,14 @@
         insert into T_STAFF (S_ID, S_SDID, S_SID, S_SPASS)
         values (STAFF_SEQ.nextval,#{s_sdid},#{s_sid},#{s_spass})
     </insert>
+    <update id="updateovertime">
+        update T_STAFF
+        set  S_OVERTIME=#{s_overtime}
+        where S_ID=#{s_id}
+    </update>
+    <delete id="delStaff">
+        delete from T_STAFF where S_ID=#{s_id}
+    </delete>
     <select id="foundStaffByS_SDID" resultType="com.iotek.model.Staff">
         select * from T_STAFF where S_SDID=#{s_sdid}
     </select>
@@ -13,5 +21,8 @@
     </select>
     <select id="queryAll" resultType="com.iotek.model.Staff">
         select * from T_STAFF WHERE S_STATE=#{s_state}
+    </select>
+    <select id="queryAllStaff" resultType="com.iotek.model.Staff">
+        select * from T_STAFF
     </select>
 </mapper>

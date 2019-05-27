@@ -51,4 +51,22 @@ public class ChangeServiceImpl implements ChangeService {
         }
         return null;
     }
+
+    public boolean delchange(Change change) {
+        if(change!=null){
+            return changeDao.delchange(change);
+        }return false;
+    }
+
+    public boolean delchangeBy_id(Integer c_id) {
+        if(c_id!=null){
+            return changeDao.delchangeBy_id(c_id);
+        }return false;
+    }
+
+    public boolean updateChange(Change change) {
+        if(change!=null){
+            return changeDao.updateChange(change);
+        }return false;
+    }
 }

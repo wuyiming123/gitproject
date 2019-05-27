@@ -17,6 +17,7 @@ public class StaffDetail implements Serializable {
     private String sd_time;
     private String sd_card;
     private Integer sd_state;
+    private String sd_why;
 
     public StaffDetail() {
     }
@@ -107,6 +108,14 @@ public class StaffDetail implements Serializable {
 
     public void setSd_time(String sd_time) {
         this.sd_time = sd_time;
+    }
+
+    public String getSd_why() {
+        return sd_why;
+    }
+
+    public void setSd_why(String sd_why) {
+        this.sd_why = sd_why;
     }
 
     @Override

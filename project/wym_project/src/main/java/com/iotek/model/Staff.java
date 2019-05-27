@@ -8,8 +8,17 @@ public class Staff implements Serializable {
     private String s_sid;//工号
     private String s_spass;//密码
     private Integer s_state;
+    private Integer s_overtime;
 
     public Staff() {
+    }
+
+    public Integer getS_overtime() {
+        return s_overtime;
+    }
+
+    public void setS_overtime(Integer s_overtime) {
+        this.s_overtime = s_overtime;
     }
 
     public Integer getS_state() {

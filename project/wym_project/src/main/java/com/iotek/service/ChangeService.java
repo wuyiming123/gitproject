@@ -10,4 +10,7 @@ public interface ChangeService {
     List<Change> queryAllChangeBy_sid(Change change);
     Change queryTime_Change(Change change);
     List<Change> queryByMonth(Integer c_sid,Integer month);
+    boolean delchange(Change change);
+    boolean delchangeBy_id(Integer c_id);
+    boolean updateChange(Change change);
 }
